@@ -4,11 +4,12 @@ import LoginPage from '../components/LoginPage/LoginPage'
 import HomePage from '../components/HomePage/HomePage'
 import Terms from '../components/Terms/Terms'
 import Artists from '../components/Artists/Artists'
-
+import DataLoad from '../components/DataLoad/DataLoad'
 
 const Routes = () => (
     <BrowserRouter>
       <Switch>
+      <Route path='/dataload' component={DataLoad} />
     <Route path='/home' component={HomePage} />
         <Route exact path='/terms' component={Terms} />
         <Route exact path='/artists' component={Artists} />
