@@ -33,7 +33,7 @@ const requestOptions = {
 export const fetchUsers = () => {
     return (dispatch) => {
         dispatch(fetchUserRequest())
-        axios.post('http://localhost:5000', requestOptions.body)
+        axios.post('https://music-app-feeder.herokuapp.com', requestOptions.body)
 
             .then(response => {
                 const users = response.data
