@@ -1,5 +1,5 @@
 import Axios from 'axios'
-const baseURL = 'https://muzify-api.herokuapp.com'
+const baseURL = 'https://music-app-feeder.herokuapp.com'
 // Create an axios instance
 const api = Axios.create({
   baseURL,
