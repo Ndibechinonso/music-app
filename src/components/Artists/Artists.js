@@ -1,11 +1,18 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import './Artists.css'
 import { useSelector } from 'react-redux'
 import LoggedInNav from '../LoggedInNav'
 import { nanoid } from "nanoid";
+import AOS from 'aos'
+import 'aos/dist/aos.css';
 
 const Artists = (props) => {
 
+    useEffect(()=>{
+        AOS.init({
+            duration: 1000
+        })
+    })
         const fetchedData = useSelector(state => state.data[3])
         const fetchedData2 = useSelector(state => state.data[4])
         if (fetchedData){
@@ -26,7 +33,7 @@ const Artists = (props) => {
                 { favoriteArtist && favoriteArtist.map(artist =>{
             return(
             <div>
-            <div className='artistImgContainer' key={artist.id + nanoid()}>
+            <div data-aos='fade-up' className='artistImgContainer' key={artist.id + nanoid()}>
                 <img src={artist.picture_xl} alt='' />
                 <div className='albumCover'><img src={artist.picture_xl} alt='' />
                 <div className='albumName'>{artist.name} </div>
@@ -46,7 +53,7 @@ const Artists = (props) => {
                 { recommendedArtist && recommendedArtist.map(artist =>{
             return(
             <div>
-            <div className='artistImgContainer' key={artist.id + nanoid()}>
+            <div data-aos='fade-up' className='artistImgContainer' key={artist.id + nanoid()}>
                 <img src={artist.picture_xl} alt='' />
                 <div className='albumCover'><img src={artist.picture_xl} alt='' />
                 <div className='albumName'>{artist.name} </div>
@@ -61,12 +68,6 @@ const Artists = (props) => {
 
 
    </div>
-
-
-
-
-
-
 
         </div>
   </div>

@@ -38,7 +38,7 @@ import { useSelector } from 'react-redux'
             <div className='loggedNavBar'>
                 <Link to='/home'> <h2>Muzify</h2></Link>
                 <ul className='loggedNavBar-links'>
-                    <Link to='/home'> <li className='' >Home</li></Link> <Link to='/artists'><li>Artists </li></Link> <li>PlayLists </li> <li>Podcasts </li><li onClick={accountDrop}><img src={dropdown} alt='dropdown icon' /></li>
+                    <Link to='/home'> <li className='' >Home</li></Link> <Link to='/artists'><li>Artists </li></Link> <li>PlayLists </li> <Link to='/genres'> <li>Genres </li> </Link> <li onClick={accountDrop}><img src={dropdown} alt='dropdown icon' /></li>
                 </ul>
             </div>
 
