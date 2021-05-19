@@ -1,0 +1,103 @@
+.navBar{
+    color: white;
+    display: flex;
+    flex-direction: row;
+    font-family: Arial, Helvetica, sans-serif;
+    justify-content: space-between;
+    padding: 45px 80px;
+   
+}
+.navBarButton{
+    background-color: #DA2060;
+    border-radius: 10px;
+    padding: 15px 45px;
+    color: white;
+    font-weight: 700;
+    outline: none;
+    border: none;
+    font-size: 16px;
+}
+.navBar-links{
+    display: flex;
+    flex-direction: row;
+    font-weight: 700;
+    font-size: 21px;
+    gap: 100px;
+    align-items: center;
+    list-style: none;
+}
+.navBar-links li:hover{
+    cursor: pointer;
+}
+
+.logoDiv{
+    position: relative;
+}
+.logo{
+    position: absolute;
+    left: 22px;
+    top: 10px;
+    width: 98.67px;
+}
+
+.share{
+    margin-left: 5px;
+}
+
+.modal{
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 3;
+    width: 100%;
+    height: 100%; 
+}
+.about-modal{
+    background-color: #000000;
+    position: absolute;
+    width: 405px;
+    height: 243px;
+    left: 513px;
+    top: 136px;
+    border-radius: 15px;
+}
+.share-modal{
+    position: absolute;
+    width: 385px;
+    height: 219px;
+    left: 737px;
+    top: 129px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #000000;
+    gap: 10px;
+
+}
+
+.socialRow{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.modal h2{
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+.modal p{
+    color: #ffffff;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+.socialRowImg{
+    width: 94px;
+}
+a{
+    text-decoration: none;
+    color: white;
+}

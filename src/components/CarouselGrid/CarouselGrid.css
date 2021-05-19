@@ -1,0 +1,38 @@
+.roundedImg{
+    border-radius: 50%;
+}
+.slideContainer{
+  text-align: center;
+  justify-content: center;
+ position: relative;
+ display: flex; 
+ align-items: center; 
+ justify-content: center;
+}
+.slideContainer p{
+    color: white;
+}
+.titleDiv{
+    position: absolute;
+    top: 40%;
+    margin: auto;
+    width: 80%
+}
+.slideContainer p:first-of-type{
+font-size: 24px;
+font-weight: 700;
+}
+.artistName{
+    font-size: 18px;  
+    font-weight: 700;
+    margin-top: 20px
+}
+.lastPlayedheader{
+    font-size: 40px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0;
+}
+.carouselGridContainer{
+    margin-top: 50px;
+}
