@@ -44,10 +44,11 @@ import { useSelector } from 'react-redux'
 
             { accountlink ? <div className='accountModal'>
                 <div className='modal-content'>
-                    <div className='settings'><img src={userData.picture_xl} className='user userImg' alt='' /><p>{userData.name}</p> </div>
+                 {userData ? <div className='settings'><img src={userData.picture_xl} className='user userImg' alt='' /><p>{userData.name}</p></div>
+                 :<div className='settings'> <i className="fas userIcon fa-user-circle"></i> User</div>}
                     <div className='settings'><img src={icon} className='user' alt='feedback icon' /> Send Feedback</div>
                     <div className='settings'><img src={icon2} className='user' alt='autoplay icon' /> Auto play on hover</div>
-                    <div className='settings'><img src={icon3} className='user' alt='logout icon' /> Log out</div>
+                  <Link to='/'><div className='settings'><img src={icon3} className='user' alt='logout icon' /> Log out</div></Link>
                 </div>
             </div> : null}
         </div>
