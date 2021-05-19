@@ -13,7 +13,7 @@ export default function Intro (props){
         <div className='introContainer'>
         <div className='introText'><FadeInAnimation direction="up" ><h2>Discover your moods</h2> </FadeInAnimation>
         <FadeInAnimation direction="up" delay={1}> <p>Explore your music activities and generate  new and exciting playlists without having to open your Deezer app at all</p></FadeInAnimation>
-        <FadeInAnimation direction="right" delay={2}>   <div><Button className='introButton' text='Continue with Deezer'/></div></FadeInAnimation>
+        <FadeInAnimation direction="right" delay={2}>  <div><a href='https://connect.deezer.com/oauth/auth.php?app_id=475622&redirect_uri=https://do-re-me.netlify.app/home&perms=basic_access,email,listening_history'><Button className='introButton' text='Continue with Deezer'/></a></div></FadeInAnimation>
         </div> 
             <div className='picStack'><FadeInAnimation direction="left" ><img className='drizzy' src={drizzy} alt='drake'/></FadeInAnimation> <FadeInAnimation direction="up" delay={1}> <img className='jb' src={weekend}  alt='justin bieber'/></FadeInAnimation> </div>
 

@@ -37,8 +37,9 @@ export const fetchUsers = () => {
 
             .then(response => {
                 const users = response.data
-                console.log(users)
+                console.log(users, 'data')
                 dispatch(fetchUserSuccess(users))
+
             }
             )
             .catch(error => {

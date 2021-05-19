@@ -43,4 +43,7 @@
     height: 32px;
   }
 }
-  
+.requesFailed{
+  color: #fff;
+  text-align: center;
+}

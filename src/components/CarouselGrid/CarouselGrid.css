@@ -36,3 +36,7 @@ font-weight: 700;
 .carouselGridContainer{
     margin-top: 50px;
 }
+.requesFailed{
+    color: #fff;
+    text-align: center;
+  }
