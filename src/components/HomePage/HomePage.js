@@ -1,18 +1,24 @@
-import React, { useEffect } from 'react'
+import React, {useEffect} from 'react'
 import './HomePage.css'
 import LoggedInNav from '../LoggedInNav'
-import { useSelector, useDispatch } from 'react-redux'
-import { useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux'
+
 import { nanoid } from "nanoid";
 import Carousel from '../Carousel'
 import CarouselGrid from '../CarouselGrid/CarouselGrid'
- import {fetchUsers} from '../../redux'
  import AOS from 'aos';
-
+ import 'aos/dist/aos.css';
 
 const HomePage = (props) => {
- 
+    useEffect(()=>{
+        AOS.init({
+            duration: 1000
+        })
+    })
     const fetchedData = useSelector(state => state.data[1])
+    const fetchedData2 = useSelector(state => state.data[7])
+   
+    console.log(fetchedData2, 'rectracks')
 
 
     if (fetchedData){
@@ -46,7 +52,6 @@ const HomePage = (props) => {
 
             </Carousel>
         </div> 
-
 
 <CarouselGrid />
         </div>

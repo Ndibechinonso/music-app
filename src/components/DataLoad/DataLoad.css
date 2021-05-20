@@ -3,7 +3,6 @@
     font-size: 40px;  
 }
 
-
 .playDiv{
     display: flex;
     flex-direction: column;
@@ -20,6 +19,7 @@
 }
 .playCircleActing{
     border:3px solid green;
+	transition: border-color 5s;
     padding: 30px;
     border-radius: 50%;
 }
@@ -130,3 +130,6 @@
 		--fg: #c7cad1;
 	}
 }
+
+body{
+	cursor: none }

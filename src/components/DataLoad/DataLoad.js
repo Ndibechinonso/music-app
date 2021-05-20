@@ -1,18 +1,19 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useLocation } from 'react-router-dom';
 import './DataLoad.css'
 import {fetchUsers} from '../../redux'
 import { Link } from 'react-router-dom'
-
+import DotRing from '../DotRing/DotRing'
+import { MouseContext } from '../../context/mouse-context'
 
 
 const DataLoad = (props) => {
-
+    const { cursorType, cursorChangeHandler } = useContext(MouseContext);
     const loader = useSelector(state => state.loading)
     const data = useSelector(state => state.data)
     const error = useSelector(state => state.error)
-    const fetchedData = useSelector(state => state.data[1])
+   
     const dispatch = useDispatch()
     useEffect(()=>{
 
@@ -29,10 +30,16 @@ useEffect(() => {
 }, []);
 
 return(
-    <div className='playDiv'> {data.length !== 0 && error.length === 0 ? <div className='playCircleActing'><Link to='/home'><a><i className="fas play fa-play"></i></a></Link></div> : <div className='playCircle'><div class="hourglass"></div></div>} </div>
+    <div>
+<DotRing />
+<div
+          onMouseEnter={() => cursorChangeHandler("hovered")}
+          onMouseLeave={() => cursorChangeHandler("")}
+        >
+    <div className='playDiv'> {data.length !== 0 && error.length === 0 ? <div className='playCircleActing'><Link to='/home'><a><i className="fas play fa-play"></i></a></Link></div> : <div className='playCircle'><div className="hourglass"></div></div>} </div>
+    </div>
+    </div>
 )
-
-
 
 }
 

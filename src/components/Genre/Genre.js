@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import './Genre.css'
 import { useSelector } from 'react-redux'
 import LoggedInNav from '../LoggedInNav'
@@ -7,6 +7,12 @@ import AOS from 'aos'
 import 'aos/dist/aos.css';
 
 const Artists = (props) => {
+
+    useEffect(()=>{
+        AOS.init({
+            duration: 1000
+        })
+    })
 
         const fetchedData = useSelector(state => state.data[5])
         const fetchedData2 = useSelector(state => state.data[6])
