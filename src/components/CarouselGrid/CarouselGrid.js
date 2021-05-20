@@ -10,11 +10,13 @@ const CarouselGrid = ({fetchUsers, userData }) => {
 
     const fetchedData = useSelector(state => state.data[2])
     const loader = useSelector(state => state.loading)
-
+    const fetchedData2 = useSelector(state => state.data[8])
     if (fetchedData){
           var lastPlayed = fetchedData.data
 }
-
+if(fetchedData2){
+    var latestTracks = fetchedData2.data
+}
 return (
     <div className='carouselGridContainer'>
     <div className='artistsBody'>
@@ -41,6 +43,35 @@ return (
                  }
                 </SecondCarousel>
             </div>
+            </div>
+
+            <div className='latestTracksBody'>
+        <div className='lastPlayedheader'>Latest tracks</div>
+        <div style={{ maxWidth: 1200, marginLeft: 'auto', marginRight: 'auto', marginTop: 20 }}>
+            <SecondCarousel show={5} >
+
+                { loader === true ? <div className='spinnerContainer'> <div className="lds-facebook"><div></div><div></div><div></div></div> </div> : latestTracks ? latestTracks.map(track => {
+                    return (
+                        <div key={track.id + nanoid()} data-aos="fade-left">
+
+                            <div >
+                                <div className='slideContainer' style={{ padding: 8 }}>  
+                               <div className='imgContainer'>   <img className='roundedImg' src={track.cover_xl} alt="placeholder" style={{ width: '100%' }} /></div>
+                             <div className='titleDiv'>
+                                <p>{track.title}</p>
+                                <p className='artistName'>{track.artist.name}</p></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    )
+                }) : <div class='requesFailed'>FAILED, KINDLY RESTART APP</div>
+             }
+            </SecondCarousel>
+        </div>
+
+
+
      </div>
       </div>  )
 }
