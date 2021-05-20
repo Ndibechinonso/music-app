@@ -11,6 +11,7 @@
     justify-items: center;
     height: 100vh;
     width: 100vw;
+	cursor: none;
 }
 .playCircle{
     border:3px solid white;
@@ -130,6 +131,3 @@
 		--fg: #c7cad1;
 	}
 }
-
-body{
-	cursor: none }
