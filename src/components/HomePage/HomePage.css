@@ -43,7 +43,7 @@
     height: 32px;
   }
 }
-.requesFailed{
-  color: #fff;
-  text-align: center;
-}
+  .requesFailed{
+    color: #fff;
+    text-align: center;
+  }
