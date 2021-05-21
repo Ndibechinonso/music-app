@@ -13,8 +13,8 @@ const Artists = (props) => {
             duration: 1000
         })
     })
-        const fetchedData = useSelector(state => state.data[3])
-        const fetchedData2 = useSelector(state => state.data[4])
+        const fetchedData = useSelector(state => state.userData.data[3])
+        const fetchedData2 = useSelector(state => state.userData.data[4])
         if (fetchedData){
               var favoriteArtist = fetchedData.data
    }

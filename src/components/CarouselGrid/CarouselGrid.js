@@ -14,8 +14,8 @@ const CarouselGrid = ({fetchUsers, userData }) => {
             duration: 1000
         })
     })
-    const fetchedData = useSelector(state => state.data[2])
-    const fetchedData2 = useSelector(state => state.data[8])
+    const fetchedData = useSelector(state => state.userData.data[2])
+    const fetchedData2 = useSelector(state => state.userData.data[8])
     const loader = useSelector(state => state.loading)
     console.log(latestTracks, 'latestTracks')
     if (fetchedData){

@@ -10,9 +10,9 @@ import { MouseContext } from '../../context/mouse-context'
 
 const DataLoad = (props) => {
     const { cursorType, cursorChangeHandler } = useContext(MouseContext);
-    const loader = useSelector(state => state.loading)
-    const data = useSelector(state => state.data)
-    const error = useSelector(state => state.error)
+    const loader = useSelector(state => state.userData.loading)
+    const data = useSelector(state => state.userData.data)
+    const error = useSelector(state => state.userData.error)
    
     const dispatch = useDispatch()
     useEffect(()=>{

@@ -14,8 +14,8 @@ const Artists = (props) => {
         })
     })
 
-        const fetchedData = useSelector(state => state.data[5])
-        const fetchedData2 = useSelector(state => state.data[6])
+        const fetchedData = useSelector(state => state.userData.data[5])
+        const fetchedData2 = useSelector(state => state.userData.data[6])
         
         if (fetchedData){
               var genres = fetchedData.data

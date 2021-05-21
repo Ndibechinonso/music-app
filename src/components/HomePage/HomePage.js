@@ -15,8 +15,8 @@ const HomePage = (props) => {
             duration: 1000
         })
     })
-    const fetchedData = useSelector(state => state.data[1])
-    const fetchedData2 = useSelector(state => state.data[7])
+    const fetchedData = useSelector(state => state.userData.data[1])
+    const fetchedData2 = useSelector(state => state.userData.data[7])
    
     console.log(fetchedData2, 'rectracks')
 
