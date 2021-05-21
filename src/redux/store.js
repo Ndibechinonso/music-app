@@ -4,6 +4,6 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './rootReducer'
 import userDataReducer from './userData/userDataReducer'
 
-const store = createStore(userDataReducer, composeWithDevTools(applyMiddleware(thunk)))
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
 
 export default store
