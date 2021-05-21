@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux'
 
 
  function LoggedInNav(props) {
- const userData = useSelector(state => state.userData.userData.data[0])
+ const userData = useSelector(state => state.userData.data[0])
 
     const [accountlink, setaccountlink] = useState(false)
 
