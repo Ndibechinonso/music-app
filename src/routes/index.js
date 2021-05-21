@@ -6,6 +6,7 @@ import Terms from '../components/Terms/Terms'
 import Artists from '../components/Artists/Artists'
 import DataLoad from '../components/DataLoad/DataLoad'
 import Genre from '../components/Genre/Genre'
+import Playlists from '../components/Playlists/Playlists'
 
 const Routes = () => (
     <BrowserRouter>
@@ -16,7 +17,7 @@ const Routes = () => (
         <Route exact path='/terms' component={Terms} />
         <Route exact path='/artists' component={Artists} />
         <Route exact path='/' component={LoginPage} />
-
+        <Route path='/playlists' component={Playlists} />
         <Route exact path='*' component={() => <div>Page No Found</div>} />
         </Switch>
     </BrowserRouter>
