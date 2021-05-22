@@ -131,3 +131,16 @@
 		--fg: #c7cad1;
 	}
 }
+.errorMsg{
+	color: white;
+	font-size: 24px;
+	text-align: center;
+	margin-bottom: 30px;
+}
+.errorDiv{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
+}
