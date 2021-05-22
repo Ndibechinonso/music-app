@@ -97,7 +97,15 @@
 .socialRowImg{
     width: 94px;
 }
+.socialRowImg:hover{
+    cursor: pointer;
+}
+
 a{
     text-decoration: none;
     color: white;
+}
+.copied{
+    font-size: 14px; 
+    color: #DA2060 !important;
 }

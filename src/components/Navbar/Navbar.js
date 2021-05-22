@@ -11,9 +11,6 @@ import TwitterShare from '../TwitterShare';
 import copy from "copy-to-clipboard";
 
 
-
-
-
 export default function Navbar(props) {
     
 const [navlink, setNavlink] = useState(false)
