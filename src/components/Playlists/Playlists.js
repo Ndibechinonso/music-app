@@ -11,7 +11,7 @@ import play from '../../Assets/play.png'
 import playlistLogo from '../../Assets/playlistLogo.png'
 import cancelButton from '../../Assets/cancelButton.png'
 import deleteButton from '../../Assets/deleteButton.png'
-
+import PlaylistModalButtons from '../PlaylistModalButtons/PlaylistModalButtons'
 
 const Playlists = (props) => {
 
@@ -22,7 +22,7 @@ const Playlists = (props) => {
     const [show, setShow] = useState(false)
     const [select, setSelect] = useState('')
     const [tracklist, settracklist] = useState(null)
-
+    const [trackCount, setTrackCount] = useState(null)
     const [playTrack, setPlayTrack] = useState(false)
     console.log(playTrack, 'playTrack')
     const [trackId, setTrackId] = useState('')
@@ -67,6 +67,7 @@ const Playlists = (props) => {
 
     if (fetchedData) {
         var playlists = fetchedData.data
+        console.log(playlists, 'playlists')
     }
 
     if (fetchedData2) {
@@ -84,13 +85,13 @@ const Playlists = (props) => {
                             <div key={playlist.id}>
                                 <Modal show={show} onClose={() => setShow(false)} title='Playlists'>
                                     <div className='closeBtn'><div onClick={() => setShow(false)} className='closeContainer'><img className='closeImg' src={cancelButton} alt='' /></div></div>
-                                    <div className='playlistModal-title'>{select}</div>
-                                    <div className='playlistModal-createDiv'>buttons</div>
+                                    <div className='playlistModal-title'>{select} playlist</div>
+                                    <div className='playlistModal-createDiv'> {!loader ? <PlaylistModalButtons songCount={`${playlistData.length} songs`}/> : null}</div>
                                     {!loader ? playlistData.map(track => {
                                         return (
-                                            <div key={track.id} className='childrenContainer'>
+                                            <div key={track.id} className='childrenContainer' >
 
-
+  
                                                 <div className='playlistModal-body'>
                                                     <div className='modalListDiv'><img className='deleteImg' src={deleteButton} alt='' /><img className='twndimg' src={track.artist.picture_xl} alt='' /></div> <div className='playListModalTittle'><div>{track.title}</div> <div>{track.artist.name}</div></div> <div className='playlistPlayDiv'><img className='playImg' src={play} onClick={() => { setTrackId(track.preview); player() }} alt='' /> <img className='playlistLogoImg' src={playlistLogo} alt='' /></div>
 
