@@ -19,14 +19,15 @@
     width: 80%
 }
 .slideContainer p:first-of-type{
-font-size: 24px;
+font-size: 60%;
 font-weight: 700;
 }
 .artistName{
-    font-size: 18px;  
+    font-size: 40%;  
     font-weight: 700;
     margin-top: 20px
 }
+
 .lastPlayedheader{
     font-size: 40px;
     font-weight: 700;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import './Carousel.css'
+import './CustomisedCarousel.css'
 
-const Carousel = (props) => {
+const CustomisedCarousel = (props) => {
     const {children, show} = props
 
     const [currentIndex, setCurrentIndex] = useState(0)
@@ -92,4 +92,4 @@ const Carousel = (props) => {
     )
 }
 
-export default Carousel
+export default CustomisedCarousel
