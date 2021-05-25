@@ -13,11 +13,14 @@ import Button from '../Button/Button'
 import axios from 'axios'
 import * as Yup from 'yup'
 import deezifylogo from '../../Assets/deezifylogo.png'
+import autoplayoff from '../../Assets/autoplayoff.png'
+import autoplayon from '../../Assets/autoplayon.png'
 
  function LoggedInNav(props) {
  const userData = useSelector(state => state.userData.data[0])
  const [show, setShow] = useState(false)
     const [accountlink, setaccountlink] = useState(false)
+    const [autoPlay, setAutoPlay] = useState(false)
 
     function accountDrop() {
         setaccountlink(true)
@@ -158,11 +161,11 @@ import deezifylogo from '../../Assets/deezifylogo.png'
             </div>
 
             { accountlink ? <div className='accountModal'>
-                <div className='modal-content'>
+                <div className='modal-content'onClick={e => e.stopPropagation()}>
                  {userData ? <div className='settings'><img src={userData.picture_xl} className='user userImg' alt='' /><p>{userData.name}</p></div>
                  :<div className='settings'> <i className="fas userIcon fa-user-circle"></i> User</div>}
                     <div className='settings' onClick={()=> setShow(true)}><img src={icon} className='user' alt='feedback icon' /> Send Feedback</div>
-                    <div className='settings'><img src={icon2} className='user' alt='autoplay icon' /> Auto play on hover</div>
+                    <div className='settings'><img src={icon2} className='user' alt='autoplay icon' /> Auto play on hover <div className='autoplayDiv'>{autoPlay ? <img src={autoplayon} onClick={()=> setAutoPlay(false)} /> : <img src={autoplayoff} onClick={()=> setAutoPlay(true)} />} </div> </div>
                   <Link to='/'><div className='settings'><img src={icon3} className='user' alt='logout icon' /> Log out</div></Link>
                 </div>
             </div> : null}

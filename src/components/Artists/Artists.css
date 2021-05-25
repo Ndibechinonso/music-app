@@ -16,8 +16,7 @@
     margin-top: 60px
 }
 .artistsBody{
- margin: 100px;
-     margin-right: 130px;
+    margin-left: 60px;   
 }
 .topArtistsContainer{
     display: grid;
