@@ -86,16 +86,16 @@ console.log(tracklist, 'tracklist')
       console.log({playlistTrackId}, 'playlistTrackId')
       console.log({accessToken}, 'accessToken')
 
-    function deleteTrack(){
-        axios.post('http://localhost:5000/users', requestOptions.body )
-        .then(response => {
-            const responseInfo = response
- } )
-          .catch(error => {
-            const errorMsg = error.message
-          })
+//     function deleteTrack(){
+//         axios.post('http://localhost:5000/users', requestOptions.body )
+//         .then(response => {
+//             const responseInfo = response
+//  } )
+//           .catch(error => {
+//             const errorMsg = error.message
+//           })
           
-    }
+//     }
 
     return (
         <div className='artistsContainer'>
@@ -115,7 +115,7 @@ console.log(tracklist, 'tracklist')
                                             <div key={track.id} className='childrenContainer' >
 
                                                 <div className='playlistModal-body'>
-                                                    <div className='modalListDiv'><img className='deleteImg' src={deleteButton} alt='' onClick={()=> {setPlaylistTrackId(track.id); deleteTrack()}} /><img className='twndimg' src={track.artist.picture_xl} alt='' /></div> <div className='playListModalTittle'><div>{track.title}</div> <div>{track.artist.name}</div></div> <div className='playlistPlayDiv'><img className='playImg' src={play} onClick={() => { setTrackId(track.preview); playSound()}} alt='' /> <img className='playImg' src={pause} onClick={() => { setTrackId(track.preview); stopSound()}} alt='' /> <img className='playlistLogoImg' src={playlistLogo} alt='' /></div>
+                                                    <div className='modalListDiv'><img className='deleteImg' src={deleteButton} alt='' onClick={()=> {setPlaylistTrackId(track.id)}} /><img className='twndimg' src={track.artist.picture_xl} alt='' /></div> <div className='playListModalTittle'><div>{track.title}</div> <div>{track.artist.name}</div></div> <div className='playlistPlayDiv'><img className='playImg' src={play} onClick={() => { setTrackId(track.preview); playSound()}} alt='' /> <img className='playImg' src={pause} onClick={() => { setTrackId(track.preview); stopSound()}} alt='' /> <img className='playlistLogoImg' src={playlistLogo} alt='' /></div>
 
                                                 </div>
                                             </div>
