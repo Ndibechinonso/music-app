@@ -12,6 +12,8 @@ const DataLoad = (props) => {
   const { cursorType, cursorChangeHandler } = useContext(MouseContext);
   const loader = useSelector((state) => state.userData.loading);
   const userData = useSelector(state => state.userData.data[0])
+  const error = useSelector((state) => state.userData.error);
+
  
   const dispatch = useDispatch();
   useEffect(() => {
@@ -25,6 +27,8 @@ const DataLoad = (props) => {
     const code = searchParams.get("code");
     localStorage.setItem("code", code);
   }, []);
+
+
 
   return (
     <div>

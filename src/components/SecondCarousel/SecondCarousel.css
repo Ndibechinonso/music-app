@@ -54,8 +54,8 @@
     z-index: 1;
     top: 50%;
     transform: translateY(-50%);
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
     border-radius: 24px;
     background-color: white;
     border: 1px solid #ddd;
@@ -74,7 +74,4 @@
     .left-arrow, .right-arrow {
         display: none;
     }
-}
-.slideArrow{
-    font-size: 24px;
 }

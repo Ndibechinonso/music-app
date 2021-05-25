@@ -64,9 +64,6 @@ padding-left: 40px;
 padding-bottom: 40px;
 
 }
-.modal-content div:hover{
-cursor: pointer;
-}
 
 .settings{
     display: flex;
@@ -76,81 +73,7 @@ cursor: pointer;
 .settings img{
     width: 30px;
 }
+
 .userIcon{
     font-size: 30px;
-}
-
-
-.closeImg{
-    width: 38px;
-}
-.closeBtn{
-    margin-right: 56px;
-   
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-}
-.closeContainer{
-    width: 38px;
-}
-
-.feedbackModal-title{
-    color: white;
-    text-align: center;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 36px;
-    font-weight: 700;
-    top: 288px;
-}
-.feedBackText{
-    color: white;
-    font-size: 18px;
-    font-weight: 700;
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 66px;
-}
-label{
-    color: white; 
-    font-size: 24px;
-    font-weight: 700;
-}
-
-input{
-    background-color: #C4C4C4;
-    margin-top: 20px;
-    margin-bottom: 43px;
-
-}
-.userInfo{
-    width: 720px;
-height: 52px;
-}
-.inputDiv{
-    margin-left: 177px;
-}
-
-#feedback{
-    min-height: 333px
-}
-.buttonDiv{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-top: 6px;
-}
-.feedbackButton{
-    font-size: 16px;
-    font-weight: 700;
-    background: #DA2060;
-    border-radius: 10px;
-    padding: 14px 132px;
-    color: #FFFFFF;
-    outline: none;
-    border-color:#DA2060;
-
-}
-.error{
-    color: white;
 }

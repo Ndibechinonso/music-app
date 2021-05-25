@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
 
 .playlistModal-body{
     border: 1px solid transparent;
@@ -73,8 +75,9 @@
     color: white;
     text-align: center;
     font-family: 'Open Sans', sans-serif;
+    font-size: 40px;
     font-weight: 700;
-    font-size: 36px;
+    font-size: 40px;
     top: 288px;
 }
 .closeImg{
@@ -134,8 +137,3 @@
       height: 32px;
     }
   }
-
-.secondHeader{
-    margin-top: 110px;
-    margin-bottom: 40px;
-}

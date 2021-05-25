@@ -8,44 +8,46 @@ import Modal from '../Modal/Modal'
 import axios from 'axios'
 import { fetchPlaylist } from '../../redux'
 import play from '../../Assets/play.png'
-import pause from '../../Assets/pause.png'
 import playlistLogo from '../../Assets/playlistLogo.png'
 import cancelButton from '../../Assets/cancelButton.png'
 import deleteButton from '../../Assets/deleteButton.png'
 import PlaylistModalButtons from '../PlaylistModalButtons/PlaylistModalButtons'
 
 const Playlists = (props) => {
+
     const dispatch = useDispatch()
     const playlistData = useSelector(state => state.playlist.data)
     const loader = useSelector(state => state.playlist.loading)
+    console.log(loader, 'playlistData')
     const [show, setShow] = useState(false)
     const [select, setSelect] = useState('')
     const [tracklist, settracklist] = useState(null)
     const [trackCount, setTrackCount] = useState(null)
     const [playTrack, setPlayTrack] = useState(false)
+    console.log(playTrack, 'playTrack')
     const [trackId, setTrackId] = useState('')
-    const [playlistId, setPlaylistId] = useState('')
-    const [playlistTrackId, setPlaylistTrackId] = useState('')
 
     const audioTune = new Audio(`${trackId}`);
-  
+    console.log(trackId, 'trackid')
     useEffect(() => {
         audioTune.load();
     }, [])
-  
-console.log(tracklist, 'tracklist')
+
+    const player = () => {
+
         const playSound = () => {
             audioTune.play();
             setPlayTrack(true)
         }
 
         // pause audio sound
-        const stopSound = () => {
+        const pauseSound = () => {
             audioTune.pause();
-            audioTune.currentTime = 0;
             setPlayTrack(false)
-          }
-     
+        }
+
+        playTrack ? pauseSound() : playSound()
+    }
 
     useEffect(() => {
         AOS.init({
@@ -62,40 +64,15 @@ console.log(tracklist, 'tracklist')
 
     const fetchedData = useSelector(state => state.userData.data[9])
     const fetchedData2 = useSelector(state => state.userData.data[10])
-    const accessToken = useSelector(state => state.userData.data[11])
-
 
     if (fetchedData) {
         var playlists = fetchedData.data
+        console.log(playlists, 'playlists')
     }
 
     if (fetchedData2) {
         var recomplaylists = fetchedData2.data
-        console.log(recomplaylists, 'recomplaylists')
     }
-
-    const requestOptions = {
-        headers: { "Content-Type": "application/json" },
-        body: {
-            playlistId: {playlistId},  
-            playlistTrackId: {playlistTrackId},
-            accessToken: {accessToken}
- }, };
-
-      console.log({playlistId}, 'playlistId')
-      console.log({playlistTrackId}, 'playlistTrackId')
-      console.log({accessToken}, 'accessToken')
-
-//     function deleteTrack(){
-//         axios.post('http://localhost:5000/users', requestOptions.body )
-//         .then(response => {
-//             const responseInfo = response
-//  } )
-//           .catch(error => {
-//             const errorMsg = error.message
-//           })
-          
-//     }
 
     return (
         <div className='artistsContainer'>
@@ -114,8 +91,9 @@ console.log(tracklist, 'tracklist')
                                         return (
                                             <div key={track.id} className='childrenContainer' >
 
+  
                                                 <div className='playlistModal-body'>
-                                                    <div className='modalListDiv'><img className='deleteImg' src={deleteButton} alt='' onClick={()=> {setPlaylistTrackId(track.id)}} /><img className='twndimg' src={track.artist.picture_xl} alt='' /></div> <div className='playListModalTittle'><div>{track.title}</div> <div>{track.artist.name}</div></div> <div className='playlistPlayDiv'><img className='playImg' src={play} onClick={() => { setTrackId(track.preview); playSound()}} alt='' /> <img className='playImg' src={pause} onClick={() => { setTrackId(track.preview); stopSound()}} alt='' /> <img className='playlistLogoImg' src={playlistLogo} alt='' /></div>
+                                                    <div className='modalListDiv'><img className='deleteImg' src={deleteButton} alt='' /><img className='twndimg' src={track.artist.picture_xl} alt='' /></div> <div className='playListModalTittle'><div>{track.title}</div> <div>{track.artist.name}</div></div> <div className='playlistPlayDiv'><img className='playImg' src={play} onClick={() => { setTrackId(track.preview); player() }} alt='' /> <img className='playlistLogoImg' src={playlistLogo} alt='' /></div>
 
                                                 </div>
                                             </div>
@@ -123,7 +101,7 @@ console.log(tracklist, 'tracklist')
                                     }) : <div className='spinnerContainer'> <div className="lds-facebook"><div></div><div></div><div></div></div> </div>}
 
                                 </Modal>
-                                <div data-aos='fade-up' className='artistImgContainer' onClick={() => { setShow(true); setSelect(playlist.title); setPlaylistId(playlist.id); settracklist(playlist.tracklist); dispatch(fetchPlaylist(playlist.tracklist)) }}>
+                                <div data-aos='fade-up' className='artistImgContainer' onClick={() => { setShow(true); setSelect(playlist.title); settracklist(playlist.tracklist); dispatch(fetchPlaylist(playlist.tracklist)) }}>
                                     <img src={playlist.picture_xl} alt='' />
                                     <div className='albumCover'><img src={playlist.picture_xl} alt='' />
                                         <div className='albumName'>{playlist.title} </div>
@@ -132,30 +110,38 @@ console.log(tracklist, 'tracklist')
 
                                 <div className='artistNameDiv'>{playlist.title}</div>
                             </div>
+
                         )
                     })}
-                </div>
 
-                <div class='header secondHeader'>Recommended Playlists</div>
+
+                </div>
+                {/* <div class='header secondHeader'>Charts</div>
 <div className='topArtistsContainer'>
-            { recomplaylists && recomplaylists.map(recomplaylist =>{
+            { charts && charts.map(chart =>{
         return(
         <div>
-        <div data-aos='fade-up' className='artistImgContainer' key={recomplaylist.id}>
-            <img src={recomplaylist.picture_xl} alt='' />
-            <div className='albumCover'><img src={recomplaylist.picture_xl} alt='' />
-            <div className='albumName'>{recomplaylist.title} </div>
+        <div data-aos='fade-up' className='artistImgContainer' key={chart.id + nanoid()}>
+            <img src={chart.album.cover_xl} alt='' />
+            <div className='albumCover'><img src={chart.artist.picture_xl} alt='' />
+            <div className='albumName'>{chart.artist.name} </div>
             </div>
             </div>
 
-            <div className='artistNameDiv'>{recomplaylist.title}</div>
+            <div className='artistNameDiv'>{chart.album.title}</div>
 </div>
+
         )
     })}
-</div>
+
+
+</div> */}
+
+
             </div>
         </div>
     )
+
 }
 
 export default Playlists
