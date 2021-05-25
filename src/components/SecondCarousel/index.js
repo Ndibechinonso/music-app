@@ -3,10 +3,8 @@ import './SecondCarousel.css'
 
 const SecondCarousel = (props) => {
     const {children, show} = props
-
     const [currentIndex, setCurrentIndex] = useState(0)
     const [length, setLength] = useState('')
-
     const [touchPosition, setTouchPosition] = useState(null)
 
     // Set the length to match current children from props
@@ -19,14 +17,12 @@ const SecondCarousel = (props) => {
     const next = () => {
         if (currentIndex < (length - show)) {
             setCurrentIndex(prevState => prevState + 1)
-        }
-    }
+        }}
 
     const prev = () => {
         if (currentIndex > 0) {
             setCurrentIndex(prevState => prevState - 1)
-        }
-    }
+        }}
 
     const handleTouchStart = (e) => {
         const touchDown = e.touches[0].clientX
@@ -54,16 +50,14 @@ const SecondCarousel = (props) => {
         setTouchPosition(null)
     } 
 
-
-    return (
-        
+    return ( 
         <div className="secondcarousel-container">
             <div className="secondcarousel-wrapper">
                 {/* You can alwas change the content of the button to other things */}
                 {
                     currentIndex > 0 &&
                     <button onClick={prev} className="secondleft-arrow">
-                        &lt;
+                        <i class="fas slideArrow fa-arrow-left"></i>
                     </button>
                 }
                 <div
@@ -82,7 +76,7 @@ const SecondCarousel = (props) => {
                 {
                     currentIndex < (length - show) &&
                     <button onClick={next} className="secondright-arrow">
-                        &gt;
+                        <i className="fas slideArrow fa-arrow-right"></i>
                     </button>
                 }
             </div>
