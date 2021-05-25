@@ -19,14 +19,14 @@ const Carousel = (props) => {
     const next = () => {
         if (currentIndex < (length - show)) {
             setCurrentIndex(prevState => prevState + 1)
-          
+            console.log(currentIndex, 'next')
         }
     }
 
     const prev = () => {
         if (currentIndex > 0) {
             setCurrentIndex(prevState => prevState - 1)
-           
+           console.log(currentIndex, 'prev')
         }
     }
 
@@ -65,7 +65,7 @@ const Carousel = (props) => {
                 {
                     currentIndex > 0 &&
                     <button onClick={prev} className="left-arrow">
-                        &lt;
+                     <i class="fas slideArrow fa-arrow-left"></i>
                     </button>
                 }
                 <div
@@ -84,7 +84,7 @@ const Carousel = (props) => {
                 {
                     currentIndex < (length - show) &&
                     <button onClick={next} className="right-arrow">
-                        &gt;
+                        <i className="fas slideArrow fa-arrow-right"></i>
                     </button>
                 }
             </div>

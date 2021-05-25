@@ -16,8 +16,8 @@ const CarouselGrid = ({fetchUsers, userData }) => {
     })
     const fetchedData = useSelector(state => state.userData.data[2])
     const fetchedData2 = useSelector(state => state.userData.data[8])
-    const loader = useSelector(state => state.loading)
-    console.log(latestTracks, 'latestTracks')
+    const loader = useSelector(state => state.userData.loading)
+ 
     if (fetchedData){
           var lastPlayed = fetchedData.data
 }
@@ -46,7 +46,7 @@ if(fetchedData2){
 
                         </div>
                     )
-                }) : <div class='requesFailed'>FAILED, KINDLY RESTART APP</div>
+                }) : <div className='requesFailed'>FAILED, KINDLY RESTART APP</div>
              }
             </SecondCarousel>
         </div>
@@ -73,7 +73,7 @@ if(fetchedData2){
 
                         </div>
                     )
-                }) : <div class='requesFailed'>FAILED, KINDLY RESTART APP</div>
+                }) : <div className='requesFailed'>FAILED, KINDLY RESTART APP</div>
              }
             </SecondCarousel>
         </div>

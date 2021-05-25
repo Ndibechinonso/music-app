@@ -9,6 +9,9 @@ import FadeInAnimation from "../FadeInAnimation";
 import SubShare from '../SubShare';
 import TwitterShare from '../TwitterShare';
 import copy from "copy-to-clipboard";
+import deezifylogo from '../../Assets/deezifylogo.png'
+
+
 
 
 export default function Navbar(props) {
@@ -25,6 +28,8 @@ function pageClickEvent() {
     setAboutlink(false)
     setSharelink(false)
 }
+
+
 
 useEffect(() => {
     if (navlink) {
@@ -61,7 +66,7 @@ useEffect(() => {
             <div className='navBar'>
           
               
-               <Link to='/home'> <h2>Muzify</h2></Link>
+               <Link to='/home'> <h2><img src={deezifylogo} /></h2></Link>
                 <ul className='navBar-links'>
                     <li className='aboutlink' onClick={dislayAboutLink} >About</li> <li onClick={dislayShareLink}>Share <i className="fas fa-external-link-alt share"></i>
                     </li>
@@ -69,7 +74,7 @@ useEffect(() => {
                </ul>
             </div>
 
-            {navlink ? <div className='modal'>
+           {navlink ? <div className='modal'>
             {aboutlink ? <div className='about-modal' onClick={e => e.stopPropagation()}>
             <FadeInAnimation direction="up" >  
                     <h2>About us</h2>
