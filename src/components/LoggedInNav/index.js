@@ -67,7 +67,7 @@ function LoggedInNav(props) {
       return errors;
     };
 
-    const { handleSubmit, setFieldValue, values, errors } = useFormik({
+    const { handleSubmit, setFieldValue, values, errors, resetForm } = useFormik({
       initialValues: {
         fullName: '',
         email: '',
@@ -79,7 +79,7 @@ function LoggedInNav(props) {
         , feedback: Yup.string().required("Please enter your feedback")
       })
       ,
-      onSubmit: (values, {resetForm}) => {
+      onSubmit: values => {
           
              axios.post('https://music-app-feeder.herokuapp.com/feedback', { fullName: values.fullName, email: values.email, feedback: values.feedback })
              .then(response => {
