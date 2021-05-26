@@ -115,24 +115,35 @@ label{
     color: white; 
     font-size: 24px;
     font-weight: 700;
+  
 }
 
-input{
+.inputDiv input, .inputDiv textarea{
     background-color: #C4C4C4;
-    margin-top: 20px;
-    margin-bottom: 43px;
-
+    padding: 11px 31px 12px;
+    color: #181818;
+    font-size: 21px;
+    font-family: 'Open Sans', sans-serif;
+margin-bottom: 18px;
+margin-top: 20px;
 }
+#email, #feedback{
+    margin-top: 20px;
+}
+
 .userInfo{
     width: 720px;
-height: 52px;
+height: 22px;
 }
 .inputDiv{
     margin-left: 177px;
 }
-
+.inputGroup{
+    margin-bottom: 28px;
+}
 #feedback{
-    min-height: 333px
+    min-height: 333px;
+    border: 1px solid #FF0303;
 }
 .buttonDiv{
     display: flex;
@@ -151,9 +162,36 @@ height: 52px;
     border-color:#DA2060;
 
 }
-.error{
-    color: white;
-}
+
 .autoplayDiv{
     margin-left: 18px;
 }
+.error{
+    color: #FF0303;
+ padding-left: 10px;
+    font-size: 21px;
+    font-family: 'Open Sans', sans-serif;
+}
+.feedbackClass{
+    font-size: 18px;
+    font-weight: 700;
+    font-family: 'Open Sans', sans-serif;
+    color: #FFFFFF;
+display: flex;
+flex-direction: column;
+align-content: center;
+align-items: center;
+}
+
+.feedbackClass p{
+    width: 533px;
+    text-align: center;
+}
+.feedbackClass p:nth-of-type(1){
+    margin-bottom: 20px;
+    margin-top: 56px;
+}
+#email{
+    border: 1px solid #FF0303;
+}
+
