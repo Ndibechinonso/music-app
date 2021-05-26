@@ -1,10 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
-
 
 .playlistModal{
     position: fixed;
     height: auto;
-
     left: 0;
     right: 0;
     top: 0;
@@ -22,8 +19,9 @@
 .playlistModal-content{
     width: 1086px;
     background: #000000;
-    margin-top: 191px;
-    padding-top: 62.69px;
+    position: absolute;
+    top: 175px;
+    padding-top: 30px;
     min-height: auto;
     display: flex;
     flex-direction: column;
