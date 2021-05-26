@@ -86,6 +86,7 @@ function LoggedInNav(props) {
                 const responseInfo = response.message
                 console.log(responseInfo, "responseInfo")
                 setIsSubmitted(true)
+                alert('success')
               })
               .catch(error => {
                 const errorMsg = error.message
