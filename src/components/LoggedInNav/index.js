@@ -79,14 +79,14 @@ function LoggedInNav(props) {
         , feedback: Yup.string().required("Please enter your feedback")
       })
       ,
-      onSubmit: values => {
+      onSubmit: (values, {resetForm}) => {
           
              axios.post('https://music-app-feeder.herokuapp.com/feedback', { fullName: values.fullName, email: values.email, feedback: values.feedback })
              .then(response => {
               const responseInfo = response.message
               console.log(responseInfo, "responseInfo")
               setIsSubmitted(true)
-              resetForm()
+              resetForm({values: ''})
             })
             .catch(error => {
               const errorMsg = error.message
