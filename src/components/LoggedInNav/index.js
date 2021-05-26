@@ -143,13 +143,13 @@ function LoggedInNav(props) {
             </div>
   
             <div className='buttonDiv'> <Button className='feedbackButton' text='Submit' type='submit' /></div>
-          </form> : <div><div className='closeBtn'><div onClick={() => setShow(false)} className='closeContainer'><img className='closeImg' src={cancelButton} alt='' /></div></div>
+          </form> : <div><div className='closeBtn'><div onClick={() => {setShow(false); setIsSubmitted(false)}} className='closeContainer'><img className='closeImg' src={cancelButton} alt='' /></div></div>
             <div className='feedbackClass'><div><img src={feedback} /></div><p>Thank you for sharing this with us. We will get back to you as soon as possible.</p><p>Till then, Keep streamiing!!!</p></div></div>}
         </div>);
     };
     return (
       <div>
-        <Modal show={show} onClose={() => setShow(false)} >
+        <Modal show={show} onClose={() => {setShow(false); setIsSubmitted(false)}} >
           {SignupForm()}
         </Modal>
   
