@@ -70,7 +70,7 @@ useEffect(() => {
                 <ul className='navBar-links'>
                     <li className='aboutlink' onClick={dislayAboutLink} >About</li> <li onClick={dislayShareLink}>Share <i className="fas fa-external-link-alt share"></i>
                     </li>
-               <div><a href='https://connect.deezer.com/oauth/auth.php?app_id=475622&redirect_uri=https://do-re-me.netlify.app/dataload&perms=basic_access,email,listening_history'><Button className='navBarButton' text='Log in' /></a></div>
+               <div><a href='https://connect.deezer.com/oauth/auth.php?app_id=475622&redirect_uri=https://do-re-me.netlify.app/dataload&perms=basic_access,email,manage_library,delete_library,listening_history'><Button className='navBarButton' text='Log in' /></a></div>
                </ul>
             </div>
 
