@@ -103,6 +103,7 @@ const Playlists = (props) => {
        
         if (playlistTrackId) {  
             setConfirmDelete(true)        
+            alert('hi')
            axios.post('https://music-app-feeder.herokuapp.com/delete', {
                 playlistId, playlistTrackId, accessToken
             })
