@@ -89,6 +89,8 @@ const Playlists = (props) => {
     }
 
     console.log(playlistTrackId, 'playlistTrackId')
+    console.log(playlistId, 'playlistId')
+    console.log(accessToken, 'accessToken')
     const requestOptions = {
         headers: { "Content-Type": "application/json" },
         body: {
@@ -100,7 +102,10 @@ const Playlists = (props) => {
 
 
     function deleteTrack(playlistId, playlistTrackId) {
-       
+        console.log(playlistTrackId, 'playlistTrackId2')
+       console.log(playlistId, 'playlistId2')
+       console.log(accessToken, 'accessToken2')
+
         if (playlistTrackId) {  
             setConfirmDelete(true)        
            axios.post('https://music-app-feeder.herokuapp.com/delete', {
