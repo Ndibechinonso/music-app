@@ -20,14 +20,14 @@
     width: 1086px;
     background: #000000;
     position: absolute;
-    top: 120px;
+    top: 175px;
+    padding-top: 30px;
     min-height: auto;
     display: flex;
     flex-direction: column;
     align-content: center;
     padding-bottom: 100px;
     overflow-y: auto;
-    overflow-x: hidden;
     max-height: calc(100vh - 210px);
 }
 
@@ -42,26 +42,3 @@
     font-family: 'Open Sans', sans-serif;
 }
 
-
-
-.playlistModal-content::-webkit-scrollbar { width: 0 !important }
-.hideScrollbar::-webkit-scrollbar { width: 0 !important }
-
-
-.playlistModal-content{ overflow: -moz-scrollbars-none; }
-.hideScrollbar{ overflow: -moz-scrollbars-none; }
-
-
-.playlistModal-content{ -ms-overflow-style: none; }
-.hideScrollbar{ -ms-overflow-style: none; }
-
-.playlistModal::-webkit-scrollbar { width: 0 !important }
-.hideScrollbar::-webkit-scrollbar { width: 0 !important }
-
-
-.playlistModal{ overflow: -moz-scrollbars-none; }
-.hideScrollbar{ overflow: -moz-scrollbars-none; }
-
-
-.playlistModal{ -ms-overflow-style: none; }
-.hideScrollbar{ -ms-overflow-style: none; }
