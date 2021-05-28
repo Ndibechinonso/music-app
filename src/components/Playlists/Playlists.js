@@ -140,7 +140,7 @@ const Playlists = (props) => {
                                             <div key={track.id} className='childrenContainer' >
 
                                                 <div className='playlistModal-body'>
-                                                    <div className='modalListDiv'><img className='deleteImg' src={deleteButton} alt='' onClick={() => { setPlaylistTrackId(track.id); deleteTrack(playlistId, track.id); setTimeout(()=> {dispatch(fetchPlaylist(tracklist)); setConfirmDelete(false)},2000);   } } /><img className='twndimg' src={track.artist.picture_xl} alt='' /></div> <div className='playListModalTittle'><div>{track.title}</div> <div>{track.artist.name}</div></div> <div className='playlistPlayDiv'><img className='playImg' src={play} onClick={() => { setTrackId(track.preview); playSong(track.preview) }} alt='' /> <img className='playlistLogoImg' src={playlistLogo} alt='' /></div>
+                                                    <div className='modalListDiv'><img className='deleteImg' src={deleteButton} alt='' onClick={() => { setPlaylistTrackId(track.id); deleteTrack(playlistId, track.id); } } /><img className='twndimg' src={track.artist.picture_xl} alt='' /></div> <div className='playListModalTittle'><div>{track.title}</div> <div>{track.artist.name}</div></div> <div className='playlistPlayDiv'><img className='playImg' src={play} onClick={() => { setTrackId(track.preview); playSong(track.preview) }} alt='' /> <img className='playlistLogoImg' src={playlistLogo} alt='' /></div>
 
                                                 </div>
                                             </div>
