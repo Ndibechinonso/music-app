@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import instagram from '../../Assets/instagram.png'
 import {
-  LinkedinShareButton,
-  LinkedinIcon,
+  FacebookShareButton,
+  FacebookIcon,
 } from "react-share";
 
 import SubShareCSS from "./CSS";
@@ -21,15 +20,15 @@ class SubShare extends Component {
     return (
       <SubShareCSS >
 
-        <LinkedinShareButton
+        <FacebookShareButton
           title={title}
           url={url}
         >
-          <LinkedinIcon
+          <FacebookIcon
             size={size}
 
           />
-        </LinkedinShareButton>
+        </FacebookShareButton>
 
       </SubShareCSS>
     );

@@ -19,14 +19,14 @@ const CustomisedCarousel = (props) => {
     const next = () => {
         if (currentIndex < (length - show)) {
             setCurrentIndex(prevState => prevState + 1)
-            console.log(currentIndex, 'next')
+    
         }
     }
 
     const prev = () => {
         if (currentIndex > 0) {
             setCurrentIndex(prevState => prevState - 1)
-           console.log(currentIndex, 'prev')
+        
         }
     }
 
@@ -64,9 +64,9 @@ const CustomisedCarousel = (props) => {
                 {/* You can alwas change the content of the button to other things */}
                 {
                     currentIndex > 0 &&
-                    <button onClick={prev} className="left-arrow">
+                    <div><div className='nextIndicator'>Previous</div>  <button onClick={prev} className="left-arrow">
                      <i class="fas slideArrow fa-arrow-left"></i>
-                    </button>
+                    </button></div>
                 }
                 <div
                     className="carousel-content-wrapper"
@@ -83,9 +83,9 @@ const CustomisedCarousel = (props) => {
                 {/* You can alwas change the content of the button to other things */}
                 {
                     currentIndex < (length - show) &&
-                    <button onClick={next} className="right-arrow">
-                        <i className="fas slideArrow fa-arrow-right"></i>
-                    </button>
+                  <div><div className='indicator'>Next</div>  <button onClick={next} className="right-arrow">
+                    <i className="fas slideArrow fa-arrow-right"></i>
+                    </button></div>
                 }
             </div>
         </div>

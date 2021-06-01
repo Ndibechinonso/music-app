@@ -2,28 +2,55 @@ import React, {useEffect} from 'react'
 import SecondCarousel from '../SecondCarousel'
 import './CarouselGrid.css'
 import { nanoid } from "nanoid";
-import { useSelector } from 'react-redux'
+import { useSelector} from 'react-redux'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
+import {FaRegCopy, FaList,FaEllipsisV, FaShareAlt} from 'react-icons/fa'
+import {RiSendPlaneFill, RiDeleteBin6Line} from 'react-icons/ri'
+import './coupon.css'
 
-
-const CarouselGrid = ({fetchUsers, userData }) => {
+const CarouselGrid = () => {
 
     useEffect(()=>{
         AOS.init({
             duration: 1000
         })
     })
-    const fetchedData = useSelector(state => state.userData.data[2])
-    const fetchedData2 = useSelector(state => state.userData.data[8])
-    const loader = useSelector(state => state.userData.loading)
+
+
+const fetchedLastPlayed = useSelector(state => state.homePageData.data[1])
+console.log(fetchedLastPlayed, 'fetchedLastPlayed')
+
+  if (fetchedLastPlayed) {
+     var lastPlayed = fetchedLastPlayed.data
+      console.log(lastPlayed, 'lastPlayed')
+}
+
+const fetchedRecommendedReleaseData = useSelector(state => state.homePageData.data[2])
+
+if (fetchedRecommendedReleaseData) {
+    var latestTracks = fetchedRecommendedReleaseData.data
+     console.log(latestTracks, 'latestTracks')
+}
+
+
+const userData = useSelector(state => state.userData.data[0])
+const playlistsData = useSelector(state => state.playlistsPageData.data[0])
+console.log(playlistsData, 'playlistsData')
+if (playlistsData){
+    var myPlaylists = playlistsData.data
+console.log(myPlaylists, 'myPlaylists')
+}
+
  
-    if (fetchedData){
-          var lastPlayed = fetchedData.data
-}
-if(fetchedData2){
-    var latestTracks = fetchedData2.data
-}
+        if (playlistsData){
+            var createdPlaylists = myPlaylists.filter(playlist=> playlist.creator.name == userData.name)
+            console.log(createdPlaylists, 'createdPlaylists')      
+        }
+
+
+
     return (
 <div className='carouselGridContainer'>
 <div className='artistsBody'>
@@ -31,7 +58,7 @@ if(fetchedData2){
         <div style={{ maxWidth: 1200, marginLeft: 'auto', marginRight: 'auto', marginTop: 20 }} className='test'>
             <SecondCarousel show={5} >
 
-                { loader === true ? <div className='spinnerContainer'> <div className="lds-facebook"><div></div><div></div><div></div></div> </div> : lastPlayed ? lastPlayed.map(data => {
+                { lastPlayed ?  lastPlayed.map(data => {
                   return (
                         <div key={data.artist.id + nanoid()}  className='testKid'>
                                 <div className='testKid' style={{ padding: 8 }} >  
@@ -44,7 +71,7 @@ if(fetchedData2){
                                 </div>
                         </div>
                     )
-                }) : <div className='requesFailed'>FAILED, KINDLY RESTART APP</div>
+                }) : <div className='spinnerContainer'> <div className="lds-facebook"><div></div><div></div><div></div></div> </div>
              }
             </SecondCarousel>
         </div>
@@ -55,9 +82,10 @@ if(fetchedData2){
         <div className='lastPlayedheader'>Latest tracks</div>
         <div style={{ maxWidth: 1200, marginLeft: 'auto', marginRight: 'auto', marginTop: 20 }} className='test'>
             <SecondCarousel show={5} >
-                { loader === true ? <div className='spinnerContainer'> <div className="lds-facebook"><div></div><div></div><div></div></div> </div> : latestTracks ? latestTracks.map(track => {
+                { latestTracks ? latestTracks.map(track => {
                     return (
-                        <div key={track.id + nanoid()} data-aos="fade-left"  className='testKid'>
+                        <ContextMenuTrigger id="contextmenu" key={track.id + nanoid()}>
+                        <div  data-aos="fade-left"  className='testKid coupon'>
                                 <div className='testKid' style={{ padding: 8 }}>  
                                <div className='imgContainer'>   <img className='roundedImg' src={track.cover_xl} alt="placeholder" style={{ width: '100%' }} />
                              <div className='titleDiv'>
@@ -68,14 +96,27 @@ if(fetchedData2){
                             
                                 </div>
                         </div>
-                    )
-                }) : <div className='requesFailed'>FAILED, KINDLY RESTART APP</div>
+                        </ContextMenuTrigger>   )
+                }) : <div className='spinnerContainer'> <div className="lds-facebook"><div></div><div></div><div></div></div> </div>
              }
+
             </SecondCarousel>
+
+            <ContextMenu id="contextmenu">
+  { playlistsData ? createdPlaylists.map(playListMenu =>{
+      return( <MenuItem key={playListMenu.id}>
+<FaList className="watchlist"/>
+          <span>Add to {playListMenu.title}</span>   
+</MenuItem>
+          )  })
+        : null} </ContextMenu>
+
+
+
         </div>
 
-
  </div>
+
   </div>  )
 }
 

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import {USER_DATA_REQUEST, USER_DATA_SUCCESS, USER_DATA_FAILURE} from './userDataType'
+import {USER_DATA_REQUEST, USER_DATA_SUCCESS, USER_DATA_FAILURE} from './userDataTypes'
 
 const fetchUserRequest = ()=>{
     return{
@@ -21,19 +21,20 @@ const fetchUserFailure = (error) =>{
         payload: error
     }
 }
-const savedCode = localStorage.getItem("code");
 
+const savedToken = localStorage.getItem("token");
+console.log(savedToken, 'savedToken')
 const requestOptions = {
     headers: { "Content-Type": "application/json" },
     body: {
-      code: savedCode
+      code: savedToken
     },
   };
 
 export const fetchUsers = () => {
     return (dispatch) => {
         dispatch(fetchUserRequest())
-        axios.post('https://music-app-feeder.herokuapp.com', requestOptions.body)
+        axios.post('http://localhost:5000/navbar', requestOptions.body)
 
             .then(response => {
                 const users = response.data

@@ -1,12 +1,19 @@
 import React, {useEffect} from 'react'
 import './Genre.css'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import LoggedInNav from '../LoggedInNav'
 import { nanoid } from "nanoid";
 import AOS from 'aos'
 import 'aos/dist/aos.css';
+import {fetchGenresData} from '../../redux'
 
-const Artists = (props) => {
+const Genres = (props) => {
+const dispatch = useDispatch();
+
+useEffect(()=>{
+    dispatch(fetchGenresData())
+}, [])
+
 
     useEffect(()=>{
         AOS.init({
@@ -14,29 +21,29 @@ const Artists = (props) => {
         })
     })
 
-        const fetchedData = useSelector(state => state.userData.data[5])
-        const fetchedData2 = useSelector(state => state.userData.data[6])
-        
-        if (fetchedData){
-              var genres = fetchedData.data
-   }
-
- if (fetchedData2){
-              var charts = fetchedData2.data
-              console.log(charts, 'charts')
- }
+    const genreData = useSelector(state => state.genresData.data[0])
+    const chartsData = useSelector(state => state.genresData.data[1])
+    
+ if (genreData){
+               var genres = genreData.data
+console.log(genres, 'genres')
+  }
+  if (chartsData){
+    var charts = chartsData.data
+console.log(charts, 'charts')
+}
 
 
     return (
         <div className='artistsContainer'>
             <LoggedInNav />
             <div className='artistsBody'>
-            <div class='header'>Genres</div>
+            <div className='header'>Genres</div>
             <div className='topArtistsContainer'>
-                { genres && genres.map(genre =>{
+                { genres ? genres.map(genre =>{
             return(
-            <div>
-            <div data-aos='fade-up' className='artistImgContainer' key={genre.id + nanoid()}>
+            <div key={genre.id + nanoid()}>
+            <div data-aos='fade-up' className='artistImgContainer' >
                 <img src={genre.picture_xl} alt='' />
                 <div className='albumCover'><img src={genre.picture_xl} alt='' />
                 <div className='albumName'>{genre.name} </div>
@@ -44,19 +51,18 @@ const Artists = (props) => {
                 </div>
 
                 <div className='artistNameDiv'>{genre.name}</div>
-</div>
-
-            )
-        })}
+</div> 
+  )
+        }) : <div className='spinnerContainer'> <div className="lds-facebook"><div></div><div></div><div></div></div> </div> }
 
 
    </div>
-            <div class='header secondHeader'>Charts</div>
+            <div className='header secondHeader'>Charts</div>
  <div className='topArtistsContainer'>
-                { charts && charts.map(chart =>{
+                { charts ? charts.map(chart =>{
             return(
-            <div>
-            <div data-aos='fade-up' className='artistImgContainer' key={chart.id + nanoid()}>
+            <div key={chart.id + nanoid()}>
+            <div data-aos='fade-up' className='artistImgContainer' >
                 <img src={chart.album.cover_xl} alt='' />
                 <div className='albumCover'><img src={chart.artist.picture_xl} alt='' />
                 <div className='albumName'>{chart.artist.name} </div>
@@ -67,21 +73,14 @@ const Artists = (props) => {
 </div>
 
             )
-        })}
-
+        })  : <div className='spinnerContainer'> <div className="lds-facebook"><div></div><div></div><div></div></div> </div>}
 
    </div>
-
-
-
-
-
-
 
         </div>
   </div>
     )
 }
 
-export default Artists
+export default Genres
 

@@ -1,37 +1,50 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import './HomePage.css'
 import LoggedInNav from '../LoggedInNav'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { nanoid } from "nanoid";
  import CustomisedCarousel from '../CustomisedCarousel'
 import CarouselGrid from '../CarouselGrid/CarouselGrid'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css"; 
 import { Carousel } from 'react-responsive-carousel';
-
+import {fetchHomeData, fetchPlaylistsPageData} from '../../redux'
 
 const HomePage = (props) => {
-    const [picFeed, setPicFeed] = useState(null)
-    const [position, setposition] = useState(null)
-
+  
     useEffect(() => {
         AOS.init({
             duration: 1000
         })
     })
-    const fetchedData = useSelector(state => state.userData.data[1])
 
-    if (fetchedData) {
-        var recommendedAlbums = fetchedData.data
-        console.log(recommendedAlbums, 'recommendedAlbums')
-    }
+    const dispatch = useDispatch();
+    useEffect(() => {
+      dispatch(fetchHomeData());
+    }, []);
+
+    useEffect(()=>{
+        dispatch(fetchPlaylistsPageData())
+        },[])
+  
+    const homePageData = useSelector(state => state.homePageData.data)
+   console.log(homePageData, 'homePageData')
+   const fetchedRecommendedData = useSelector(state => state.homePageData.data[0])
+   console.log(fetchedRecommendedData, 'fetchedRecommendedData')
+  
+     if (fetchedRecommendedData) {
+        var recommendedAlbums = fetchedRecommendedData.data
+         console.log(recommendedAlbums, 'recommendedAlbums')
+   }
+    
+
     return (
         <div>
             <LoggedInNav />
-            <div className='parentSlide'>
+             <div className='parentSlide'>
             
-            <Carousel autoPlay={true} infiniteLoop={true} showIndicators={false} showArrows={false}>
+            <Carousel autoPlay={true} infiniteLoop={true} showIndicators={false} showArrows={false} showThumbs={false}>
                         {recommendedAlbums ? recommendedAlbums.map(data => {
                             return (
                                 <div key={data.artist.id + nanoid()} data-aos="fade-left">
@@ -57,15 +70,13 @@ const HomePage = (props) => {
                     <CustomisedCarousel show={3}>
                         {recommendedAlbums ? recommendedAlbums.map(data => {
                             return (
-                                <div key={data.artist.id + nanoid()} data-aos="fade-left">
+                                <div key={data.artist.id + nanoid()} data-aos="fade-left" className='slideDiv'>
 
-                                    <div className='slideDiv'>
-                                        <div style={{ padding: 8 }} className='albumGrid'>
-                                            <img src={data.cover_xl} alt="placeholder" style={{ width: '50%' }} />
-                                            
+                                        <div style={{ padding: 8 }} >
+                                          <div className='albumGrid'><img src={data.cover_xl} alt="placeholder" style={{ width: '100%' }} />
+                                            <div className='albumTitle'>{data.title}</div></div>
                                         </div>
-                                        <p className='albumTitle'>{data.title}</p>
-                                    </div>
+                                        
                                 </div>
                             )
                         })
@@ -75,9 +86,9 @@ const HomePage = (props) => {
                 </div>
                 </div> 
 
-            </div>
+            </div> 
 
-            <CarouselGrid />
+          <CarouselGrid /> 
 
         </div>
 

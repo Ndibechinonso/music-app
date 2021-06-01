@@ -1,10 +1,11 @@
 import React, {useEffect} from 'react'
 import './Artists.css'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import LoggedInNav from '../LoggedInNav'
 import { nanoid } from "nanoid";
 import AOS from 'aos'
 import 'aos/dist/aos.css';
+ import {fetchArtistsData} from '../../redux'
 
 const Artists = (props) => {
 
@@ -13,47 +14,58 @@ const Artists = (props) => {
             duration: 1000
         })
     })
-        const fetchedData = useSelector(state => state.userData.data[3])
-        const fetchedData2 = useSelector(state => state.userData.data[4])
-        if (fetchedData){
-              var favoriteArtist = fetchedData.data
-   }
 
- if (fetchedData2){
-              var recommendedArtist = fetchedData2.data
- }
+    const dispatch = useDispatch(); 
 
+    useEffect(()=>{
+        dispatch(fetchArtistsData())
+    }, [])
+
+    const artistsData = useSelector(state => state.artistsData.data[0])
+    const recommendedArtistsData = useSelector(state => state.artistsData.data[1])
+    
+
+
+ if (artistsData){
+               var myArtists = artistsData.data
+console.log(myArtists, 'myArtists')
+  }
+  if (recommendedArtistsData){
+    var recommendedArtists = recommendedArtistsData.data
+console.log(recommendedArtists, 'recommendedArtists')
+}
 
     return (
         <div className='artistsContainer'>
             <LoggedInNav />
             <div className='artistsBody'>
-            <div class='header'>My Top Artists</div>
+            <div className='header'>My Top Artists</div>
             <div className='topArtistsContainer'>
-                { favoriteArtist && favoriteArtist.map(artist =>{
+                { myArtists ? myArtists.map(artist =>{
             return(
-            <div>
-            <div data-aos='fade-up' className='artistImgContainer' key={artist.id + nanoid()}>
+            <div key={artist.id + nanoid()}>
+            <div data-aos='fade-up' className='artistImgContainer' >
                 <img src={artist.picture_xl} alt='' />
                 <div className='albumCover'><img src={artist.picture_xl} alt='' />
                 <div className='albumName'>{artist.name} </div>
                 </div>
                 </div>
-
-                <div className='artistNameDiv'>{artist.name}</div>
+  <div className='artistNameDiv'>{artist.name}</div>
 </div>
 
             )
-        })}
+        })  : <div className='spinnerContainer'> <div className="lds-facebook"><div></div><div></div><div></div></div> </div>
+
+    }
 
 
    </div>
-            <div class='header secondHeader'>Recomended Artists</div>
+            <div className='header secondHeader'>Recomended Artists</div>
  <div className='topArtistsContainer'>
-                { recommendedArtist && recommendedArtist.map(artist =>{
+                { recommendedArtists ? recommendedArtists.map(artist =>{
             return(
-            <div>
-            <div data-aos='fade-up' className='artistImgContainer' key={artist.id + nanoid()}>
+            <div key={artist.id + nanoid()}>
+            <div data-aos='fade-up' className='artistImgContainer' >
                 <img src={artist.picture_xl} alt='' />
                 <div className='albumCover'><img src={artist.picture_xl} alt='' />
                 <div className='albumName'>{artist.name} </div>
@@ -64,12 +76,14 @@ const Artists = (props) => {
 </div>
 
             )
-        })}
+        })
+    : <div className='spinnerContainer'> <div className="lds-facebook"><div></div><div></div><div></div></div> </div>
+}
 
 
    </div>
 
-        </div>
+        </div> 
   </div>
     )
 }

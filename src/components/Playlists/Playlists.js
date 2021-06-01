@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect} from 'react'
 import './Playlists.css'
 import { useSelector, useDispatch } from 'react-redux'
 import LoggedInNav from '../LoggedInNav'
@@ -14,10 +14,29 @@ import cancelButton from '../../Assets/cancelButton.png'
 import deleteButton from '../../Assets/deleteButton.png'
 import PlaylistModalButtons from '../PlaylistModalButtons/PlaylistModalButtons'
 import './Playlists.scss'
+import {fetchPlaylistsPageData} from '../../redux'
+
 
 
 const Playlists = (props) => {
     const dispatch = useDispatch()
+    
+useEffect(()=>{
+dispatch(fetchPlaylistsPageData())
+},[])
+
+const playlistsData = useSelector(state => state.playlistsPageData.data[0])
+if (playlistsData){
+    var myPlaylists = playlistsData.data
+console.log(myPlaylists, 'myPlaylists')
+}
+
+const recommendedPlaylistsData = useSelector(state => state.playlistsPageData.data[1])
+if (recommendedPlaylistsData){
+    var recommendedPlaylists = recommendedPlaylistsData.data
+console.log(recommendedPlaylists, 'recommendedPlaylists')
+}
+  
     const playlistData = useSelector(state => state.playlist.data)
     const loader = useSelector(state => state.playlist.loading)
     const [show, setShow] = useState(false)
@@ -28,7 +47,7 @@ const Playlists = (props) => {
     const [trackId, setTrackId] = useState('')
     const [playlistId, setPlaylistId] = useState('')
     const [playlistTrackId, setPlaylistTrackId] = useState('')
-    const [isAudioPlaying, setAudioPlaying] = useState(false)
+    const [audioPlaying, setAudioPlaying] = useState(false)
     var audioTune = new Audio(setTrackId);
     const [confirmDelete, setConfirmDelete] = useState(false)
  
@@ -36,21 +55,24 @@ const Playlists = (props) => {
         audioTune.load();
     }, [])
 
-    // console.log(tracklist, 'tracklist')
-    const playSong = (song) => {
-        if (!isAudioPlaying) {
-             audioTune = new Audio(song);
-            audioTune.play();
-            setAudioPlaying(false)
-        } else{
-             audioTune = new Audio(song);
-             console.log('stop')
-            audioTune.pause();
-            console.log('stop')
-            setAudioPlaying(true)
-        }
+   const playSong = (song) =>{
+    audioTune = new Audio(song);
+        console.log("play")
+        
+        console.log(audioPlaying)
+        audioTune.play(); 
+        setAudioPlaying(true)
+      }
+    
+  const pauseSong = (song) =>{
+    audioTune = new Audio(song);
+        console.log("pause");
+        
+        console.log(audioPlaying)
+        audioTune.pause();
+        setAudioPlaying(false);
+      }
 
-    }
     // const playSound = () => {
     //     audioTune.play();
     //     setPlayTrack(true)
@@ -69,42 +91,13 @@ const Playlists = (props) => {
         })
     })
 
-    // useEffect(async () => {
-    //     if (tracklist) {
-    //         console.log(tracklist, 'tracklist')
-    //         localStorage.setItem('playlistUrl', tracklist)
-    //     }
-    // })
-
-    const fetchedData = useSelector(state => state.userData.data[9])
-    const fetchedData2 = useSelector(state => state.userData.data[10])
-    const accessToken = useSelector(state => state.userData.data[11])
-
-    if (fetchedData) {
-        var playlists = fetchedData.data
-    }
-
-    if (fetchedData2) {
-        var recomplaylists = fetchedData2.data
-    }
+    const accessToken = localStorage.getItem("token");
 
     console.log(playlistTrackId, 'playlistTrackId')
     console.log(playlistId, 'playlistId')
     console.log(accessToken, 'accessToken')
-    const requestOptions = {
-        headers: { "Content-Type": "application/json" },
-        body: {
-            playlistId: { playlistId },
-            playlistTrackId: { playlistTrackId },
-            accessToken: { accessToken }
-        },
-    };
-
 
     function deleteTrack(playlistId, playlistTrackId) {
-        console.log(playlistTrackId, 'playlistTrackId2')
-        console.log(playlistId, 'playlistId2')
-        console.log(accessToken, 'accessToken2')
         if (playlistTrackId) {  
             setConfirmDelete(true)        
            axios.post('https://music-app-feeder.herokuapp.com/delete', {
@@ -119,14 +112,19 @@ const Playlists = (props) => {
                 })
         }}
 
-
+        // const userData = useSelector(state => state.userData.data[0])
+        // if (playlistsData){
+        //     const createdPlaylists = myPlaylists.filter(playlist=> playlist.creator.name == userData.name)
+        //     console.log(createdPlaylists, 'createdPlaylists')
+        // }
+  
     return (
         <div className='artistsContainer'>
             <LoggedInNav />
             <div className='artistsBody'>
                 <div className='header'>Playlists</div>
                 <div className='topArtistsContainer'>
-                    {playlists && playlists.map(playlist => {
+                    {myPlaylists ? myPlaylists.map(playlist => {
                         return (
                             <div key={playlist.id}>
                                 <Modal show={show} onClose={() => setShow(false)} title='Playlists'>
@@ -139,12 +137,12 @@ const Playlists = (props) => {
   </div> : null }
  
                                     <div className='playlistModal-createDiv'> {!loader ? <PlaylistModalButtons songCount={`${playlistData.length} songs`} /> : null}</div> </div>
-                                    {!loader ? playlistData.map(track => {
+                                    {!loader ? playlistData.map((track, index) => {
                                         return (
                                             <div key={track.id} className='childrenContainer' >
 
                                                 <div className='playlistModal-body'>
-                                                    <div className='modalListDiv'><img className='deleteImg' src={deleteButton} alt='' onClick={() => { setPlaylistTrackId(track.id); deleteTrack(playlistId, track.id); setTimeout(()=> {dispatch(fetchPlaylist(tracklist)); setConfirmDelete(false)},2000);   } } /><img className='twndimg' src={track.artist.picture_xl} alt='' /></div> <div className='playListModalTittle'><div>{track.title}</div> <div>{track.artist.name}</div></div> <div className='playlistPlayDiv'><img className='playImg' src={play} onClick={() => { setTrackId(track.preview); playSong(track.preview) }} alt='' /> <img className='playlistLogoImg' src={playlistLogo} alt='' /></div>
+                                                    <div className='modalListDiv'><img className='deleteImg' src={deleteButton} alt='' onClick={() => { setPlaylistTrackId(track.id); deleteTrack(playlistId, track.id); setTimeout(()=> {dispatch(fetchPlaylist(tracklist)); setConfirmDelete(false)},2000);   } } /><img className='twndimg' src={track.artist.picture_xl} alt='' /></div> <div className='playListModalTittle'><div className='trackTitle'>{index + 1 + '.' + ' '}{track.title}</div> <div className='modalArtistName'>{track.artist.name}</div></div> <div className='playlistPlayDiv'><img className='playImg' src={play} onClick={() => { setTrackId(track.preview); { audioPlaying ? pauseSong(track.preview) : playSong(track.preview)} }} alt='' /> <img className='playlistLogoImg' src={playlistLogo} alt='' /></div>
 
                                                 </div>
                                             </div>
@@ -162,15 +160,15 @@ const Playlists = (props) => {
                                 <div className='artistNameDiv'>{playlist.title}</div>
                             </div>
                         )
-                    })}
+                    }) : <div className='spinnerContainer'> <div className="lds-facebook"><div></div><div></div><div></div></div> </div>}
                 </div>
 
-                <div class='header secondHeader'>Recommended Playlists</div>
+                <div className='header secondHeader'>Recommended Playlists</div>
                 <div className='topArtistsContainer'>
-                    {recomplaylists && recomplaylists.map(recomplaylist => {
+                    {recommendedPlaylists ? recommendedPlaylists.map(recomplaylist => {
                         return (
-                            <div>
-                                <div data-aos='fade-up' className='artistImgContainer' key={recomplaylist.id}>
+                            <div key={recomplaylist.id}>
+                                <div data-aos='fade-up' className='artistImgContainer'>
                                     <img src={recomplaylist.picture_xl} alt='' />
                                     <div className='albumCover'><img src={recomplaylist.picture_xl} alt='' />
                                         <div className='albumName'>{recomplaylist.title} </div>
@@ -180,7 +178,7 @@ const Playlists = (props) => {
                                 <div className='artistNameDiv'>{recomplaylist.title}</div>
                             </div>
                         )
-                    })}
+                    }) : <div className='spinnerContainer'> <div className="lds-facebook"><div></div><div></div><div></div></div> </div>}
                 </div>
             </div>
         </div>

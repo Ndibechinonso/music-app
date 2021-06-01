@@ -5,9 +5,9 @@ import icon from '../../Assets/icon.png'
 import icon2 from '../../Assets/icon2.png'
 import icon3 from '../../Assets/icon3.png'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch  } from 'react-redux'
 import Modal from '../Modal/Modal'
-import { useFormik, yupToFormErrors } from 'formik';
+import { useFormik} from 'formik';
 import cancelButton from '../../Assets/cancelButton.png'
 import Button from '../Button/Button'
 import axios from 'axios'
@@ -17,15 +17,21 @@ import autoplayoff from '../../Assets/autoplayoff.png'
 import autoplayon from '../../Assets/autoplayon.png'
 import feedback from '../../Assets/feedback.png'
 import { NavLink } from "react-router-dom";
-
+import { fetchUsers } from "../../redux";
 
 function LoggedInNav(props) {
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchUsers());
+  }, []);
+
   const userData = useSelector(state => state.userData.data[0])
+ console.log(userData, 'userData')
   const [show, setShow] = useState(false)
   const [accountlink, setaccountlink] = useState(false)
   const [autoPlay, setAutoPlay] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
-  const [isOpen, setOpen] = useState(false);
 
   function accountDrop() {
     setaccountlink(true)
@@ -48,27 +54,6 @@ function LoggedInNav(props) {
 
   const SignupForm = () => {
 
-    const validate = values => {
-
-      const errors = {};
-      if (!values.fullName) {
-        errors.fullName = 'Required';
-      } else if (values.fullName.length > 15) {
-        errors.fullName = 'Must be 15 characters or less';
-      }
-
-      if (!values.email) {
-        errors.email = 'Required';
-      } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-        errors.email = 'Invalid email address';
-      }
-
-      if (!values.feedback) {
-        errors.feedback = 'Required';
-      }
-      return errors;
-    };
-
     const { handleSubmit, setFieldValue, values, errors, resetForm } = useFormik({
       initialValues: {
         fullName: '',
@@ -83,7 +68,7 @@ function LoggedInNav(props) {
       ,
       onSubmit: values => {
 
-             axios.post('https://music-app-feeder.herokuapp.com/feedback', { fullName: values.fullName, email: values.email, feedback: values.feedback })
+             axios.post('http://localhost:5000/feedback', { fullName: values.fullName, email: values.email, feedback: values.feedback })
              .then(response => {
               const responseInfo = response.message
               console.log(responseInfo, "responseInfo")
@@ -147,7 +132,7 @@ function LoggedInNav(props) {
 
           <div className='buttonDiv'> <Button className='feedbackButton' text='Submit' type='submit' /></div>
         </form> : <div><div className='closeBtn'><div onClick={() => {setShow(false); setIsSubmitted(false)}} className='closeContainer'><img className='closeImg' src={cancelButton} alt='' /></div></div>
-          <div className='feedbackClass'><div><img src={feedback} /></div><p>Thank you for sharing this with us. We will get back to you as soon as possible.</p><p>Till then, Keep streamiing!!!</p></div></div>}
+          <div className='feedbackClass'><div><img src={feedback} alt='' /></div><p>Thank you for sharing this with us. We will get back to you as soon as possible.</p><p>Till then, Keep streamiing!!!</p></div></div>}
       </div>);
   };
   return (
@@ -157,7 +142,7 @@ function LoggedInNav(props) {
       </Modal>
 
       <div className='loggedNavBar'>
-        <Link to='/home'> <h2><img src={deezifylogo} /></h2></Link>
+        <Link to='/home'> <h2><img src={deezifylogo} alt='' /></h2></Link>
         <ul className='loggedNavBar-links'>
      
             <NavLink className="navLink" activeClassName="is-active" to="/home">
@@ -197,7 +182,7 @@ function LoggedInNav(props) {
           {userData ? <div className='settings'><img src={userData.picture_xl} className='user userImg' alt='' /><p>{userData.name}</p></div>
             : <div className='settings'> <i className="fas userIcon fa-user-circle"></i> User</div>}
           <div className='settings' onClick={() => { setShow(true); setaccountlink(false) }}><img src={icon} className='user' alt='feedback icon' /> Send Feedback</div>
-          <div className='settings'><img src={icon2} className='user' alt='autoplay icon' /> Auto play on hover <div className='autoplayDiv'>{autoPlay ? <img src={autoplayon} onClick={() => setAutoPlay(false)} /> : <img src={autoplayoff} onClick={() => setAutoPlay(true)} />} </div> </div>
+          <div className='settings'><img src={icon2} className='user' alt='autoplay icon' /> Auto play on hover <div className='autoplayDiv'>{autoPlay ? <img src={autoplayon} onClick={() => setAutoPlay(false)} alt='' /> : <img src={autoplayoff} onClick={() => setAutoPlay(true)} alt='' />} </div> </div>
           <Link to='/'><div className='settings'><img src={icon3} className='user' alt='logout icon' /> Log out</div></Link>
         </div>
       </div> : null}

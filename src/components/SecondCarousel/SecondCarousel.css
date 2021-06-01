@@ -75,6 +75,10 @@
     right: 47%;
 }
 
+.secondleft-arrow i, .secondright-arrow i{
+    font-size: 16px;
+}
+
 @media (hover: none) and (pointer: coarse) {
     .left-arrow, .right-arrow {
         display: none;

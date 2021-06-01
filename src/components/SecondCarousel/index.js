@@ -74,7 +74,7 @@ const SecondCarousel = (props) => {
                 </div>
                 {/* You can alwas change the content of the button to other things */}
                 {
-                    currentIndex < (length - show) &&
+                    currentIndex < (length - (show)) &&
                     <button onClick={next} className="secondright-arrow">
                         <i className="fas slideArrow fa-arrow-right"></i>
                     </button>

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import instagram from '../../Assets/instagram.png'
 import {
   TwitterShareButton,
   TwitterIcon,

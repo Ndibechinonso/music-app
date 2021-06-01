@@ -1,4 +1,4 @@
-import {USER_DATA_REQUEST, USER_DATA_SUCCESS, USER_DATA_FAILURE} from './userDataTypes'
+import {HOMEPAGE_DATA_REQUEST, HOMEPAGE_DATA_SUCCESS, HOMEPAGE_DATA_FAILURE} from './homePageType'
 
 const initialState = {
     loading: false,
@@ -6,17 +6,17 @@ const initialState = {
     error: ''
 }
 
-const userReducer = (state = initialState, action) => {
+const homePageReducer = (state = initialState, action) => {
     switch(action.type){
-        case USER_DATA_REQUEST : return {
+        case HOMEPAGE_DATA_REQUEST : return {
             ...state, loading: true
         }
-        case USER_DATA_SUCCESS : return{
+        case HOMEPAGE_DATA_SUCCESS : return{
             loading: false,
             data: action.payload,
             error: ''
         }
-        case USER_DATA_FAILURE : return{
+        case HOMEPAGE_DATA_FAILURE : return{
             loading: false,
             data: [],
             error: action.payload
@@ -30,4 +30,4 @@ const userReducer = (state = initialState, action) => {
     }
 }
 
-export default userReducer 
+export default homePageReducer 
