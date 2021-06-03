@@ -58,7 +58,7 @@ console.log(myPlaylists, 'myPlaylists')
 const addTrack = (playlistId, trackId)=>{
 
     if (trackId){
-    axios.post('http://localhost:5000/addTrack', {
+    axios.post('https://deezify-app-feeder.herokuapp.com/addTrack', {
         playlistId, trackId, accessToken})
 
         .then(response => {
