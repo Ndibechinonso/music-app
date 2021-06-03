@@ -22,6 +22,14 @@ const DataLoad = (props) => {
   localStorage.setItem("token", accessToken)
   localStorage.setItem("userId", userDataId)
 
+
+  useEffect(() => {
+    localStorage.removeItem("code");
+    const searchParams = new URLSearchParams(location.search);
+    const code = searchParams.get("code");
+    localStorage.setItem("code", code);
+  }, []);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchToken());
@@ -29,11 +37,6 @@ const DataLoad = (props) => {
 
   const location = useLocation();
 
-  useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    const code = searchParams.get("code");
-    localStorage.setItem("code", code);
-  }, []);
 
   return (
     <div>
@@ -48,7 +51,7 @@ const DataLoad = (props) => {
             <div className="playCircle">
               <div className="hourglass"></div>
             </div>
-          ) : !userData ? <div className='errorDiv'> <div className='errorMsg'>Something went terribly wrong. Please click the button below to take you back to the Login Page </div><div><Link to='/'><Button className='navBarButton' text='Go back to Login Page' /></Link></div></div> : (
+          ) : (
             <div className="playCircleActing">
               <Link to="/home">
                   <i className="fas play fa-play"></i>

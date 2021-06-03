@@ -42,6 +42,7 @@ export const fetchToken = () => {
             }
             )
             .catch(error => {
+                window.location.href = '/'
                 const errorMsg = error.message
                 dispatch(fetchTokenFailure(errorMsg))
             })
