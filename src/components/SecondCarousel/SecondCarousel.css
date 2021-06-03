@@ -20,7 +20,7 @@
 .secondcarousel-content {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+  
     transition: all 250ms linear;
     -ms-overflow-style: none;  /* hide scrollbar in IE and Edge */
     scrollbar-width: none;  /* hide scrollbar in Firefox */

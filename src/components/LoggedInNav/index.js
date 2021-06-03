@@ -68,7 +68,7 @@ function LoggedInNav(props) {
       ,
       onSubmit: values => {
 
-             axios.post('http://localhost:5000/feedback', { fullName: values.fullName, email: values.email, feedback: values.feedback })
+             axios.post('https://music-app-feeder.herokuapp.com/feedback', { fullName: values.fullName, email: values.email, feedback: values.feedback })
              .then(response => {
               const responseInfo = response.message
               console.log(responseInfo, "responseInfo")
@@ -128,9 +128,10 @@ function LoggedInNav(props) {
               /><br />
               {errors.feedback ? <div className='error'>{errors.feedback}</div> : null}
             </div>
+            <div className='buttonDiv'> <Button className='feedbackButton' text='Submit' type='submit' /></div>
           </div>
 
-          <div className='buttonDiv'> <Button className='feedbackButton' text='Submit' type='submit' /></div>
+          
         </form> : <div><div className='closeBtn'><div onClick={() => {setShow(false); setIsSubmitted(false)}} className='closeContainer'><img className='closeImg' src={cancelButton} alt='' /></div></div>
           <div className='feedbackClass'><div><img src={feedback} alt='' /></div><p>Thank you for sharing this with us. We will get back to you as soon as possible.</p><p>Till then, Keep streamiing!!!</p></div></div>}
       </div>);

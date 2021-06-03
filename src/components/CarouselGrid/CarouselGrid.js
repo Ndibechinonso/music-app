@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import SecondCarousel from '../SecondCarousel'
 import './CarouselGrid.css'
 import { nanoid } from "nanoid";
@@ -9,6 +9,8 @@ import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
 import {FaRegCopy, FaList,FaEllipsisV, FaShareAlt} from 'react-icons/fa'
 import {RiSendPlaneFill, RiDeleteBin6Line} from 'react-icons/ri'
 import './coupon.css'
+import axios from 'axios'
+
 
 const CarouselGrid = () => {
 
@@ -18,9 +20,10 @@ const CarouselGrid = () => {
         })
     })
 
+const [trackId, setTrackId] = useState(null)
 
 const fetchedLastPlayed = useSelector(state => state.homePageData.data[1])
-console.log(fetchedLastPlayed, 'fetchedLastPlayed')
+
 
   if (fetchedLastPlayed) {
      var lastPlayed = fetchedLastPlayed.data
@@ -50,7 +53,25 @@ console.log(myPlaylists, 'myPlaylists')
         }
 
 
+        const accessToken = localStorage.getItem("token");
 
+const addTrack = (playlistId, trackId)=>{
+
+    if (trackId){
+    axios.post('http://localhost:5000/addTrack', {
+        playlistId, trackId, accessToken})
+
+        .then(response => {
+            const responseInfo = response
+           
+        })
+        .catch(error => {
+            const errorMsg = error.message
+        })
+    
+  }  }
+
+console.log(trackId, 'trackId')
     return (
 <div className='carouselGridContainer'>
 <div className='artistsBody'>
@@ -60,7 +81,7 @@ console.log(myPlaylists, 'myPlaylists')
 
                 { lastPlayed ?  lastPlayed.map(data => {
                   return (
-                        <div key={data.artist.id + nanoid()}  className='testKid'>
+                        <div key={data.artist.id + nanoid()}  className='testKid' data-aos="fade-left" >
                                 <div className='testKid' style={{ padding: 8 }} >  
                                <div className='imgContainer'>   <img className='roundedImg' src={data.album.cover_xl} alt="placeholder" style={{ width: '100%' }} />
                                <div className='titleDiv'>
@@ -85,7 +106,7 @@ console.log(myPlaylists, 'myPlaylists')
                 { latestTracks ? latestTracks.map(track => {
                     return (
                         <ContextMenuTrigger id="contextmenu" key={track.id + nanoid()}>
-                        <div  data-aos="fade-left"  className='testKid coupon'>
+                        <div  data-aos="fade-left"  className='testKid' onContextMenu={() => setTrackId(track.id)} >
                                 <div className='testKid' style={{ padding: 8 }}>  
                                <div className='imgContainer'>   <img className='roundedImg' src={track.cover_xl} alt="placeholder" style={{ width: '100%' }} />
                              <div className='titleDiv'>
@@ -104,7 +125,7 @@ console.log(myPlaylists, 'myPlaylists')
 
             <ContextMenu id="contextmenu">
   { playlistsData ? createdPlaylists.map(playListMenu =>{
-      return( <MenuItem key={playListMenu.id}>
+      return( <MenuItem key={playListMenu.id} onClick={addTrack(playListMenu.id, trackId)}>
 <FaList className="watchlist"/>
           <span>Add to {playListMenu.title}</span>   
 </MenuItem>

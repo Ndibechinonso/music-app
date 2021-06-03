@@ -33,7 +33,7 @@ const requestOptions = {
 export const fetchToken = () => {
     return (dispatch) => {
         dispatch(fetchTokenRequest())
-        axios.post('http://localhost:5000', requestOptions.body)
+        axios.post('https://music-app-feeder.herokuapp.com', requestOptions.body)
 
             .then(response => {
                 const token = response.data

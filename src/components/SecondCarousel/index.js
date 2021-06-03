@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './SecondCarousel.css'
 
 const SecondCarousel = (props) => {
+
     const {children, show} = props
     const [currentIndex, setCurrentIndex] = useState(0)
     const [length, setLength] = useState('')
@@ -74,7 +75,7 @@ const SecondCarousel = (props) => {
                 </div>
                 {/* You can alwas change the content of the button to other things */}
                 {
-                    currentIndex < (length - (show)) &&
+                    currentIndex < (length - show) &&
                     <button onClick={next} className="secondright-arrow">
                         <i className="fas slideArrow fa-arrow-right"></i>
                     </button>
@@ -82,6 +83,8 @@ const SecondCarousel = (props) => {
             </div>
         </div>
     )
+
+
 }
 
 export default SecondCarousel

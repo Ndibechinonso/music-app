@@ -54,6 +54,10 @@
     text-align: center;
   }
 
+  .slideDiv:hover{
+    cursor: pointer;
+  }
+  
   .parentSlide{
     position: relative;
     height: 631px;
@@ -121,4 +125,10 @@
         padding-top: 10px;
         padding-bottom: 10px;
 
+  }
+  .albumFrame{
+    margin-top: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
   }

@@ -40,7 +40,7 @@ export const fetchHomeData = () => {
     if(savedToken && savedUserId)
     return (dispatch) => {
         dispatch(fetchHomePageRequest())
-        axios.post('http://localhost:5000/home', requestOptions.body)
+        axios.post('https://music-app-feeder.herokuapp.com/home', requestOptions.body)
 
             .then(response => {
                 const homePageData = response.data

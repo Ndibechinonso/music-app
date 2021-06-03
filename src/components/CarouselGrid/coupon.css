@@ -8,6 +8,7 @@ nav.react-contextmenu {
     padding: 10px 0;
     z-index: 99;
     box-shadow: 0 0 20px rgba(0,0,0,.2);
+
 }
 .react-contextmenu .react-contextmenu-item:hover{
   background: #cccccc;
@@ -54,3 +55,7 @@ nav.react-contextmenu {
 .react-contextmenu-item .watchlist{
   color: rebeccapurple
 }
+.react-contextmenu-wrapper:nth-child(even){
+  align-self: flex-end;
+ 
+    }
