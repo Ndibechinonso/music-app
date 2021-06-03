@@ -4,7 +4,7 @@ import useMousePosition from "../../hooks/useMousePosition";
 import { MouseContext } from "../../context/mouse-context";
 
 const DotRing = () => {
-  const { cursorType} = useContext(MouseContext);
+  const { cursorType } = useContext(MouseContext);
   const { x, y } = useMousePosition();
   return (
     <>

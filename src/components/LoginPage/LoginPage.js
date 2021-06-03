@@ -4,8 +4,7 @@ import Intro from '../Intro/Intro'
 import './LoginPage.css'
 
 
-const LoginPage = (props) =>{
-
+const LoginPage = (props) => {
     return (
         <div>
             <Navbar />

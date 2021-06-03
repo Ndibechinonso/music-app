@@ -3,7 +3,7 @@ import './SecondCarousel.css'
 
 const SecondCarousel = (props) => {
 
-    const {children, show} = props
+    const { children, show } = props
     const [currentIndex, setCurrentIndex] = useState(0)
     const [length, setLength] = useState('')
     const [touchPosition, setTouchPosition] = useState(null)
@@ -11,19 +11,22 @@ const SecondCarousel = (props) => {
     // Set the length to match current children from props
 
     useEffect(() => {
-       if (children) {
-    setLength(children.length)}
+        if (children) {
+            setLength(children.length)
+        }
     }, [children])
 
     const next = () => {
         if (currentIndex < (length - show)) {
             setCurrentIndex(prevState => prevState + 1)
-        }}
+        }
+    }
 
     const prev = () => {
         if (currentIndex > 0) {
             setCurrentIndex(prevState => prevState - 1)
-        }}
+        }
+    }
 
     const handleTouchStart = (e) => {
         const touchDown = e.touches[0].clientX
@@ -33,7 +36,7 @@ const SecondCarousel = (props) => {
     const handleTouchMove = (e) => {
         const touchDown = touchPosition
 
-        if(touchDown === null) {
+        if (touchDown === null) {
             return
         }
 
@@ -49,9 +52,9 @@ const SecondCarousel = (props) => {
         }
 
         setTouchPosition(null)
-    } 
+    }
 
-    return ( 
+    return (
         <div className="secondcarousel-container">
             <div className="secondcarousel-wrapper">
                 {/* You can alwas change the content of the button to other things */}
@@ -67,9 +70,9 @@ const SecondCarousel = (props) => {
                     onTouchMove={handleTouchMove}
                 >
                     <div
-                         className={`secondcarousel-content show-${show}`}
-                             style={{ transform: `translateX(-${currentIndex * (100 / show)}%)` }}
-                          >
+                        className={`secondcarousel-content show-${show}`}
+                        style={{ transform: `translateX(-${currentIndex * (100 / show)}%)` }}
+                    >
                         {children}
                     </div>
                 </div>
@@ -83,8 +86,6 @@ const SecondCarousel = (props) => {
             </div>
         </div>
     )
-
-
 }
 
 export default SecondCarousel

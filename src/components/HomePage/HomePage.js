@@ -13,7 +13,6 @@ import { fetchHomeData, fetchPlaylistsPageData } from '../../redux'
 import Iframe from 'react-iframe'
 
 
-
 const HomePage = (props) => {
 
     const [frameUrl, setFrameUrl] = useState(null)
@@ -35,21 +34,17 @@ const HomePage = (props) => {
     }, [])
 
     const homePageData = useSelector(state => state.homePageData.data)
-
     const fetchedRecommendedData = useSelector(state => state.homePageData.data[0])
 
 
     if (fetchedRecommendedData) {
         var recommendedAlbums = fetchedRecommendedData.data
-        console.log(recommendedAlbums, 'recommendedAlbums')
     }
-   
 
     return (
         <div>
             <LoggedInNav />
             <div className='parentSlide'>
-
                 <Carousel autoPlay={true} infiniteLoop={true} showIndicators={false} showArrows={true} showThumbs={false}>
                     {recommendedAlbums ? recommendedAlbums.map(data => {
                         return (
@@ -69,7 +64,6 @@ const HomePage = (props) => {
                     })
                         : <div className='spinnerContainer'> <div className="lds-facebook"><div></div><div></div><div></div></div> </div>
                     }</Carousel>
-
 
                 <div className='carouselContainer'>
                     <div className='recommendedAlbumsContainer' style={{ maxWidth: 1200, marginLeft: 'auto', marginRight: 'auto', marginTop: 64 }}>
@@ -94,8 +88,6 @@ const HomePage = (props) => {
 
             </div>
 
-
-
             {frameUrl ? <div className='albumFrame'> <Iframe url={framelink}
                 width="450px"
                 height="300px"
@@ -104,11 +96,9 @@ const HomePage = (props) => {
                 display="initial"
                 position="relative" /></div> : null}
 
-
             <CarouselGrid />
 
         </div>
-
     );
 };
 

@@ -1,28 +1,30 @@
-.playlistModalButtonsDiv{
-    display: flex;
-    flex-direction: row;
-}
-.createPlaylistClass{
-color: #DA2060;
-    border: 2px solid #DA2060;
-    border-radius: 10px;
-    Font: Arial;
-    font-weight: 700;
-    padding: 14px 62px 15px;
-    font-size: 16px;
-    outline: none;
-    background-color: #000000;
+.playlistModalButtonsDiv {
+  display: flex;
+  flex-direction: row;
 }
 
-.numberCountClass{
-    background: #353538;
-    border-radius: 10px;
-color: #FFFFFF;
-font-family: 'Open Sans', sans-serif;
-font-size: 24px;
-font-weight: 700;
-padding: 7px 29px;
+.createPlaylistClass {
+  color: #da2060;
+  border: 2px solid #da2060;
+  border-radius: 10px;
+  font: Arial;
+  font-weight: 700;
+  padding: 14px 62px 15px;
+  font-size: 16px;
+  outline: none;
+  background-color: #000000;
 }
-.createPlaylistDiv{
-    margin-right: 37px;
+
+.numberCountClass {
+  background: #353538;
+  border-radius: 10px;
+  color: #ffffff;
+  font-family: "Open Sans", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  padding: 7px 29px;
+}
+
+.createPlaylistDiv {
+  margin-right: 37px;
 }

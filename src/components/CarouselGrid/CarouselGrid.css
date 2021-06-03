@@ -1,80 +1,87 @@
-.roundedImg{
-    border-radius: 50%;
-    width: 230px;
-    object-fit: contain;
+.roundedImg {
+  border-radius: 50%;
+  width: 230px;
+  object-fit: contain;
 }
-.slideContainer{
+
+.slideContainer {
   text-align: center;
- position: relative;
- display: flex; 
- align-items: center; 
-
-}
-.imgContainer{
-    position: relative; 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
-.slideContainer p{
-    color: white;
-}
-.titleDiv{
-    position: absolute;
-    top: 30%;
-    margin: auto;
-    width: 80%;
-    color: white;
-    text-align: center;
-    margin: auto;
-    font-weight: 700;
-}
-.slideContainer p:first-of-type{
-font-size: 40%;
-font-weight: 700;
-}
-.artistName{
-    font-size: 50%;  
-    font-weight: 700;
-    margin-top: 10px
+.imgContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
 }
 
-.lastPlayedheader{
-    font-size: 40px;
-    font-weight: 700;
-    color: white;
-    margin-bottom: 30px;
+.slideContainer p {
+  color: white;
 }
-.carouselGridContainer{
-    margin-top: 131px;
-}
-.requesFailed{
-    color: #fff;
-    text-align: center;
-  }
-  .latestTracksBody{
-    margin-left: 60px;  
-    margin-top: 60px;
-  }
 
-  .test{
-    height: 450px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-  }
-.testKid:hover{
+.titleDiv {
+  position: absolute;
+  top: 30%;
+  margin: auto;
+  width: 80%;
+  color: white;
+  text-align: center;
+  margin: auto;
+  font-weight: 700;
+}
+
+.slideContainer p:first-of-type {
+  font-size: 40%;
+  font-weight: 700;
+}
+
+.artistName {
+  font-size: 50%;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.lastPlayedheader {
+  font-size: 40px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.carouselGridContainer {
+  margin-top: 131px;
+}
+
+.requesFailed {
+  color: #fff;
+  text-align: center;
+}
+
+.latestTracksBody {
+  margin-left: 60px;
+  margin-top: 60px;
+}
+
+.test {
+  height: 450px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.testKid:hover {
   cursor: pointer;
 }
-  
-  .test .testKid:nth-child(odd){
-align-self: flex-start;
 
-  }
-  .test .testKid:nth-child(even){
-    align-self: flex-end;
-   
-      }
+.test .testKid:nth-child(odd) {
+  align-self: flex-start;
+}
+
+.test .testKid:nth-child(even) {
+  align-self: flex-end;
+}

@@ -6,18 +6,15 @@ import { fetchToken } from "../../redux";
 import { Link } from "react-router-dom";
 import DotRing from "../DotRing/DotRing";
 import { MouseContext } from "../../context/mouse-context";
-import Button from '../Button/Button'
+
 
 const DataLoad = (props) => {
-  
-  const {cursorChangeHandler } = useContext(MouseContext);
+
+  const { cursorChangeHandler } = useContext(MouseContext);
   const loader = useSelector((state) => state.userToken.loading);
   const accessToken = useSelector(state => state.userToken.data[0])
   const userData = useSelector(state => state.userToken.data[1])
   const userDataId = useSelector(state => state.userToken.data[2])
-  console.log(userData, 'user')
-  console.log(accessToken, 'accessToken')
-  console.log(userDataId, 'userDataId')
 
   localStorage.setItem("token", accessToken)
   localStorage.setItem("userId", userDataId)
@@ -37,7 +34,6 @@ const DataLoad = (props) => {
 
   const location = useLocation();
 
-
   return (
     <div>
       <DotRing />
@@ -54,7 +50,7 @@ const DataLoad = (props) => {
           ) : (
             <div className="playCircleActing">
               <Link to="/home">
-                  <i className="fas play fa-play"></i>
+                <i className="fas play fa-play"></i>
               </Link>
             </div>
           )}{" "}

@@ -1,62 +1,67 @@
-.artistsContainer{
-    color: white;
-  
+.artistsContainer {
+  color: white;
 }
-.header{
-      font-weight: 700;
-    font-size: 40px;
-    margin-bottom: 30px
-}
-.secondHeader{
-    margin-top: 60px
-}
-.artistsBody{
-    margin-left: 60px;   
-}
-.topArtistsContainer{
-    display: grid;
-    grid-template-columns: 601px 393.03px;
-    gap: 120px;
- 
-}
-.artistImgContainer{
-    position: relative;
 
+.header {
+  font-weight: 700;
+  font-size: 40px;
+  margin-bottom: 30px;
 }
-.artistImgContainer img{
-border-radius: 20px 20px 0 0;
 
+.secondHeader {
+  margin-top: 60px;
 }
-.artistNameDiv{
-    text-align: center;
+
+.artistsBody {
+  margin-left: 60px;
+}
+
+.topArtistsContainer {
+  display: grid;
+  grid-template-columns: 601px 393.03px;
+  gap: 120px;
+}
+
+.artistImgContainer {
+  position: relative;
+}
+
+.artistImgContainer img {
+  border-radius: 20px 20px 0 0;
+}
+
+.artistNameDiv {
+  text-align: center;
   padding-top: 20px;
-     padding-bottom: 20px;
-     font-size: 50px;
-     border-radius: 0 0 20px 20px;
-        background-color: #121212;
-}
-.albumCover{
-    position: absolute;
-     width: 43%; 
-     bottom: 0;
-    z-index: 2;
-    right: -10%;
-    font-size: 20px;
-    font-weight: 700;
-  
-    text-align: center;
-    
-}
-.albumName{
+  padding-bottom: 20px;
+  font-size: 50px;
+  border-radius: 0 0 20px 20px;
   background-color: #121212;
-border-radius: 0 0 20px 20px;
 }
-img{
-    width: 100%;
-    object-fit: cover;
+
+.albumCover {
+  position: absolute;
+  width: 43%;
+  bottom: 0;
+  z-index: 2;
+  right: -10%;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
 }
-.spinnerContainer{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-  }
+
+.albumName {
+  background-color: #121212;
+  border-radius: 0 0 20px 20px;
+}
+
+img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.spinnerContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}

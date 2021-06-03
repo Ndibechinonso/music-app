@@ -5,9 +5,9 @@ import icon from '../../Assets/icon.png'
 import icon2 from '../../Assets/icon2.png'
 import icon3 from '../../Assets/icon3.png'
 import { Link } from 'react-router-dom'
-import { useSelector, useDispatch  } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import Modal from '../Modal/Modal'
-import { useFormik} from 'formik';
+import { useFormik } from 'formik';
 import cancelButton from '../../Assets/cancelButton.png'
 import Button from '../Button/Button'
 import axios from 'axios'
@@ -17,7 +17,7 @@ import autoplayoff from '../../Assets/autoplayoff.png'
 import autoplayon from '../../Assets/autoplayon.png'
 import feedback from '../../Assets/feedback.png'
 import { NavLink } from "react-router-dom";
-import { fetchUsers } from "../../redux";
+import { fetchUsers, fetchPlayState, fetchStopState } from "../../redux";
 
 function LoggedInNav(props) {
 
@@ -27,7 +27,6 @@ function LoggedInNav(props) {
   }, []);
 
   const userData = useSelector(state => state.userData.data[0])
- console.log(userData, 'userData')
   const [show, setShow] = useState(false)
   const [accountlink, setaccountlink] = useState(false)
   const [autoPlay, setAutoPlay] = useState(false)
@@ -67,22 +66,21 @@ function LoggedInNav(props) {
       })
       ,
       onSubmit: values => {
+        axios.post('https://deezify-app-feeder.herokuapp.com/feedback', { fullName: values.fullName, email: values.email, feedback: values.feedback })
+          .then(response => {
+            const responseInfo = response.message
+            console.log(responseInfo, "responseInfo")
+            setIsSubmitted(true)
+            resetForm({ values: '' })
+          })
+          .catch(error => {
+            const errorMsg = error.message
+            console.log(errorMsg, "errorMsg")
+          })
+      },
+    });
 
-             axios.post('https://deezify-app-feeder.herokuapp.com/feedback', { fullName: values.fullName, email: values.email, feedback: values.feedback })
-             .then(response => {
-              const responseInfo = response.message
-              console.log(responseInfo, "responseInfo")
-              setIsSubmitted(true)
-              resetForm({values: ''})
-            })
-            .catch(error => {
-              const errorMsg = error.message
-              console.log(errorMsg, "errorMsg")
-            })
-        },
-      });
-  
-     return (
+    return (
       <div>
         {!isSubmitted ? <form onSubmit={handleSubmit}>
           <div className='closeBtn'><div onClick={() => setShow(false)} className='closeContainer'><img className='closeImg' src={cancelButton} alt='' /></div></div>
@@ -131,51 +129,27 @@ function LoggedInNav(props) {
             <div className='buttonDiv'> <Button className='feedbackButton' text='Submit' type='submit' /></div>
           </div>
 
-          
-        </form> : <div><div className='closeBtn'><div onClick={() => {setShow(false); setIsSubmitted(false)}} className='closeContainer'><img className='closeImg' src={cancelButton} alt='' /></div></div>
+
+        </form> : <div><div className='closeBtn'><div onClick={() => { setShow(false); setIsSubmitted(false) }} className='closeContainer'><img className='closeImg' src={cancelButton} alt='' /></div></div>
           <div className='feedbackClass'><div><img src={feedback} alt='' /></div><p>Thank you for sharing this with us. We will get back to you as soon as possible.</p><p>Till then, Keep streamiing!!!</p></div></div>}
       </div>);
   };
   return (
     <div>
-      <Modal show={show} onClose={() => {setShow(false); setIsSubmitted(false)}} >
+      <Modal show={show} onClose={() => { setShow(false); setIsSubmitted(false) }} >
         {SignupForm()}
       </Modal>
 
       <div className='loggedNavBar'>
         <Link to='/home'> <h2><img src={deezifylogo} alt='' /></h2></Link>
         <ul className='loggedNavBar-links'>
-     
-            <NavLink className="navLink" activeClassName="is-active" to="/home">
-              Home
-            </NavLink>
-
-            <NavLink
-              className="navLink"
-              activeClassName="is-active"
-              to="/artists"
-            >
-              Artists
-            </NavLink>
-
-            <NavLink
-              className="navLink"
-              activeClassName="is-active"
-              to="/playlists"
-            >
-              PlayLists
-            </NavLink>
-          
-          <NavLink
-              className="navLink"
-              activeClassName="is-active"
-              to="/genres"
-            >
-              Genres
-            </NavLink>
-       
-            <div className='dropdownDiv'>{userData ? <img src={userData.picture_xl} className='user userImg' alt='' /> : null} <li onClick={accountDrop}><img src={dropdown} alt='dropdown icon' className='dropdownIcon'/></li></div>
+          <NavLink className="navLink" activeClassName="is-active" to="/home">Home</NavLink>
+          <NavLink className="navLink" activeClassName="is-active" to="/artists">Artists</NavLink>
+          <NavLink className="navLink" activeClassName="is-active" to="/playlists">PlayLists</NavLink>
+          <NavLink className="navLink" activeClassName="is-active" to="/genres">Genres</NavLink>
+          <div className='dropdownDiv'>{userData ? <img src={userData.picture_xl} className='user userImg' alt='' /> : null} <li onClick={accountDrop}><img src={dropdown} alt='dropdown icon' className='dropdownIcon' /></li></div>
         </ul>
+
       </div>
 
       { accountlink ? <div className='accountModal'>
@@ -183,7 +157,8 @@ function LoggedInNav(props) {
           {userData ? <div className='settings'><img src={userData.picture_xl} className='user userImg' alt='' /><p>{userData.name}</p></div>
             : <div className='settings'> <i className="fas userIcon fa-user-circle"></i> User</div>}
           <div className='settings' onClick={() => { setShow(true); setaccountlink(false) }}><img src={icon} className='user' alt='feedback icon' /> Send Feedback</div>
-          <div className='settings'><img src={icon2} className='user' alt='autoplay icon' /> Auto play on hover <div className='autoplayDiv'>{autoPlay ? <img src={autoplayon} onClick={() => setAutoPlay(false)} alt='' /> : <img src={autoplayoff} onClick={() => setAutoPlay(true)} alt='' />} </div> </div>
+          <div className='settings'><img src={icon2} className='user' alt='autoplay icon' /> Auto play on hover <div className='autoplayDiv'>{autoPlay ? <img src={autoplayon} onClick={() => { setAutoPlay(false); dispatch(fetchStopState()) }} alt='' /> : <img src={autoplayoff} onClick={() => { setAutoPlay(true); dispatch(fetchPlayState()) }} alt='' />} </div> </div>
+
           <Link to='/'><div className='settings'><img src={icon3} className='user' alt='logout icon' /> Log out</div></Link>
         </div>
       </div> : null}

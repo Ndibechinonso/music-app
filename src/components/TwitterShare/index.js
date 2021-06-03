@@ -7,9 +7,7 @@ import {
 import SubShareCSS from "./CSS";
 
 class TwitterShare extends Component {
-
   render() {
-
     const {
       url = "https://do-re-me.netlify.app/",
       title = "Deezer management app",
@@ -19,17 +17,11 @@ class TwitterShare extends Component {
 
     return (
       <SubShareCSS >
-   
-          <TwitterShareButton
-            title={title}
-            url={url}
-          >
-            <TwitterIcon
-              size={size}
-            />
-          </TwitterShareButton>
 
-        
+        <TwitterShareButton title={title} url={url}>
+          <TwitterIcon size={size} />
+        </TwitterShareButton>
+
       </SubShareCSS>
     );
   }
