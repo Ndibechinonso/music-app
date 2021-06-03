@@ -24,7 +24,7 @@ const fetchDataFailure = (error) =>{
    
     return (dispatch) => {
      dispatch(fetchDataRequest())
-        axios.post('https://music-app-feeder.herokuapp.com/users', {
+        axios.post('https://deezify-app-feeder.herokuapp.com/users', {
             tracklist: url
           })
             .then(response => {

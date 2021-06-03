@@ -120,7 +120,7 @@ const [playIcon, setPlayIcon] = useState(play)
     function deleteTrack(playlistId, playlistTrackId) {
         if (playlistTrackId) {
             setConfirmDelete(true)
-            axios.post('https://music-app-feeder.herokuapp.com/delete', {
+            axios.post('https://deezify-app-feeder.herokuapp.com/delete', {
                 playlistId, playlistTrackId, accessToken
             })
                 .then(response => {
@@ -141,7 +141,7 @@ const [playIcon, setPlayIcon] = useState(play)
 
     function submitPlaylist(e){
     e.preventDefault()
-        axios.post('https://music-app-feeder.herokuapp.com/addPlaylist',{
+        axios.post('https://deezify-app-feeder.herokuapp.com/addPlaylist',{
     id, accessToken, playlistName
         })
         .then(response => {

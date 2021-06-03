@@ -40,7 +40,7 @@ export const fetchArtistsData = () => {
     if(savedToken && savedUserId)
     return (dispatch) => {
         dispatch(fetchArtistsRequest())
-        axios.post('https://music-app-feeder.herokuapp.com/artists', requestOptions.body)
+        axios.post('https://deezify-app-feeder.herokuapp.com/artists', requestOptions.body)
 
             .then(response => {
                 const artistsData = response.data

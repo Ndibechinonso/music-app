@@ -40,7 +40,7 @@ export const fetchPlaylistsPageData = () => {
     if(savedToken && savedUserId)
     return (dispatch) => {
         dispatch(fetchPlaylistsRequest())
-        axios.post('https://music-app-feeder.herokuapp.com/playlists', requestOptions.body)
+        axios.post('https://deezify-app-feeder.herokuapp.com/playlists', requestOptions.body)
 
             .then(response => {
                 const playlistsPageData = response.data

@@ -40,7 +40,7 @@ export const fetchGenresData = () => {
     if(savedToken && savedUserId)
     return (dispatch) => {
         dispatch(fetchGenresRequest())
-        axios.post('https://music-app-feeder.herokuapp.com/genres', requestOptions.body)
+        axios.post('https://deezify-app-feeder.herokuapp.com/genres', requestOptions.body)
 
             .then(response => {
                 const genresData = response.data
