@@ -15,6 +15,7 @@ const DataLoad = (props) => {
   const accessToken = useSelector(state => state.userToken.data[0])
   const userData = useSelector(state => state.userToken.data[1])
   const userDataId = useSelector(state => state.userToken.data[2])
+  const [loaderIcon, showLoaderIcon] = useState(false)
 
   localStorage.setItem("token", accessToken)
   localStorage.setItem("userId", userDataId)
@@ -26,6 +27,11 @@ const DataLoad = (props) => {
     const code = searchParams.get("code");
     localStorage.setItem("code", code);
   }, []);
+
+  setTimeout(() => {
+    showLoaderIcon(true) 
+  }, 2000);
+
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -41,6 +47,7 @@ const DataLoad = (props) => {
         onMouseEnter={() => cursorChangeHandler("hovered")}
         onMouseLeave={() => cursorChangeHandler("")}
       >
+              {loaderIcon ? 
         <div className="playDiv">
           {" "}
           {loader ? (
@@ -54,7 +61,8 @@ const DataLoad = (props) => {
               </Link>
             </div>
           )}{" "}
-        </div>
+        </div> : null}
+
       </div>
     </div>
   );
