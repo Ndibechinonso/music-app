@@ -20,6 +20,8 @@ import { NavLink } from "react-router-dom";
 import { fetchUsers, fetchPlayState, fetchStopState } from "../../redux";
 import { debounce } from  '../../utilities/helpers';
 
+
+
 function LoggedInNav(props) {
 
   const [prevScrollPos, setPrevScrollPos] = useState(0); 
@@ -204,10 +206,10 @@ function LoggedInNav(props) {
       { accountlink ? <div className='accountModal'>
         <div className='modal-content' onClick={e => e.stopPropagation()}>
           {userData ? <div className='settings'><img src={userData.picture_xl} className='user userImg' alt='' /><p>{userData.name}</p></div>
-            : <div className='settings'> <i className="fas userIcon fa-user-circle"></i> User</div>}
-          <div className='settings' onClick={() => { setShow(true); setaccountlink(false) }}><img src={icon} className='user' alt='feedback icon' /> Send Feedback</div>
+            : <div className='settings'> <i className="fas userIcon fa-user-circle"></i> User</div>} 
+     <div className='settings' onClick={() => { setShow(true); setaccountlink(false) }}><img src={icon} className='user' alt='feedback icon' /> Send Feedback</div>
           <div className='settings'><img src={icon2} className='user' alt='autoplay icon' /> Auto play on hover <div className='autoplayDiv'>{autoPlay ? <img src={autoplayon} onClick={() => {setAutoPlay(false); dispatch(fetchStopState())} } alt='' /> : <img src={autoplayoff} onClick={() => {setAutoPlay(true); dispatch(fetchPlayState()) } } alt='' />} </div> </div>
-          <Link to='/'><div className='settings'><img src={icon3} className='user' alt='logout icon' /> Log out</div></Link>
+            <Link to='/'><div className='settings'><img src={icon3} className='user' alt='logout icon' /> Log out</div></Link>
         </div>
       </div> : null}
     </div>
