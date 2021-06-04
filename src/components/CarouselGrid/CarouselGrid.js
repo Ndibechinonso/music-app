@@ -102,7 +102,7 @@ const CarouselGrid = () => {
                                         <div className='testKid' style={{ padding: 8 }}>
                                             <div className='imgContainer'>   <img className='roundedImg' src={track.cover_xl} alt="placeholder" style={{ width: '100%' }} />
                                                 <div className='titleDiv'>
-                                                    <p>{track.title}</p>
+                                                    <p className='trackName'>{track.title}</p>
                                                     <p className='artistName'>{track.artist.name}</p>
                                                 </div>
                                             </div>

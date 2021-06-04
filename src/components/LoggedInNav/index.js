@@ -18,8 +18,32 @@ import autoplayon from '../../Assets/autoplayon.png'
 import feedback from '../../Assets/feedback.png'
 import { NavLink } from "react-router-dom";
 import { fetchUsers, fetchPlayState, fetchStopState } from "../../redux";
+import { debounce } from  '../../utilities/helpers';
 
 function LoggedInNav(props) {
+
+  const [prevScrollPos, setPrevScrollPos] = useState(0); 
+  const [visible, setVisible] = useState(true);  
+
+  const handleScroll = debounce(() => {
+    const currentScrollPos = window.pageYOffset;
+
+    setVisible((prevScrollPos > currentScrollPos && prevScrollPos - currentScrollPos > 70) || currentScrollPos < 10);
+
+    setPrevScrollPos(currentScrollPos);
+  }, 100);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+
+  }, [prevScrollPos, visible, handleScroll]);
+  const navbarStyles = {
+    position: 'fixed',
+    textAlign: 'center',
+    transition: 'top 0.6s' 
+  }
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -129,26 +153,51 @@ function LoggedInNav(props) {
             <div className='buttonDiv'> <Button className='feedbackButton' text='Submit' type='submit' /></div>
           </div>
 
-
-        </form> : <div><div className='closeBtn'><div onClick={() => { setShow(false); setIsSubmitted(false) }} className='closeContainer'><img className='closeImg' src={cancelButton} alt='' /></div></div>
+          
+        </form> : <div><div className='closeBtn'><div onClick={() => {setShow(false); setIsSubmitted(false)}} className='closeContainer'><img className='closeImg' src={cancelButton} alt='' /></div></div>
           <div className='feedbackClass'><div><img src={feedback} alt='' /></div><p>Thank you for sharing this with us. We will get back to you as soon as possible.</p><p>Till then, Keep streamiing!!!</p></div></div>}
       </div>);
   };
   return (
     <div>
-      <Modal show={show} onClose={() => { setShow(false); setIsSubmitted(false) }} >
+      <Modal show={show} onClose={() => {setShow(false); setIsSubmitted(false)}} >
         {SignupForm()}
       </Modal>
 
-      <div className='loggedNavBar'>
+      <div className='loggedNavBar' style={{ ...navbarStyles, top: visible ? '0' : '-120px' }}>
         <Link to='/home'> <h2><img src={deezifylogo} alt='' /></h2></Link>
         <ul className='loggedNavBar-links'>
-          <NavLink className="navLink" activeClassName="is-active" to="/home">Home</NavLink>
-          <NavLink className="navLink" activeClassName="is-active" to="/artists">Artists</NavLink>
-          <NavLink className="navLink" activeClassName="is-active" to="/playlists">PlayLists</NavLink>
-          <NavLink className="navLink" activeClassName="is-active" to="/genres">Genres</NavLink>
-          <div className='dropdownDiv'>{userData ? <img src={userData.picture_xl} className='user userImg' alt='' /> : null} <li onClick={accountDrop}><img src={dropdown} alt='dropdown icon' className='dropdownIcon' /></li></div>
+     
+            <NavLink className="navLink" activeClassName="is-active" to="/home">
+              Home
+            </NavLink>
+
+            <NavLink
+              className="navLink"
+              activeClassName="is-active"
+              to="/artists"
+            >
+              Artists
+            </NavLink>
+
+            <NavLink
+              className="navLink"
+              activeClassName="is-active"
+              to="/playlists"
+            >
+              PlayLists
+            </NavLink>
+          
+          <NavLink
+              className="navLink"
+              activeClassName="is-active"
+              to="/genres"
+            >
+              Genres
+            </NavLink>
+       
         </ul>
+        <div className='dropdownDiv'>{userData ? <img src={userData.picture_xl} className='user userImg' alt='' /> : null} <li onClick={accountDrop}><img src={dropdown} alt='dropdown icon' className='dropdownIcon'/></li></div>
 
       </div>
 
@@ -157,8 +206,7 @@ function LoggedInNav(props) {
           {userData ? <div className='settings'><img src={userData.picture_xl} className='user userImg' alt='' /><p>{userData.name}</p></div>
             : <div className='settings'> <i className="fas userIcon fa-user-circle"></i> User</div>}
           <div className='settings' onClick={() => { setShow(true); setaccountlink(false) }}><img src={icon} className='user' alt='feedback icon' /> Send Feedback</div>
-          <div className='settings'><img src={icon2} className='user' alt='autoplay icon' /> Auto play on hover <div className='autoplayDiv'>{autoPlay ? <img src={autoplayon} onClick={() => { setAutoPlay(false); dispatch(fetchStopState()) }} alt='' /> : <img src={autoplayoff} onClick={() => { setAutoPlay(true); dispatch(fetchPlayState()) }} alt='' />} </div> </div>
-
+          <div className='settings'><img src={icon2} className='user' alt='autoplay icon' /> Auto play on hover <div className='autoplayDiv'>{autoPlay ? <img src={autoplayon} onClick={() => {setAutoPlay(false); dispatch(fetchStopState())} } alt='' /> : <img src={autoplayoff} onClick={() => {setAutoPlay(true); dispatch(fetchPlayState()) } } alt='' />} </div> </div>
           <Link to='/'><div className='settings'><img src={icon3} className='user' alt='logout icon' /> Log out</div></Link>
         </div>
       </div> : null}

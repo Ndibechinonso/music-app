@@ -1,18 +1,17 @@
-.roundedImg {
+.roundedImg{
   border-radius: 50%;
   width: 230px;
   object-fit: contain;
 }
+.slideContainer{
+text-align: center;
+position: relative;
+display: flex; 
+align-items: center; 
 
-.slideContainer {
-  text-align: center;
-  position: relative;
-  display: flex;
-  align-items: center;
 }
-
-.imgContainer {
-  position: relative;
+.imgContainer{
+  position: relative; 
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -20,11 +19,10 @@
   align-items: center;
 }
 
-.slideContainer p {
+.slideContainer p{
   color: white;
 }
-
-.titleDiv {
+.titleDiv{
   position: absolute;
   top: 30%;
   margin: auto;
@@ -34,54 +32,56 @@
   margin: auto;
   font-weight: 700;
 }
-
-.slideContainer p:first-of-type {
-  font-size: 40%;
+.slideContainer p:first-of-type{
+font-size: 40%;
+font-weight: 700;
+}
+.artistName{
+  font-size: 50%;  
   font-weight: 700;
+  margin-top: 10px
 }
 
-.artistName {
-  font-size: 50%;
-  font-weight: 700;
-  margin-top: 10px;
-}
-
-.lastPlayedheader {
+.lastPlayedheader{
   font-size: 40px;
   font-weight: 700;
   color: white;
   margin-bottom: 30px;
 }
-
-.carouselGridContainer {
+.carouselGridContainer{
   margin-top: 131px;
 }
-
-.requesFailed {
+.requesFailed{
   color: #fff;
   text-align: center;
 }
-
-.latestTracksBody {
-  margin-left: 60px;
+.latestTracksBody{
+  margin-left: 60px;  
   margin-top: 60px;
 }
 
-.test {
+.test{
   height: 450px;
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
-.testKid:hover {
+.testKid:hover{
   cursor: pointer;
 }
+  
+.test .testKid:nth-child(odd){
+align-self: flex-start;
 
-.test .testKid:nth-child(odd) {
-  align-self: flex-start;
 }
-
-.test .testKid:nth-child(even) {
+.test .testKid:nth-child(even){
   align-self: flex-end;
-}
+ 
+    }
+    .titleDiv .trackName{
+      font-size: 70%;
+    }
+    .titleDiv .artistName{
+      font-size: 50%;
+    }

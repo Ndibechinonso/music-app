@@ -33,6 +33,8 @@ const HomePage = (props) => {
         dispatch(fetchPlaylistsPageData())
     }, [])
 
+    
+
     const homePageData = useSelector(state => state.homePageData.data)
     const fetchedRecommendedData = useSelector(state => state.homePageData.data[0])
 

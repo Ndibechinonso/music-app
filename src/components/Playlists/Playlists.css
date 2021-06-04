@@ -1,12 +1,11 @@
-.fixedModalBar {
+.fixedModalBar{
   position: sticky;
   top: 0;
   width: 1086px;
   background: #000000;
   margin-bottom: 50px;
 }
-
-.playlistModal-body {
+.playlistModal-body{
   border: 1px solid transparent;
   background: #353538;
   border-radius: 10px;
@@ -17,23 +16,21 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
-
-.modalListDiv {
+.modalListDiv{
   display: flex;
   flex-direction: row;
   margin-left: 22px;
   margin-right: 62px;
 }
-
-.playlistPlayDiv {
+.playlistPlayDiv{
   justify-self: flex-end;
   margin-right: 24px;
+
   align-self: center;
 }
-
-.playListModalTittle {
+.playListModalTittle{
   align-self: center;
   margin-right: auto;
   justify-items: flex-start;
@@ -42,108 +39,91 @@
   align-items: flex-start;
   max-width: 420px;
 }
-
-img {
+img{
   width: 100%;
   object-fit: contain;
+ 
 }
-
-.deleteImg {
+.deleteImg{
   max-width: 40px;
   margin-right: 49px;
 }
-
-.twndimg {
+.twndimg{
   max-width: 91px;
 }
-
-.trackTitle {
+.trackTitle{
   font-size: 24px;
   font-weight: 700;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
-
-.modalArtistName {
+.modalArtistName{
   font-size: 18px;
   font-weight: 400;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
-
-.playImg {
+.playImg{
   max-width: 46.67px;
   margin-right: 33.67px;
 }
-
-.playlistLogoImg {
+.playlistLogoImg{
   max-width: 44px;
 }
-
-.playlistModal-createDiv {
-  margin-top: 44px;
-  margin-bottom: 20px;
+.playlistModal-createDiv{
+  margin-top: 30px;
+  margin-bottom: 10px;
   margin-left: 111px;
 }
-
-.playlistTrackTittle {
+.playlistTrackTittle{
   font-size: 24px;
   font-weight: 700;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
-
-.playlistArtistName {
+.playlistArtistName{
   font-weight: 400;
   font-size: 18px;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
-.childrenContainer {
+.childrenContainer{
   display: flex;
   flex-direction: column;
   align-content: center;
 }
 
-.playlistModal-title {
+.playlistModal-title{
   color: white;
   text-align: center;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 36px;
   top: 288px;
 }
-
-.closeImg {
+.closeImg{
   width: 38px;
 }
-
-.closeBtn {
-  margin-right: 56px;
+.closeBtn{
+  margin-right: 56px;   
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
 }
-
-.closeContainer {
+.closeContainer{
   width: 38px;
 }
-
-.childrenContainer:hover,
-.closeContainer:hover {
+.childrenContainer:hover, .closeContainer:hover{
   cursor: pointer;
 }
-
-.spinnerContainer {
+.spinnerContainer{
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
-
 .lds-facebook {
   display: inline-block;
   position: relative;
   width: 80px;
   height: 80px;
 }
-
 .lds-facebook div {
   display: inline-block;
   position: absolute;
@@ -152,105 +132,113 @@ img {
   background: #fff;
   animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
 }
-
 .lds-facebook div:nth-child(1) {
   left: 8px;
   animation-delay: -0.24s;
 }
-
 .lds-facebook div:nth-child(2) {
   left: 32px;
   animation-delay: -0.12s;
 }
-
 .lds-facebook div:nth-child(3) {
   left: 56px;
   animation-delay: 0;
 }
-
 @keyframes lds-facebook {
   0% {
     top: 8px;
     height: 64px;
   }
-  50%,
-  100% {
+  50%, 100% {
     top: 24px;
     height: 32px;
   }
 }
 
-.secondHeader {
+.secondHeader{
   margin-top: 110px;
   margin-bottom: 40px;
 }
-
 .artistImgContainer:hover {
   cursor: pointer;
 }
-
-.spinnerContainer {
+.spinnerContainer{
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
-.createPlaylistButton {
-  background-color: #da2060;
-  border-radius: 10px;
-  font-family: Arial, Helvetica, sans-serif;
-  color: #ffffff;
-  font-weight: 700;
-  font-size: 16px;
-  width: 329px;
-  padding: 10px 40px;
-  outline: none;
-  border: none;
+.createPlaylistButton{
+background-color: #DA2060;
+border-radius: 10px;
+font-family: Arial, Helvetica, sans-serif;
+color: #FFFFFF;
+font-weight: 700;
+font-size: 16px;
+width: 329px;
+padding: 10px 40px;
+outline: none;
+border: none;
 }
-
-.createPlaylist {
+.createPlaylist{
   display: flex;
   flex-direction: row;
   justify-content: center;
   width: 100%;
   margin-top: 50px;
 }
-
-.addPlaylistModal {
+.addPlaylistModal{
   display: flex;
   flex-direction: row;
   justify-content: center;
   justify-items: center;
 }
 
-.addPlaylistForm {
+.addPlaylistForm{
   width: 80%;
   display: flex;
   flex-direction: column;
   align-content: center;
   align-items: center;
-}
 
-.addPlaylistForm input {
+}
+.addPlaylistForm input{
   width: 500px;
   font-size: 18px;
   padding: 20px;
   margin-top: 20px;
+
   outline: none;
 }
-
-.addplaylistHeader {
+.addplaylistHeader{
   margin-bottom: 50px;
 }
-
-.addPlaylistButton {
-  margin-top: 50px;
+.addPlaylistButton{
+margin-top: 50px;
 }
+
 
 .addPlaylistForm input:valid {
-  border: 2px solid #da2060;
+ 
+  border: 2px solid #DA2060;
 }
 
-.musicPlayer {
-  visibility: hidden;
+.musicPlayer{
+  
+visibility: hidden;
+}
+.deleteAlert{
+    position: fixed;
+    top: 0;
+width: 100%;
+background-color: #DA2060;
+text-align: center;
+z-index: 1005;
+padding-top: 10px;
+padding-bottom: 5px;
+}
+.topArtistsContainer{
+  display: grid;
+  grid-template-columns: 601px 393.03px;
+  gap: 120px;
 }

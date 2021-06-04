@@ -2,19 +2,18 @@
     display: grid;
     grid-template-columns: 200px 1000px 200px;
 } */
-.spinnerContainer {
+.spinnerContainer{
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin-top: 30px;
 }
-
 .lds-facebook {
   display: inline-block;
   position: relative;
   width: 80px;
   height: 80px;
 }
-
 .lds-facebook div {
   display: inline-block;
   position: absolute;
@@ -23,125 +22,117 @@
   background: #fff;
   animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
 }
-
 .lds-facebook div:nth-child(1) {
   left: 8px;
   animation-delay: -0.24s;
 }
-
 .lds-facebook div:nth-child(2) {
   left: 32px;
   animation-delay: -0.12s;
 }
-
 .lds-facebook div:nth-child(3) {
   left: 56px;
   animation-delay: 0;
 }
-
 @keyframes lds-facebook {
   0% {
     top: 8px;
     height: 64px;
   }
-  50%,
-  100% {
+  50%, 100% {
     top: 24px;
     height: 32px;
   }
 }
+  .requesFailed{
+    color: #fff;
+    text-align: center;
+  }
+  .slideDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+  }
 
-.requesFailed {
-  color: #fff;
-  text-align: center;
-}
+  .slideDiv:hover{
+    cursor: pointer;
+  }
+  
+  .parentSlide{
+    position: relative;
+    height: 631px;
+   
+  }
+  .recommendedAlbumsContainer{
+    position: absolute;
+    top: 30%;
+  }
+  .carouselContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .bgPic{
+    object-fit: cover;
+  }
+  .bgPicDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: relative;
+    min-width: 100vw;
+  }
+  .newAlbumTittle{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    text-align: center;
+    align-items: center;
+    position: absolute;
+    top: 57px;
+  }
 
-.slideDiv {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  text-align: center;
-}
-
-.slideDiv:hover {
-  cursor: pointer;
-}
-
-.parentSlide {
-  position: relative;
-  height: 631px;
-}
-
-.recommendedAlbumsContainer {
-  position: absolute;
-  top: 30%;
-}
-
-.carouselContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-.bgPic {
-  object-fit: cover;
-}
-
-.bgPicDiv {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  position: relative;
-  min-width: 100vw;
-}
-
-.newAlbumTittle {
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  text-align: center;
-  align-items: center;
-  position: absolute;
-  top: 57px;
-}
-
-.albumGrid {
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  align-items: center;
+  .albumGrid{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
   width: 261px;
-}
+  }
 
-.newAlbumIntro {
-  font-size: 30px;
-  font-weight: 700;
-  color: #ffffff;
-  font-family: Arial, Helvetica, sans-serif;
-  width: 303px;
-  margin-bottom: 10px;
-}
 
-.newAlbumArtist {
-  font-size: 60px;
-  color: #ffffff;
-  font-family: Arial, Helvetica, sans-serif;
-}
+  .newAlbumIntro{
+    font-size: 30px;
+    font-weight: 700;
+    color: #FFFFFF;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 303px;
+    margin-bottom: 10px;
+  }
+  .newAlbumArtist{
+    font-size: 60px;
+    color: #FFFFFF;
+    font-family: Arial, Helvetica, sans-serif;
+  }
 
-.albumTitle {
-  color: #ffffff;
-  font-size: 70%;
-  font-weight: 700;
-  font-family: Arial, Helvetica, sans-serif;
-  background: #121212;
-  width: 100%;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
+  .albumTitle{
+    color: #FFFFFF;
+    font-size: 70%;
+    font-weight: 700;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #121212;
+        width: 100%;
+        padding-top: 10px;
+        padding-bottom: 10px;
 
-.albumFrame {
-  margin-top: 80px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  }
+  .albumFrame{
+    margin-top: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+.parentSlide{
+  margin-top: 115px;
 }

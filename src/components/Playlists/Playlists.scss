@@ -1,41 +1,42 @@
 .loading08 {
-    z-index: 1000;
-    justify-content: center;
-    text-align: center;
-    span {
-      position: relative;
-      color: rgba(#000, .2);
-      animation: loading08-parent 5s infinite;
-      &::after {
-        position: absolute;
-        top: 0;
-        left: 0;
-        content: attr(data-text);
-        color: #fff;
-        opacity: 0;
-        animation: loading08-child 5s infinite;
-      }
-      @for $i from 1 through 7 {
-        &:nth-child(#{$i+1})::after {
-          animation-delay: #{$i*.2}s;
-        }
-      }
-    }
-  }
-  @keyframes loading08-parent {
-    0%, 35%, 100% {
-      color: #DA2060;
-    }
-    60%, 80% {
+  z-index: 1000;
+  justify-content: center;
+  text-align: center;
+  margin-top: 10px;
+  span {
+    position: relative;
+    color: rgba(#000, .2);
+    animation: loading08-parent 5s infinite;
+    &::after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      content: attr(data-text);
       color: #fff;
-    }
-  }
-  @keyframes loading08-child {
-    0% {
-      opacity: 1;
-    }
-    25%, 100% {
       opacity: 0;
+      animation: loading08-child 5s infinite;
+    
+    }
+    @for $i from 1 through 7 {
+      &:nth-child(#{$i+1})::after {
+        animation-delay: #{$i*.2}s;
+      }
     }
   }
-  
+}
+@keyframes loading08-parent {
+  0%, 35%, 100% {
+    color: #DA2060;
+  }
+  60%, 80% {
+    color: #fff;
+  }
+}
+@keyframes loading08-child {
+  0% {
+    opacity: 1;
+  }
+  25%, 100% {
+    opacity: 0;
+  }
+}
