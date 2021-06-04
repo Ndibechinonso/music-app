@@ -33,6 +33,7 @@ nav.react-contextmenu {
   align-items: center;
   outline: none;
   z-index: 100;
+  color: #000000;
 }
 .react-contextmenu-item span{
   margin-left: 10px;
