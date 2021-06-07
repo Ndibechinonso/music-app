@@ -28,9 +28,9 @@ console.log(loader, 'loader')
     localStorage.setItem("code", code);
   }, []);
 
-  setTimeout(() => {
-    showLoaderIcon(true) 
-  }, 2000);
+  // setTimeout(() => {
+  //   showLoaderIcon(true) 
+  // }, 2000);
 
 
   const dispatch = useDispatch();
