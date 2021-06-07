@@ -47,7 +47,7 @@ const DataLoad = (props) => {
         onMouseEnter={() => cursorChangeHandler("hovered")}
         onMouseLeave={() => cursorChangeHandler("")}
       >
-              {loaderIcon ? 
+              {!loaderIcon ? 
         <div className="playDiv">
           {" "}
           {loader ? (
