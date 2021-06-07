@@ -32,9 +32,8 @@ const requestOptions = {
 
 export const fetchToken = () => {
     return (dispatch) => {
-        setTimeout(() => {
+        
             dispatch(fetchTokenRequest()) 
-        }, 2000);  
         axios.post('https://deezify-app-feeder.herokuapp.com', requestOptions.body)
 
             .then(response => {
