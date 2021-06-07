@@ -19,7 +19,7 @@ const DataLoad = (props) => {
 
   localStorage.setItem("token", accessToken)
   localStorage.setItem("userId", userDataId)
-
+console.log(loader, 'loader')
 
   useEffect(() => {
     localStorage.removeItem("code");
