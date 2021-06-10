@@ -32,7 +32,7 @@ const requestOptions = {
 
 export const fetchToken = () => {
     return (dispatch) => {
-        if (savedCode){
+        
             dispatch(fetchTokenRequest()) 
         axios.post('https://deezify-app-feeder.herokuapp.com', requestOptions.body)
 
@@ -46,6 +46,17 @@ export const fetchToken = () => {
                 window.location.href = '/'
                 const errorMsg = error.message
                 dispatch(fetchTokenFailure(errorMsg))
-            })}
+            })
     }
 }
+// export const fetchUsers = () => async(dispatch) => {
+//     console.log(requestOptions.body)
+// try {
+//     const data = await axios.post('http://localhost:5000', requestOptions.body)
+//     console.log(data)
+//     dispatch({type: 'FETCH_DATA', payload: data})
+   
+// } catch (error) {
+//     console.log(error.message)
+// }
+// }

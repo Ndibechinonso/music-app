@@ -17,25 +17,20 @@ const DataLoad = (props) => {
   const userDataId = useSelector(state => state.userToken.data[2])
   // const [loaderIcon, showLoaderIcon] = useState(false)
 
-  console.log(accessToken, 'x')
-  console.log(userDataId, 'y')
+  localStorage.setItem("token", accessToken)
+  localStorage.setItem("userId", userDataId)
+console.log(loader, 'loader')
 
   useEffect(() => {
     localStorage.removeItem("code");
-    localStorage.removeItem("token")
-    localStorage.removeItem("userId")
-
-    setTimeout(() => {
-      const searchParams = new URLSearchParams(location.search);
-      const code = searchParams.get("code");
-      localStorage.setItem("code", code);
-      localStorage.setItem("token", accessToken)
-      localStorage.setItem("userId", userDataId)
-    }, 3000);
-
+    const searchParams = new URLSearchParams(location.search);
+    const code = searchParams.get("code");
+    localStorage.setItem("code", code);
   }, []);
 
-
+  // setTimeout(() => {
+  //   showLoaderIcon(true) 
+  // }, 2000);
 
 
   const dispatch = useDispatch();

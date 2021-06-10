@@ -21,7 +21,11 @@ const tokenReducer = (state = initialState, action) => {
             data: [],
             error: action.payload
         }
-       
+        // case 'FETCH_DATA': return {
+        //     loading: false,
+        //     data: action.payload,
+        //     error: ''
+        // }
         default: return state
     }
 }
