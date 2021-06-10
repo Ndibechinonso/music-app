@@ -33,7 +33,9 @@ const requestOptions = {
 
 export const fetchUsers = () => {
     return (dispatch) => {
-            dispatch(fetchUserRequest())
+        
+            dispatch(fetchUserRequest()) 
+    
         axios.post('https://deezify-app-feeder.herokuapp.com/navbar', requestOptions.body)
 
             .then(response => {
