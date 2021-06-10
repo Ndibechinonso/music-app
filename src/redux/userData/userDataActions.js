@@ -33,7 +33,6 @@ const requestOptions = {
 
 export const fetchUsers = () => {
     return (dispatch) => {
-        if (savedToken){
             dispatch(fetchUserRequest())
         axios.post('https://deezify-app-feeder.herokuapp.com/navbar', requestOptions.body)
 
@@ -47,7 +46,7 @@ export const fetchUsers = () => {
             .catch(error => {
                 const errorMsg = error.message
                 dispatch(fetchUserFailure(errorMsg))
-            })}
+            })
     }
 }
 // export const fetchUsers = () => async(dispatch) => {
