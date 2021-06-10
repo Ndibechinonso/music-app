@@ -30,11 +30,11 @@ const requestOptions = {
     },
   };
 
-export const fetchToken = () => {
+export const fetchToken = (code) => {
     return (dispatch) => {
         
             dispatch(fetchTokenRequest()) 
-        axios.post('https://deezify-app-feeder.herokuapp.com', requestOptions.body)
+        axios.post('https://deezify-app-feeder.herokuapp.com',{code: code})
 
             .then(response => {
                 const token = response.data

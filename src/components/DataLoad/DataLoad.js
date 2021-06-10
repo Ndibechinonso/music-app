@@ -21,12 +21,12 @@ const DataLoad = (props) => {
   localStorage.setItem("userId", userDataId)
 console.log(loader, 'loader')
 
-  useEffect(() => {
-    localStorage.removeItem("code");
-    const searchParams = new URLSearchParams(location.search);
-    const code = searchParams.get("code");
-    localStorage.setItem("code", code);
-  }, []);
+  // useEffect(() => {
+  //   localStorage.removeItem("code");
+  //   const searchParams = new URLSearchParams(location.search);
+  //   const code = searchParams.get("code");
+  //   localStorage.setItem("code", code);
+  // }, []);
 
   // setTimeout(() => {
   //   showLoaderIcon(true) 
@@ -35,7 +35,9 @@ console.log(loader, 'loader')
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchToken());
+    const searchParams = new URLSearchParams(location.search);
+    const code = searchParams.get("code");
+    dispatch(fetchToken(code));
   }, []);
 
   const location = useLocation();
