@@ -140,7 +140,9 @@ const [trackTitle, setTrackTitle] = useState(null)
         })
             .then(response => {
                 const responseInfo = response
-                alert('PLAYLIST CREATED')
+                setPlaylistCreateAlert(true)
+                clearPlaylistCreateAlert() 
+                setplaylistName('');
             })
             .catch(error => {
                 const errorMsg = error.message
