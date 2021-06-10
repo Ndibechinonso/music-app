@@ -17,6 +17,9 @@ const DataLoad = (props) => {
   const userDataId = useSelector(state => state.userToken.data[2])
   // const [loaderIcon, showLoaderIcon] = useState(false)
 
+  console.log(accessToken, 'x')
+  console.log(userDataId, 'y')
+
   useEffect(() => {
     localStorage.removeItem("code");
     localStorage.removeItem("token")
