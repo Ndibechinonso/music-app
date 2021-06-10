@@ -40,7 +40,7 @@ export const fetchHomeData = () => {
     if(savedToken && savedUserId)
     return (dispatch) => {
         setTimeout(() => {
-            dispatch(fetchHomePageRequest())}, 2000)
+            dispatch(fetchHomePageRequest())}, 3000)
         axios.post('https://deezify-app-feeder.herokuapp.com/home', requestOptions.body)
 
             .then(response => {
