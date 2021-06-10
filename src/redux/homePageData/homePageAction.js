@@ -37,10 +37,10 @@ console.log(savedToken, 'savedToken')
 console.log(savedUserId, 'savedUserId')
 
 export const fetchHomeData = () => {
-    if(savedToken && savedUserId)
+    
     return (dispatch) => {
-        setTimeout(() => {
-            dispatch(fetchHomePageRequest())}, 2000)
+        if(savedToken && savedUserId){
+            dispatch(fetchHomePageRequest())
         axios.post('https://deezify-app-feeder.herokuapp.com/home', requestOptions.body)
 
             .then(response => {
@@ -52,7 +52,7 @@ export const fetchHomeData = () => {
             .catch(error => {
                 const errorMsg = error.message
                 dispatch(fetchHomePageFailure(errorMsg))
-            })
+                })}
     }
 }
 // export const fetchUsers = () => async(dispatch) => {
