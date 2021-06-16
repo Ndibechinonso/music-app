@@ -220,7 +220,7 @@ const [trackTitle, setTrackTitle] = useState(null)
                                                     </div>
                                                 </div>
                                             )
-                                        }) : <div className='spinnerContainer'> <div className="lds-facebook"><div></div><div></div><div></div></div> </div>}
+                                        }) : <div className='spinnerModal'> <div className="lds-facebook"><div></div><div></div><div></div></div> </div>}
     
                                     </Modal>
     
