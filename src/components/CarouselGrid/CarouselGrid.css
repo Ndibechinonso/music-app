@@ -80,10 +80,10 @@ align-self: flex-start;
  
     }
     .titleDiv .trackName{
-      font-size: 70%;
+      font-size: 80%;
     }
     .titleDiv .artistName{
-      font-size: 50%;
+      font-size: 60%;
     }
 
     .emptyDiv{
