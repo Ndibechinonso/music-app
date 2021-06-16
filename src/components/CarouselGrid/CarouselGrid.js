@@ -10,7 +10,7 @@ import { FaRegCopy, FaList, FaEllipsisV, FaShareAlt } from 'react-icons/fa'
 import { RiSendPlaneFill, RiDeleteBin6Line } from 'react-icons/ri'
 import './coupon.css'
 import axios from 'axios'
-import empty from '../../Assets/empty.png'
+
 
 const CarouselGrid = () => {
 
@@ -23,7 +23,7 @@ const CarouselGrid = () => {
     const [trackId, setTrackId] = useState(null)
 
     const fetchedLastPlayed = useSelector(state => state.homePageData.data[1])
-    const loader = useSelector(state => state.homePageData.loading)
+
 
     if (fetchedLastPlayed) {
         var lastPlayed = fetchedLastPlayed.data
@@ -68,11 +68,10 @@ const CarouselGrid = () => {
         <div className='carouselGridContainer'>
             <div className='artistsBody'>
                 <div className='lastPlayedheader'>Last played songs</div>
-                {!loader && lastPlayed ? lastPlayed.length < 5 ? <div className='emptyDiv'><img src={empty} /> <p>oops, seems like you dont have any data available. Click <a href='https://www.deezer.com/us/' target='_blank'>here</a> to go back to deezer and start streaming.</p></div> :
                 <div style={{ maxWidth: 1200, marginLeft: 'auto', marginRight: 'auto', marginTop: 20 }} className='test'>
                     <SecondCarousel show={5} >
 
-                        { lastPlayed.map(data => {
+                        {lastPlayed ? lastPlayed.map(data => {
                             return (
                                 <div key={data.artist.id + nanoid()} className='testKid' data-aos="fade-left" >
                                     <div className='testKid' style={{ padding: 8 }} >
@@ -85,11 +84,10 @@ const CarouselGrid = () => {
                                     </div>
                                 </div>
                             )
-                        }) 
+                        }) : <div className='spinnerContainer'> <div className="lds-facebook"><div></div><div></div><div></div></div> </div>
                         }
                     </SecondCarousel>
                 </div>
-                : <div className='spinnerContainer'> <div className="lds-facebook"><div></div><div></div><div></div></div> </div> }
             </div>
 
 
