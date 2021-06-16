@@ -8,7 +8,7 @@ import Modal from "../Modal/Modal";
 import axios from "axios";
 import { fetchPlaylist } from "../../redux";
 import play from "../../Assets/play.png";
-import pause from "../../Assets/pause.png";
+import stop from "../../Assets/stop.png";
 import playlistLogo from "../../Assets/playlistLogo.png";
 import cancelButton from "../../Assets/cancelButton.png";
 import deleteButton from "../../Assets/deleteButton.png";
@@ -473,7 +473,7 @@ const Playlists = (props) => {
      
           {audioPlaying ? player(): null}
         </div>
-        
+
         <div className="header secondHeader">Recommended Playlists</div>
         <div className="topArtistsContainer">
           {recommendedPlaylists ? (
