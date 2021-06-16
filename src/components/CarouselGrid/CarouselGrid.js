@@ -10,7 +10,7 @@ import { FaRegCopy, FaList, FaEllipsisV, FaShareAlt } from 'react-icons/fa'
 import { RiSendPlaneFill, RiDeleteBin6Line } from 'react-icons/ri'
 import './coupon.css'
 import axios from 'axios'
-
+import empty from '../../Assets/empty.png'
 
 const CarouselGrid = () => {
 
