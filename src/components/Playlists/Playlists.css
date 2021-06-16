@@ -25,6 +25,9 @@
   margin-right: 62px;
 }
 .playlistPlayDiv{
+  display: flex;
+  flex-direction: row;
+  gap: 27px;
   justify-self: flex-end;
   margin-right: 24px;
 
@@ -61,12 +64,21 @@ img{
   font-weight: 400;
   font-family: 'Open Sans', sans-serif;
 }
+.playStopDiv{
+  margin-right: 33.67px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
 .playImg{
   max-width: 46.67px;
-  margin-right: 33.67px;
+}
+.stopImg{
+  max-width: 46.67px;
 }
 .playlistLogoImg{
   max-width: 44px;
+  margin-left: 10px;
 }
 .playlistModal-createDiv{
   margin-top: 30px;
@@ -241,6 +253,12 @@ padding-bottom: 5px;
   display: grid;
   grid-template-columns: 601px 393.03px;
   gap: 120px;
+}
+
+.spinnerContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 .spinnerModal{
   display: flex;
