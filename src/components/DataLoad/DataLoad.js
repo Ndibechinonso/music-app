@@ -53,8 +53,8 @@ const DataLoad = (props) => {
         <div className="playDiv">
           {" "}
           {loader ? (
-            <div className="playCircle">
-              <div className="hourglass"></div>
+              <div className="playCircle">
+               <div class="lds-circle"><div></div></div>
             </div>
           ) : (
             <div className="playCircleActing">

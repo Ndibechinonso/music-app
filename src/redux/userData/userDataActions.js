@@ -31,25 +31,29 @@ const requestOptions = {
     },
   };
 
-export const fetchUsers = () => {
-    return (dispatch) => {
-        setTimeout(() => {
+export const fetchUsers = () => (dispatch) =>{
+   
+      
             dispatch(fetchUserRequest()) 
-        }, 2000); 
+      try {
         axios.post('https://deezify-app-feeder.herokuapp.com/navbar', requestOptions.body)
 
-            .then(response => {
-                const users = response.data
-                console.log(users, 'data')
-                dispatch(fetchUserSuccess(users))
+        .then(response => {
+            const users = response.data
+            console.log(users, 'data')
+            dispatch(fetchUserSuccess(users))
 
-            }
-            )
-            .catch(error => {
-                const errorMsg = error.message
-                dispatch(fetchUserFailure(errorMsg))
-            })
-    }
+        }
+        )
+        .catch(error => {
+            const errorMsg = error.message
+            dispatch(fetchUserFailure(errorMsg))
+        })
+      } catch (error) {
+        dispatch(fetchUserFailure(error))
+      }
+      
+ 
 }
 // export const fetchUsers = () => async(dispatch) => {
 //     console.log(requestOptions.body)
