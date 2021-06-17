@@ -6,8 +6,8 @@ import { useSelector } from 'react-redux'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
-import { FaRegCopy, FaList, FaEllipsisV, FaShareAlt } from 'react-icons/fa'
-import { RiSendPlaneFill, RiDeleteBin6Line } from 'react-icons/ri'
+import { FaList} from 'react-icons/fa'
+import { IoHeartOutline } from "react-icons/io5";
 import './coupon.css'
 import axios from 'axios'
 
@@ -54,7 +54,6 @@ const CarouselGrid = () => {
             axios.post('https://deezify-app-feeder.herokuapp.com/addTrack', {
                 playlistId, trackId, accessToken
             })
-
                 .then(response => {
                     const responseInfo = response
                 })
@@ -63,6 +62,23 @@ const CarouselGrid = () => {
                 })
         }
     }
+
+    function addFavTrack(trackId) {
+        if (trackId) {
+          axios
+            .post("http://localhost:5000/addFavTrack", {
+                trackId,
+                id,
+              accessToken,
+            })
+            .then((response) => {
+              const responseInfo = response;
+            })
+            .catch((error) => {
+              const errorMsg = error.message;
+            });
+        }
+      }
 
     return (
         <div className='carouselGridContainer'>
@@ -116,6 +132,11 @@ const CarouselGrid = () => {
                     </SecondCarousel>
 
                     <ContextMenu id="contextmenu">
+
+                    <MenuItem onClick={addFavTrack(trackId)}>
+                                <IoHeartOutline className="watchlist" />
+                                <span>Add to favourite</span>
+                            </MenuItem>
                         {playlistsData ? createdPlaylists.map(playListMenu => {
                             return (<MenuItem key={playListMenu.id} onClick={addTrack(playListMenu.id, trackId)}>
                                 <FaList className="watchlist" />

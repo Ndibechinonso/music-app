@@ -166,6 +166,7 @@ const Playlists = (props) => {
         })
         .then((response) => {
           const responseInfo = response;
+          dispatch(fetchPlaylistsPageData());
         })
         .catch((error) => {
           const errorMsg = error.message;
