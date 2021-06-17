@@ -100,3 +100,6 @@
 .emptyDiv a {
   color: #da2060;
 }
+.imgContainer:hover .trackName{
+color: black
+}
