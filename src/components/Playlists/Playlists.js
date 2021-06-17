@@ -73,6 +73,7 @@ const Playlists = (props) => {
 
   const autoPlaySong = (song) => {
     if (playOnHover) {
+      setAudioPlaying(true);
       setTrackId(song);
     } else {
       setTrackId(null);
@@ -291,7 +292,7 @@ const Playlists = (props) => {
                               <div
                                 className="playlistModal-body"
                                 onMouseEnter={() => autoPlaySong(track.preview)}
-                                onMouseLeave={() => autoPlaySong(null)}
+                                onMouseLeave={() => {autoPlaySong(null); setAudioPlaying(false)}}
                               >
                                 <div className="modalListDiv">
                                   <img
