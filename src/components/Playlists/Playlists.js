@@ -145,6 +145,7 @@ const Playlists = (props) => {
         setPlaylistCreateAlert(true);
         clearPlaylistCreateAlert();
         setplaylistName("");
+        dispatch(fetchPlaylistsPageData())
       })
       .catch((error) => {
         const errorMsg = error.message;
