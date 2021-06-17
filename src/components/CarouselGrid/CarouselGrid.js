@@ -47,7 +47,8 @@ const CarouselGrid = () => {
     }
 
     const accessToken = localStorage.getItem("token");
-
+    const id = localStorage.getItem("userId");
+    
     const addTrack = (playlistId, trackId) => {
         if (trackId) {
             axios
