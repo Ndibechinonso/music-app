@@ -15,8 +15,7 @@ const DataLoad = (props) => {
   const userDataId = useSelector((state) => state.userToken.data[2]);
 
 
-  localStorage.setItem("token", accessToken);
-  localStorage.setItem("userId", userDataId);
+  
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -25,6 +24,9 @@ const DataLoad = (props) => {
     const code = searchParams.get("code");
     dispatch(fetchToken(code));
   }, []);
+
+  localStorage.setItem("token", accessToken);
+  localStorage.setItem("userId", userDataId);
 
   const location = useLocation();
 
