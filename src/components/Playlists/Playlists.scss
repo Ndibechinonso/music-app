@@ -5,7 +5,7 @@
   margin-top: 10px;
   span {
     position: relative;
-    color: rgba(#000, .2);
+    color: rgba(#000, 0.2);
     animation: loading08-parent 5s infinite;
     &::after {
       position: absolute;
@@ -15,20 +15,22 @@
       color: #fff;
       opacity: 0;
       animation: loading08-child 5s infinite;
-    
     }
     @for $i from 1 through 7 {
-      &:nth-child(#{$i+1})::after {
-        animation-delay: #{$i*.2}s;
+      &:nth-child(#{$i + 1})::after {
+        animation-delay: #{$i * 0.2}s;
       }
     }
   }
 }
 @keyframes loading08-parent {
-  0%, 35%, 100% {
-    color: #DA2060;
+  0%,
+  35%,
+  100% {
+    color: #da2060;
   }
-  60%, 80% {
+  60%,
+  80% {
     color: #fff;
   }
 }
@@ -36,7 +38,8 @@
   0% {
     opacity: 1;
   }
-  25%, 100% {
+  25%,
+  100% {
     opacity: 0;
   }
 }

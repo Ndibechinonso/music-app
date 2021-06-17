@@ -1,8 +1,4 @@
-/* .recommendedAlbumsContainer{
-    display: grid;
-    grid-template-columns: 200px 1000px 200px;
-} */
-.spinnerContainer{
+.spinnerContainer {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -39,100 +35,93 @@
     top: 8px;
     height: 64px;
   }
-  50%, 100% {
+  50%,
+  100% {
     top: 24px;
     height: 32px;
   }
 }
-  .requesFailed{
-    color: #fff;
-    text-align: center;
-  }
-  .slideDiv{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    text-align: center;
-  }
-
-  .slideDiv:hover{
-    cursor: pointer;
-  }
-  
-  .parentSlide{
-    position: relative;
-    height: 631px;
-   
-  }
-  .recommendedAlbumsContainer{
-    position: absolute;
-    top: 30%;
-  }
-  .carouselContainer{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-  }
-  .bgPic{
-    object-fit: cover;
-  }
-  .bgPicDiv{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    position: relative;
-    min-width: 100vw;
-  }
-  .newAlbumTittle{
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    text-align: center;
-    align-items: center;
-    position: absolute;
-    top: 57px;
-  }
-
-  .albumGrid{
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    align-items: center;
+.requesFailed {
+  color: #fff;
+  text-align: center;
+}
+.slideDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+}
+.slideDiv:hover {
+  cursor: pointer;
+}
+.parentSlide {
+  position: relative;
+  height: 631px;
+}
+.recommendedAlbumsContainer {
+  position: absolute;
+  top: 30%;
+}
+.carouselContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.bgPic {
+  object-fit: cover;
+}
+.bgPicDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position: relative;
+  min-width: 100vw;
+}
+.newAlbumTittle {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  text-align: center;
+  align-items: center;
+  position: absolute;
+  top: 57px;
+}
+.albumGrid {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
   width: 261px;
-  }
-
-
-  .newAlbumIntro{
-    font-size: 30px;
-    font-weight: 700;
-    color: #FFFFFF;
-    font-family: Arial, Helvetica, sans-serif;
-    width: 303px;
-    margin-bottom: 10px;
-  }
-  .newAlbumArtist{
-    font-size: 60px;
-    color: #FFFFFF;
-    font-family: Arial, Helvetica, sans-serif;
-  }
-
-  .albumTitle{
-    color: #FFFFFF;
-    font-size: 70%;
-    font-weight: 700;
-        font-family: Arial, Helvetica, sans-serif;
-        background: #121212;
-        width: 100%;
-        padding-top: 10px;
-        padding-bottom: 10px;
-
-  }
-  .albumFrame{
-    margin-top: 80px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-  }
-.parentSlide{
+}
+.newAlbumIntro {
+  font-size: 30px;
+  font-weight: 700;
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 303px;
+  margin-bottom: 10px;
+}
+.newAlbumArtist {
+  font-size: 60px;
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.albumTitle {
+  color: #ffffff;
+  font-size: 70%;
+  font-weight: 700;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #121212;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.albumFrame {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.parentSlide {
   margin-top: 115px;
 }

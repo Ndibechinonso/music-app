@@ -24,7 +24,6 @@ import "../CarouselGrid/coupon.css";
 import empty from "../../Assets/empty.png";
 
 const Playlists = (props) => {
-
   const dispatch = useDispatch();
 
   const playOnHover = useSelector((state) => state.playOnHover.play);
@@ -67,12 +66,9 @@ const Playlists = (props) => {
   const [playlistDelAlert, setPlaylistDelAlert] = useState(false);
   const [playlistCreateAlert, setPlaylistCreateAlert] = useState(false);
 
-
-
- const playSong = (song) => {
+  const playSong = (song) => {
     setAudioPlaying(true);
     setTrackId(song);
-   
   };
 
   const autoPlaySong = (song) => {
@@ -470,10 +466,7 @@ const Playlists = (props) => {
           </div>{" "}
         </Modal>
 
-        <div className="musicPlayer">
-     
-          {audioPlaying ? player(): null}
-        </div>
+        <div className="musicPlayer">{audioPlaying ? player() : null}</div>
 
         <div className="header secondHeader">Recommended Playlists</div>
         <div className="topArtistsContainer">

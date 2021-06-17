@@ -7,39 +7,32 @@
   padding-bottom: 120px;
   margin-top: 40px;
 }
-
 .introContainer h2 {
   font-size: 65px;
   line-height: 80px;
   margin-bottom: 40px;
 }
-
 .introContainer p {
   font-size: 36px;
   line-height: 41px;
 }
-
 img {
   width: 100%;
   object-fit: contain;
 }
-
 .picStack {
   position: relative;
   z-index: 2;
 }
-
 .drizzy {
   width: 295px;
 }
-
 .jb {
   position: absolute;
   bottom: -120px;
   left: 210px;
   width: 350px;
 }
-
 .introButton {
   background-color: #da2060;
   color: #ffffff;
@@ -51,13 +44,11 @@ img {
   font-weight: 700;
   margin-top: 50px;
 }
-
 .introText {
   max-width: 552px;
   margin-right: 45px;
   z-index: 2;
 }
-
 .leftCircle {
   position: absolute;
   width: 300px;
@@ -65,14 +56,12 @@ img {
   top: 130px;
   z-index: 0;
 }
-
 .rightCircle {
   position: absolute;
   width: 330px;
   right: 0;
   top: 600px;
 }
-
 .mobDiv {
   display: flex;
   flex-direction: column;
@@ -80,23 +69,19 @@ img {
   align-items: center;
   display: none;
 }
-
 .mobDiv img {
   width: 100%;
   object-fit: contain;
 }
-
 .mobDiv p {
   width: 243px;
   color: #ffffff;
   font-size: 16px;
 }
-
 .comingSoon {
   width: 330px;
   margin-bottom: 26px;
 }
-
 .artistFrame {
   width: 382px;
   margin-top: 65px;
@@ -106,7 +91,6 @@ img {
   .introContainer {
     display: none;
   }
-
   .mobDiv {
     display: flex;
   }

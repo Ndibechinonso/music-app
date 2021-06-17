@@ -1,5 +1,4 @@
-
-.playlistModal{
+.playlistModal {
   position: fixed;
   height: auto;
   left: 0;
@@ -11,12 +10,11 @@
   align-items: center;
   justify-items: center;
   justify-content: center;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   overflow-y: auto;
   z-index: 5;
 }
-
-.playlistModal-content{
+.playlistModal-content {
   width: 1086px;
   background: #000000;
   position: absolute;
@@ -30,38 +28,51 @@
   overflow-x: hidden;
   max-height: calc(100vh - 210px);
 }
-
-.playlistModal-header{
+.playlistModal-header {
   font-size: 40px;
   top: 279px;
-  color: white
+  color: white;
 }
-.playlistModal-title, .playlistModal-body{
+.playlistModal-title,
+.playlistModal-body {
   color: white;
   text-align: center;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
+}
+.playlistModal-content::-webkit-scrollbar {
+  width: 0 !important;
+}
+.hideScrollbar::-webkit-scrollbar {
+  width: 0 !important;
+}
+.playlistModal-content {
+  overflow: -moz-scrollbars-none;
+}
+.hideScrollbar {
+  overflow: -moz-scrollbars-none;
+}
+.playlistModal-content {
+  -ms-overflow-style: none;
+}
+.hideScrollbar {
+  -ms-overflow-style: none;
+}
+.playlistModal::-webkit-scrollbar {
+  width: 0 !important;
+}
+.hideScrollbar::-webkit-scrollbar {
+  width: 0 !important;
 }
 
-
-
-.playlistModal-content::-webkit-scrollbar { width: 0 !important }
-.hideScrollbar::-webkit-scrollbar { width: 0 !important }
-
-
-.playlistModal-content{ overflow: -moz-scrollbars-none; }
-.hideScrollbar{ overflow: -moz-scrollbars-none; }
-
-
-.playlistModal-content{ -ms-overflow-style: none; }
-.hideScrollbar{ -ms-overflow-style: none; }
-
-.playlistModal::-webkit-scrollbar { width: 0 !important }
-.hideScrollbar::-webkit-scrollbar { width: 0 !important }
-
-
-.playlistModal{ overflow: -moz-scrollbars-none; }
-.hideScrollbar{ overflow: -moz-scrollbars-none; }
-
-
-.playlistModal{ -ms-overflow-style: none; }
-.hideScrollbar{ -ms-overflow-style: none; }
+.playlistModal {
+  overflow: -moz-scrollbars-none;
+}
+.hideScrollbar {
+  overflow: -moz-scrollbars-none;
+}
+.playlistModal {
+  -ms-overflow-style: none;
+}
+.hideScrollbar {
+  -ms-overflow-style: none;
+}

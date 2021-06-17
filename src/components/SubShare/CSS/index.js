@@ -1,9 +1,8 @@
-
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const SubShareCSS = styled.ul.attrs({
-  id: 'sub-share',
-  className: 'x-margin x-padding flex flex--row flex--center height-percent'
+  id: "sub-share",
+  className: "x-margin x-padding flex flex--row flex--center height-percent",
 })`
   // .share-custom {
   //     display: block;
@@ -14,6 +13,6 @@ const SubShareCSS = styled.ul.attrs({
   //     font-size: 2rem;
   //     margin-right: 0.01rem;
   // }
-`
+`;
 
-export default SubShareCSS
+export default SubShareCSS;

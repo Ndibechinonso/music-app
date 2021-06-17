@@ -1,29 +1,38 @@
-import {GENRES_DATA_REQUEST, GENRES_DATA_SUCCESS, GENRES_DATA_FAILURE} from './genresDataType'
+import {
+    GENRES_DATA_REQUEST,
+    GENRES_DATA_SUCCESS,
+    GENRES_DATA_FAILURE,
+} from "./genresDataType";
 
 const initialState = {
     loading: false,
     data: [],
-    error: ''
-}
+    error: "",
+};
 
 const genresReducer = (state = initialState, action) => {
-    switch(action.type){
-        case GENRES_DATA_REQUEST : return {
-            ...state, loading: true
-        }
-        case GENRES_DATA_SUCCESS : return{
-            loading: false,
-            data: action.payload,
-            error: ''
-        }
-        case GENRES_DATA_FAILURE : return{
-            loading: false,
-            data: [],
-            error: action.payload
-        }
-      
-        default: return state
-    }
-}
+    switch (action.type) {
+        case GENRES_DATA_REQUEST:
+            return {
+                ...state,
+                loading: true,
+            };
+        case GENRES_DATA_SUCCESS:
+            return {
+                loading: false,
+                data: action.payload,
+                error: "",
+            };
+        case GENRES_DATA_FAILURE:
+            return {
+                loading: false,
+                data: [],
+                error: action.payload,
+            };
 
-export default genresReducer 
+        default:
+            return state;
+    }
+};
+
+export default genresReducer;
