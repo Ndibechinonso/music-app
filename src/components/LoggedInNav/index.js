@@ -47,9 +47,10 @@ function LoggedInNav(props) {
     transition: "top 0.6s",
   };
 
+  const savedToken = localStorage.getItem("token");
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchUsers());
+    dispatch(fetchUsers(savedToken));
   }, []);
 
   const userData = useSelector((state) => state.userData.data[0]);

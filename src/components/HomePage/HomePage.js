@@ -22,9 +22,12 @@ const HomePage = (props) => {
         });
     });
 
+    const savedToken = localStorage.getItem("token");
+    const savedUserId = localStorage.getItem("userId");
+
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(fetchHomeData());
+        dispatch(fetchHomeData(savedToken, savedUserId));
     }, []);
 
     useEffect(() => {
