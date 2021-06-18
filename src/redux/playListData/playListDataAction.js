@@ -29,7 +29,6 @@ export const fetchPlaylist = (url) => {
       })
       .then((response) => {
         const playlist = response.data;
-        console.log(playlist.data, "playlistdata");
         dispatch(fetchDataSuccess(playlist.data));
       })
       .catch((error) => {

@@ -52,7 +52,6 @@ export const fetchGenresData = () => {
 
                 .then((response) => {
                     const genresData = response.data;
-                    console.log(genresData, "genresData");
                     dispatch(fetchGenresSuccess(genresData));
                 })
                 .catch((error) => {

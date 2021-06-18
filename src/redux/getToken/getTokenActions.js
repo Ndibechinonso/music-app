@@ -38,7 +38,6 @@ export const fetchToken = (code) => {
 
             .then((response) => {
                 const token = response.data;
-                console.log(token, "token");
                 dispatch(fetchTokenSuccess(token));
             })
             .catch((error) => {

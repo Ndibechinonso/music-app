@@ -100,13 +100,11 @@ function LoggedInNav(props) {
             })
             .then((response) => {
               const responseInfo = response.message;
-              console.log(responseInfo, "responseInfo");
               setIsSubmitted(true);
               resetForm({ values: "" });
             })
             .catch((error) => {
               const errorMsg = error.message;
-              console.log(errorMsg, "errorMsg");
             });
         },
       });

@@ -52,7 +52,6 @@ export const fetchArtistsData = () => {
 
                 .then((response) => {
                     const artistsData = response.data;
-                    console.log(artistsData, "artistsData");
                     dispatch(fetchArtistsSuccess(artistsData));
                 })
                 .catch((error) => {

@@ -34,7 +34,6 @@ export const fetchUsers = (code) => (dispatch) => {
 
       .then((response) => {
         const users = response.data;
-        console.log(users, "data");
         dispatch(fetchUserSuccess(users));
       })
       .catch((error) => {

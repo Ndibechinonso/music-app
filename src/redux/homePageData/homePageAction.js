@@ -38,7 +38,6 @@ export const fetchHomeData = (code, id) => (dispatch) =>{
 
         .then((response) => {
           const homePageData = response.data;
-          console.log(homePageData, "homePageData");
           dispatch(fetchHomePageSuccess(homePageData));
         })
         .catch((error) => {

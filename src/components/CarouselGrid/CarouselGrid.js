@@ -10,6 +10,7 @@ import { FaList } from "react-icons/fa";
 import { IoHeartOutline } from "react-icons/io5";
 import "./coupon.css";
 import axios from "axios";
+import empty from "../../Assets/empty.png";
 
 const CarouselGrid = () => {
     useEffect(() => {
@@ -87,54 +88,67 @@ const CarouselGrid = () => {
         <div className="carouselGridContainer">
             <div className="artistsBody">
                 <div className="lastPlayedheader">Last played songs</div>
-                <div
-                    style={{
-                        maxWidth: 1200,
-                        marginLeft: "auto",
-                        marginRight: "auto",
-                        marginTop: 20,
-                    }}
-                    className="test"
-                >
-                    <SecondCarousel show={5}>
-                        {lastPlayed ? (
-                            lastPlayed.map((data) => {
-                                return (
-                                    <div
-                                        key={data.artist.id + nanoid()}
-                                        className="testKid"
-                                        data-aos="fade-left"
-                                    >
-                                        <div className="testKid" style={{ padding: 8 }}>
-                                            <div className="imgContainer">
-                                                {" "}
-                                                <img
-                                                    className="roundedImg"
-                                                    src={data.album.cover_xl}
-                                                    alt="placeholder"
-                                                    style={{ width: "100%" }}
-                                                />
-                                                <div className="titleDiv">
-                                                    <p className="trackName">{data.title}</p>
-                                                    <p className="artistName">{data.artist.name}</p>
+                {!loader && lastPlayed ? (
+                    lastPlayed.length < 5 ? (
+                        <div className="emptyDiv">
+                            <img src={empty} alt='no file'/>{" "} 
+                            <p>
+                                oops, seems like you dont have any data available. Click{" "}
+                                <a href="https://www.deezer.com/us/" target="_blank" rel="noopener noreferrer">
+                                    here
+                                </a>{" "}
+                                to go back to deezer and start streaming.
+                            </p>
+                        </div>
+                    ) : (
+                        <div
+                            style={{
+                                maxWidth: 1200,
+                                marginLeft: "auto",
+                                marginRight: "auto",
+                                marginTop: 20,
+                            }}
+                            className="test"
+                        >
+                            <SecondCarousel show={5}>
+                                {lastPlayed.map((data) => {
+                                    return (
+                                        <div
+                                            key={data.artist.id + nanoid()}
+                                            className="testKid"
+                                            data-aos="fade-left"
+                                        >
+                                            <div className="testKid" style={{ padding: 8 }}>
+                                                <div className="imgContainer">
+                                                    {" "}
+                                                    <img
+                                                        className="roundedImg"
+                                                        src={data.album.cover_xl}
+                                                        alt="placeholder"
+                                                        style={{ width: "100%" }}
+                                                    />
+                                                    <div className="titleDiv">
+                                                        <p className="trackName">{data.title}</p>
+                                                        <p className="artistName">{data.artist.name}</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                );
-                            })
-                        ) : (
-                            <div className="spinnerContainer">
-                                {" "}
-                                <div className="lds-facebook">
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                </div>{" "}
-                            </div>
-                        )}
-                    </SecondCarousel>
-                </div>
+                                    );
+                                })}
+                            </SecondCarousel>
+                        </div>
+                    )
+                ) : (
+                    <div className="spinnerContainer">
+                        {" "}
+                        <div className="lds-facebook">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>{" "}
+                    </div>
+                )}
             </div>
 
             <div className="latestTracksBody">
