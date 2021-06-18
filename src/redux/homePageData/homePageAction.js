@@ -26,12 +26,10 @@ const fetchHomePageFailure = (error) => {
   };
 };
 
-export const fetchHomeData = () => {
-  if (savedToken && savedUserId)
-    return (dispatch) => {
-      setTimeout(() => {
+export const fetchHomeData = (code, id) => (dispatch) =>{
+  
         dispatch(fetchHomePageRequest());
-      }, 3000);
+        try {
       axios
         .post("https://deezify-app-feeder.herokuapp.com/home", {
           accessToken: code,
@@ -47,5 +45,8 @@ export const fetchHomeData = () => {
           const errorMsg = error.message;
           dispatch(fetchHomePageFailure(errorMsg));
         });
-    };
+    } catch (error) {
+        dispatch(fetchHomePageFailure(error))
+    }  
+
 };
