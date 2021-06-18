@@ -22,7 +22,8 @@ const CarouselGrid = () => {
     const [trackId, setTrackId] = useState(null);
 
     const fetchedLastPlayed = useSelector((state) => state.homePageData.data[1]);
-
+    const loader = useSelector((state) => state.homePageData.loading);
+    
     if (fetchedLastPlayed) {
         var lastPlayed = fetchedLastPlayed.data;
     }
