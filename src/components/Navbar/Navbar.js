@@ -53,12 +53,10 @@ export default function Navbar(props) {
     return (
         <div>
             <div className="navBar">
-                <Link to="/home">
                     {" "}
                     <h2>
                         <img src={deezifylogo} alt="" />
-                    </h2>
-                </Link>
+                    </h2>    
                 <ul className="navBar-links">
                     <li className="aboutlink" onClick={dislayAboutLink}>
                         About
