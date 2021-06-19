@@ -101,3 +101,9 @@ a {
   font-size: 14px;
   color: #da2060 !important;
 }
+
+@media screen and (max-width: 1240px) {
+  .className {
+    display: none;
+  }
+}
