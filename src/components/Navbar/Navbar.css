@@ -103,7 +103,7 @@ a {
 }
 
 @media screen and (max-width: 1240px) {
-  .className {
+  .navBarButton {
     display: none;
   }
 }
