@@ -9,3 +9,4 @@ The apps server is hosted on Heroku
 
 Some features are still being sorted out with deezer like adding tracks to playlists
 
+Checkout deezify on https://do-re-me.netlify.app/
