@@ -5,7 +5,7 @@ A music streaming analysis app that uses Deezer's API to enable Deezer users vie
 
 This app was built with ReactJs, state managed and api calls made using React-Redux
 
-The apps server is hosted on Heroku
+The App's server is hosted on Heroku
 
 Some features are still being sorted out with deezer like adding tracks to playlists
 
