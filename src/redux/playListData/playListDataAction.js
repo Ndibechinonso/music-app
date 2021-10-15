@@ -24,7 +24,7 @@ export const fetchPlaylist = (url) => {
   return (dispatch) => {
     dispatch(fetchDataRequest());
     axios
-      .post(`${process.env.REACT_APP_BACKEND_URL}users`, {
+      .post("https://deezify-app-feeder.herokuapp.com/users", {
         tracklist: url,
       })
       .then((response) => {

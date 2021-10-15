@@ -14,8 +14,6 @@ import Iframe from "react-iframe";
 
 const HomePage = (props) => {
     const [frameUrl, setFrameUrl] = useState(null);
-    const [noOfAlbumDisplay, setNoOfAlbumDisplay] = useState(3)
-
     var framelink = `https://widget.deezer.com/widget/dark/album/${frameUrl}?app_id=457142&autoplay=false&radius=true&tracklist=true`;
 
     useEffect(() => {
@@ -23,23 +21,6 @@ const HomePage = (props) => {
             duration: 1000,
         });
     });
-
-    useEffect(() => {
-        const handleResize = () => {
-        if (window.innerWidth < 620){
-            setNoOfAlbumDisplay((noOfAlbumDisplay) => noOfAlbumDisplay = 2)  
-        }
-        else{
-            setNoOfAlbumDisplay((noOfAlbumDisplay) => noOfAlbumDisplay = 3)  
-        }
-    }
-    
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-        window.removeEventListener('resize', handleResize)
-    }},
-     []);
 
     const savedToken = localStorage.getItem("token");
     const savedUserId = localStorage.getItem("userId");
@@ -72,7 +53,6 @@ const HomePage = (props) => {
                     showIndicators={false}
                     showArrows={true}
                     showThumbs={false}
-                    showStatus={false}
                 >
                     {recommendedAlbums ? (
                         recommendedAlbums.map((data) => {
@@ -108,7 +88,7 @@ const HomePage = (props) => {
                     )}
                 </Carousel>
 
-                {/* <div className="carouselContainer"> */}
+                <div className="carouselContainer">
                     <div
                         className="recommendedAlbumsContainer"
                         style={{
@@ -118,13 +98,13 @@ const HomePage = (props) => {
                             marginTop: 64,
                         }}
                     >
-                        <CustomisedCarousel show={noOfAlbumDisplay}>
+                        <CustomisedCarousel show={3}>
                             {recommendedAlbums ? (
                                 recommendedAlbums.map((data) => {
                                     return (
                                         <div
                                             key={data.artist.id + nanoid()}
-                                            // data-aos="fade-left"
+                                            data-aos="fade-left"
                                             className="slideDiv"
                                             onClick={() => setFrameUrl(data.id)}
                                             title="click frame to preview album tracks"
@@ -134,7 +114,7 @@ const HomePage = (props) => {
                                                     <img
                                                         src={data.cover_xl}
                                                         alt="placeholder"
-                                                        style={{ width: "50%" }}
+                                                        style={{ width: "100%" }}
                                                     />
                                                     <div className="albumTitle">{data.title}</div>
                                                 </div>
@@ -154,7 +134,7 @@ const HomePage = (props) => {
                             )}
                         </CustomisedCarousel>
                     </div>
-                {/* </div> */}
+                </div>
             </div>
 
             {frameUrl ? (

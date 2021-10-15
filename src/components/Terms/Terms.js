@@ -10,7 +10,7 @@ export default function Terms(props) {
         <h2>Request permisions</h2>
 
         <p>
-          Deezify, the deezer widget app requires authorization to perform the
+          Muzify, the deezer widget app requires authorization to perform the
           following actions; Access my basic information include surname, first
           name, playlists history Send me messages
         </p>

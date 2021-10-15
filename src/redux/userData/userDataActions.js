@@ -30,7 +30,7 @@ export const fetchUsers = (code) => (dispatch) => {
   dispatch(fetchUserRequest());
   try {
     axios
-      .post(`${process.env.REACT_APP_BACKEND_URL}navbar`, { code: code })
+      .post("https://deezify-app-feeder.herokuapp.com/navbar", { code: code })
 
       .then((response) => {
         const users = response.data;

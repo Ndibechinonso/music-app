@@ -1,8 +1,7 @@
 .fixedModalBar {
   position: sticky;
   top: 0;
-  max-width: 1086px;
-  width: 100%;
+  width: 1086px;
   background: #000000;
   margin-bottom: 50px;
 }
@@ -10,8 +9,8 @@
   border: 1px solid transparent;
   background: #353538;
   border-radius: 10px;
-  max-width: 872px;
-  width: 100%;
+  width: 872px;
+  height: 93px;
   align-self: center;
   margin-bottom: 21px;
   display: flex;
@@ -28,7 +27,7 @@
 .playlistPlayDiv {
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  gap: 27px;
   justify-self: flex-end;
   margin-right: 24px;
 
@@ -48,18 +47,19 @@ img {
   object-fit: contain;
 }
 .deleteImg {
-  max-width: 20px;
+  max-width: 40px;
   margin-right: 49px;
 }
 .twndimg {
-  max-width: 60px;
+  max-width: 91px;
 }
 .trackTitle {
-  font-size: 20px;
+  font-size: 24px;
+  font-weight: 700;
   font-family: "Open Sans", sans-serif;
 }
 .modalArtistName {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 400;
   font-family: "Open Sans", sans-serif;
 }
@@ -70,13 +70,13 @@ img {
   gap: 20px;
 }
 .playImg {
-  max-width: 20px;
+  max-width: 46.67px;
 }
 .stopImg {
-  max-width: 20px;
+  max-width: 46.67px;
 }
 .playlistLogoImg {
-  max-width: 20px;
+  max-width: 44px;
   margin-left: 10px;
 }
 .playlistModal-createDiv {
@@ -98,15 +98,13 @@ img {
   display: flex;
   flex-direction: column;
   align-content: center;
-  padding-left: 5%;
-  padding-right: 5%;
 }
 .playlistModal-title {
   color: white;
   text-align: center;
   font-family: "Open Sans", sans-serif;
-  font-weight: 500;
-  font-size: 20px;
+  font-weight: 700;
+  font-size: 36px;
   top: 288px;
 }
 .closeImg {
@@ -125,7 +123,7 @@ img {
 .closeContainer:hover {
   cursor: pointer;
 }
-/* .spinnerContainer {
+.spinnerContainer {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -166,7 +164,7 @@ img {
     top: 24px;
     height: 32px;
   }
-} */
+}
 .secondHeader {
   margin-top: 110px;
   margin-bottom: 40px;
@@ -174,7 +172,11 @@ img {
 .artistImgContainer:hover {
   cursor: pointer;
 }
-
+.spinnerContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
 .createPlaylistButton {
   background-color: #da2060;
   border-radius: 10px;
@@ -182,6 +184,7 @@ img {
   color: #ffffff;
   font-weight: 700;
   font-size: 16px;
+  width: 329px;
   padding: 10px 40px;
   outline: none;
   border: none;
@@ -237,110 +240,16 @@ img {
 }
 .topArtistsContainer {
   display: grid;
-  grid-template-columns: 300px 150px 300px;
+  grid-template-columns: 601px 393.03px;
   gap: 120px;
-  justify-content: center;
 }
-/* .spinnerContainer {
+.spinnerContainer {
   display: flex;
   flex-direction: row;
   justify-content: center;
-} */
+}
 .spinnerModal {
   display: flex;
   flex-direction: row;
   justify-content: center;
-}
-
-.header{
-  font-size: 32px;
-}
-
-@media only screen and (max-width: 1100px) {
-  .topArtistsContainer {
-    grid-template-columns: 300px 150px;
-
-  }
-}
-@media only screen and (max-width: 680px) {
-  .topArtistsContainer {
-    gap: 50px;
-  }
-  .topArtistsContainer {
-    grid-template-columns: 200px 150px;
-
-
-  }
-  .createPlaylistButton {
-    padding: 10px 30px;
-
-  }
-  .deleteImg {
-    margin-right: 20px;
-  }
-  .modalListDiv {
-  
-    margin-left: 10px;
-    margin-right: 20px;
-}
-.closeImg {
-  width: 20px;
-}
-.closeBtn {
-  margin-right: 10px;
-}
-.playlistModal-title {
-
-  font-size: 16px;
-
-}
-.trackTitle {
-  font-size: 14px;
-}
-.modalArtistName {
-  font-size: 12px;
-}
-.playlistModal-createDiv {
-
-  margin-left: 5%;
-}
-.fixedModalBar {
-
-  margin-bottom: 20px;
-}
-.loading span{
-  font-size: 12px;
-}
-.lds-facebook {
-  width: 80px;
-  height: 60px;
-}
-.lds-facebook div {
-  width: 8px;
-}
-
-}
-
-
-
-@media only screen and (max-width: 490px) {
-  .topArtistsContainer {
-    grid-template-columns: 250px;
-
-  }
-  .header{
-    font-size: 20px;
-  }
-  .twndimg {
-    display: none; 
-   }
-
-  
-}
-@media only screen and (max-width: 350px) {
-  .artistsBody {
-    margin-left: 0;
-    margin-right: 0;
-  }
-  
 }

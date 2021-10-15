@@ -55,17 +55,17 @@ export default function Navbar(props) {
             <div className="navBar">
                     {" "}
                     <h2>
-                        <img src={deezifylogo} alt="" className='deezify-logo'/>
+                        <img src={deezifylogo} alt="" />
                     </h2>    
                 <ul className="navBar-links">
                     <li className="aboutlink" onClick={dislayAboutLink}>
-                    <i className="uil uil-link-h share"></i>About 
+                        About
           </li>{" "}
                     <li onClick={dislayShareLink}>
-                    <i className="uil uil-share-alt share"></i>Share 
+                        Share <i className="fas fa-external-link-alt share"></i>
                     </li>
                     <div>
-                        <a href={`https://connect.deezer.com/oauth/auth.php?app_id=${process.env.REACT_APP_ID}&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}&perms=${process.env.REACT_APP_PERMISSIONS}`}>
+                        <a href="https://connect.deezer.com/oauth/auth.php?app_id=475622&redirect_uri=https://do-re-me.netlify.app/dataload&perms=basic_access,email,manage_library,delete_library,listening_history">
                             <Button className="navBarButton" text="Log in" />
                         </a>
                     </div>
@@ -79,7 +79,7 @@ export default function Navbar(props) {
                             <FadeInAnimation direction="up">
                                 <h2>About us</h2>
                                 <p>
-                                    Deezify is a streaming analytics and music discovery tool for
+                                    Muzify is a streaming analytics and music discovery tool for
                                     Deezer users created using the deezer API
                 </p>
                                 <h2>Privacy</h2>
@@ -96,7 +96,7 @@ export default function Navbar(props) {
                         <div className="share-modal" onClick={(e) => e.stopPropagation()}>
                             <FadeInAnimation direction="up">
                                 {" "}
-                                <h2>Share Deezify</h2>
+                                <h2>Share Muzify</h2>
                                 <p>Choose your preferred social platform</p>{" "}
                             </FadeInAnimation>
                             <div className="socialRow">

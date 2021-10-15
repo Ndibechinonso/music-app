@@ -25,15 +25,13 @@ img {
   z-index: 2;
 }
 .drizzy {
-  max-width: 295px;
-  width: 100%;
+  width: 295px;
 }
 .jb {
   position: absolute;
   bottom: -120px;
   left: 210px;
-  max-width: 350px;
-  width: 100%;
+  width: 350px;
 }
 .introButton {
   background-color: #da2060;
@@ -48,7 +46,6 @@ img {
 }
 .introText {
   max-width: 552px;
-  width: 100%;
   margin-right: 45px;
   z-index: 2;
 }
@@ -65,7 +62,7 @@ img {
   right: 0;
   top: 600px;
 }
-/* .mobDiv {
+.mobDiv {
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -84,98 +81,17 @@ img {
 .comingSoon {
   width: 330px;
   margin-bottom: 26px;
-} */
-/* .artistFrame {
+}
+.artistFrame {
   width: 382px;
   margin-top: 65px;
-} */
+}
 
-/* @media screen and (max-width: 1240px) {
+@media screen and (max-width: 1240px) {
   .introContainer {
     display: none;
   }
   .mobDiv {
     display: flex;
   }
-} */
-
- @media screen and (max-width: 1190px) {
-
-  .introContainer {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    align-items: center;
-    padding-left: 50px;
-    padding-bottom: 120px;
-    margin-top: 40px;
-  }
-
-  .picStack {
-    display: flex;
-   flex-direction: row;
-   gap: 40px;
-   margin-top: 40px;
-  }
-  .jb {
-    position: relative;
-    bottom: 0;
-    left: 0;
-    max-width: 350px;
-    height: 200px;
-    width: 100%;
-  }
-  .drizzy {
-    max-width: 350px;
-    width: 100%;
-    height: 200px;
-  }
- }
-
-
- @media screen and (max-width: 700px) {
-  .introContainer h2 {
-    font-size: 32px;
-    margin-bottom: 0;
-
-  }
-  .introContainer p {
-    font-size: 18px;
-    line-height: 30px;
-
-  }
-
-  .introButton {
-    padding: 15px 40px
-  }
-
-}
-
-@media screen and (max-width: 570px) {
-  .picStack {
-   gap: 20px;
-  }
-
-  .jb {
-    max-width: 150px;
-    height: 100px;
-  }
-  .drizzy {
-    max-width: 150px;
-    height: 100px;
-  }
-  .introContainer h2 {
-    line-height: 40px;
-  }
-  .introContainer h2 {
-    font-size: 20px;
-    margin-bottom: 0;
-
-  }
-  .introContainer p {
-    font-size: 14px;
-    line-height: 30px;
-
-  }
-
 }

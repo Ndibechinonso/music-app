@@ -65,7 +65,6 @@ const Playlists = (props) => {
   const [userPlaylist, setUserPlaylist] = useState(null);
   const [playlistDelAlert, setPlaylistDelAlert] = useState(false);
   const [playlistCreateAlert, setPlaylistCreateAlert] = useState(false);
-  const [textLength, setTextLength] = useState(50);
 
   const playSong = (song) => {
     setAudioPlaying(true);
@@ -94,30 +93,6 @@ const Playlists = (props) => {
     setAudioPlaying(false);
   }
 
-
-useEffect(() => {
-  const handleResize = () => {
-  if (window.innerWidth < 620){
-    setTextLength(10)  
-  }
-  else{
-    setTextLength(50)  
-  }
-}
-
-window.addEventListener('resize', handleResize);
-
-return () => {
-  window.removeEventListener('resize', handleResize)
-}},
-[]);
-
-const truncate = (str) => {
-    
-  return str.length > textLength ? str.substring(0, textLength) + "..." : str;
-
-}
-
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -131,7 +106,7 @@ const truncate = (str) => {
     if (playlistTrackId) {
       setConfirmDelete(true);
       axios
-        .post(`${process.env.REACT_APP_BACKEND_URL}delete`, {
+        .post("https://deezify-app-feeder.herokuapp.com/delete", {
           playlistId,
           playlistTrackId,
           accessToken,
@@ -159,7 +134,7 @@ const truncate = (str) => {
   function submitPlaylist(e) {
     e.preventDefault();
     axios
-      .post(`${process.env.REACT_APP_BACKEND_URL}addPlaylist`, {
+      .post("https://deezify-app-feeder.herokuapp.com/addPlaylist", {
         id,
         accessToken,
         playlistName,
@@ -182,7 +157,7 @@ const truncate = (str) => {
   function deletePlaylist() {
     if (userPlaylist == userData.name) {
       axios
-        .post(`${process.env.REACT_APP_BACKEND_URL}deleteUserPlaylist`, {
+        .post("https://deezify-app-feeder.herokuapp.com/deleteUserPlaylist", {
           playlistId,
           accessToken,
         })
@@ -195,7 +170,7 @@ const truncate = (str) => {
         });
     } else {
       axios
-        .post(`${process.env.REACT_APP_BACKEND_URL}deleteOtherPlaylists`, {
+        .post("https://deezify-app-feeder.herokuapp.com/deleteOtherPlaylists", {
           playlistId,
           accessToken,
           id,
@@ -297,7 +272,6 @@ const truncate = (str) => {
                             <span data-text={trackTitle}>{trackTitle}</span>
                           </div>
                         ) : null}
-                        
                         <div className="playlistModal-createDiv">
                           {" "}
                           {!loader ? (
@@ -342,10 +316,10 @@ const truncate = (str) => {
                                 <div className="playListModalTittle">
                                   <div className="trackTitle">
                                     {index + 1 + "." + " "}
-                                    {truncate(track.title)}
+                                    {track.title}
                                   </div>{" "}
                                   <div className="modalArtistName">
-                                    {truncate(track.artist.name)}
+                                    {track.artist.name}
                                   </div>
                                 </div>
                                 <div className="playlistPlayDiv">
@@ -496,10 +470,9 @@ const truncate = (str) => {
         <div className="musicPlayer">{audioPlaying ? player() : null}</div>
 
         <div className="header secondHeader">Recommended Playlists</div>
-        <div>
+        <div className="topArtistsContainer">
           {recommendedPlaylists ? (
-            <div className="topArtistsContainer">
-            {recommendedPlaylists.map((recomplaylist) => {
+            recommendedPlaylists.map((recomplaylist) => {
               return (
                 <div key={recomplaylist.id}>
                   <div data-aos="fade-up" className="artistImgContainer">
@@ -514,7 +487,7 @@ const truncate = (str) => {
                 </div>
               );
             })
-          } </div>  ) : (
+          ) : (
             <div className="spinnerContainer">
               {" "}
               <div className="lds-facebook">

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import './LoggedInNav.css'
+import "./LoggedInNav.css";
 import dropdown from "../../Assets/dropdown.png";
 import icon from "../../Assets/icon.png";
 import icon2 from "../../Assets/icon2.png";
@@ -58,8 +58,6 @@ function LoggedInNav(props) {
   const [accountlink, setaccountlink] = useState(false);
   const [autoPlay, setAutoPlay] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
 
   function accountDrop() {
     setaccountlink(true);
@@ -94,9 +92,8 @@ function LoggedInNav(props) {
           feedback: Yup.string().required("Please enter your feedback"),
         }),
         onSubmit: (values) => {
-          setIsSubmitting(true)
           axios
-            .post(`${process.env.REACT_APP_BACKEND_URL}feedback`, {
+            .post("https://deezify-app-feeder.herokuapp.com/feedback", {
               fullName: values.fullName,
               email: values.email,
               feedback: values.feedback,
@@ -121,10 +118,10 @@ function LoggedInNav(props) {
                 <img className="closeImg" src={cancelButton} alt="" />
               </div>
             </div>
-            {/* <div className="feedbackModal-title">
+            <div className="feedbackModal-title">
               {" "}
               We appreciate your feedback
-            </div> */}
+            </div>
             <p className="feedBackText">
               Please leave a message for us and we will reach out to you as soon
               as possible
@@ -143,7 +140,7 @@ function LoggedInNav(props) {
                   value={values.fullName}
                 />
                 <br />
-                {errors.fullName && isSubmitting ? (
+                {errors.fullName ? (
                   <div className="error">{errors.fullName}</div>
                 ) : null}
               </div>
@@ -160,7 +157,7 @@ function LoggedInNav(props) {
                   value={values.email}
                 />
                 <br />
-                {errors.email  && isSubmitting ? (
+                {errors.email ? (
                   <div className="error">{errors.email}</div>
                 ) : null}
               </div>
@@ -177,7 +174,7 @@ function LoggedInNav(props) {
                   value={values.feedback}
                 />
                 <br />
-                {errors.feedback  && isSubmitting ? (
+                {errors.feedback ? (
                   <div className="error">{errors.feedback}</div>
                 ) : null}
               </div>
@@ -205,7 +202,7 @@ function LoggedInNav(props) {
               </div>
             </div>
             <div className="feedbackClass">
-              <div className='feedback-img'>
+              <div>
                 <img src={feedback} alt="" />
               </div>
               <p>
@@ -238,10 +235,9 @@ function LoggedInNav(props) {
         <Link to="/home">
           {" "}
           <h2>
-            <img src={deezifylogo} alt="deezify-logo" className='deezify-logo'/>
+            <img src={deezifylogo} alt="" />
           </h2>
         </Link>
-        <div className='nav-right'>
         <ul className="loggedNavBar-links">
           <NavLink className="navLink" activeClassName="is-active" to="/home">
             Home
@@ -269,12 +265,11 @@ function LoggedInNav(props) {
         </ul>
         <div className="dropdownDiv">
           {userData ? (
-            <img src={userData.picture_xl} className="user userImg" alt="" onClick={accountDrop}/>
-          ) : <i className="uil uil-user-circle"></i>}{" "}
-          {/* <li onClick={accountDrop}>
+            <img src={userData.picture_xl} className="user userImg" alt="" />
+          ) : null}{" "}
+          <li onClick={accountDrop}>
             <img src={dropdown} alt="dropdown icon" className="dropdownIcon" />
-          </li> */}
-        </div>
+          </li>
         </div>
       </div>
 
@@ -293,7 +288,7 @@ function LoggedInNav(props) {
             ) : (
               <div className="settings">
                 {" "}
-                <i className="uil uil-user-circle"></i> User
+                <i className="fas userIcon fa-user-circle"></i> User
               </div>
             )}
             <div
