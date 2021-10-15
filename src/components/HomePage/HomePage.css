@@ -1,4 +1,4 @@
-.spinnerContainer {
+/* .spinnerContainer {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -40,11 +40,8 @@
     top: 24px;
     height: 32px;
   }
-}
-.requesFailed {
-  color: #fff;
-  text-align: center;
-}
+} */
+
 .slideDiv {
   display: flex;
   flex-direction: row;
@@ -57,10 +54,12 @@
 .parentSlide {
   position: relative;
   height: 631px;
+  margin-top: 115px;
 }
 .recommendedAlbumsContainer {
-  position: absolute;
-  top: 30%;
+  /* position: absolute; */
+  /* bottom: 10px; */
+  transform: translateY(-100%);
 }
 .carouselContainer {
   display: flex;
@@ -93,6 +92,9 @@
   align-items: center;
   width: 261px;
 }
+.albumGrid img{
+  width: 50%;
+}
 .newAlbumIntro {
   font-size: 30px;
   font-weight: 700;
@@ -112,7 +114,7 @@
   font-weight: 700;
   font-family: Arial, Helvetica, sans-serif;
   background: #121212;
-  width: 100%;
+  width: 50%;
   padding-top: 10px;
   padding-bottom: 10px;
 }
@@ -122,6 +124,15 @@
   flex-direction: row;
   justify-content: center;
 }
-.parentSlide {
-  margin-top: 115px;
+
+
+@media only screen and (max-width: 680px) {
+
+  .lds-facebook {
+    width: 80px;
+    height: 60px;
+  }
+  .lds-facebook div {
+    width: 8px;
+  }
 }

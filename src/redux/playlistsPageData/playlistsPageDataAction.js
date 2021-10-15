@@ -37,8 +37,6 @@ const requestOptions = {
     },
 };
 
-console.log(savedToken, "savedToken");
-console.log(savedUserId, "savedUserId");
 
 export const fetchPlaylistsPageData = () => {
     if (savedToken && savedUserId)
@@ -46,13 +44,12 @@ export const fetchPlaylistsPageData = () => {
             dispatch(fetchPlaylistsRequest());
             axios
                 .post(
-                    "https://deezify-app-feeder.herokuapp.com/playlists",
+                    `${process.env.REACT_APP_BACKEND_URL}playlists`,
                     requestOptions.body
                 )
 
                 .then((response) => {
                     const playlistsPageData = response.data;
-                    console.log(playlistsPageData, "playlistsPageData");
                     dispatch(fetchPlaylistsSuccess(playlistsPageData));
                 })
                 .catch((error) => {

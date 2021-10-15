@@ -37,8 +37,6 @@ const requestOptions = {
     },
 };
 
-console.log(savedToken, "savedToken");
-console.log(savedUserId, "savedUserId");
 
 export const fetchArtistsData = () => {
     if (savedToken && savedUserId)
@@ -46,7 +44,7 @@ export const fetchArtistsData = () => {
             dispatch(fetchArtistsRequest());
             axios
                 .post(
-                    "https://deezify-app-feeder.herokuapp.com/artists",
+                    `${process.env.REACT_APP_BACKEND_URL}artists`,
                     requestOptions.body
                 )
 

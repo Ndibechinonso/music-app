@@ -34,7 +34,7 @@ export const fetchToken = (code) => {
     return (dispatch) => {
         dispatch(fetchTokenRequest());
         axios
-            .post("https://deezify-app-feeder.herokuapp.com", { code: code })
+            .post(`${process.env.REACT_APP_BACKEND_URL}`, { code: code })
 
             .then((response) => {
                 const token = response.data;

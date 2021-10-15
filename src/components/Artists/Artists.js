@@ -38,7 +38,7 @@ const Artists = (props) => {
         <div className="artistsContainer">
             <LoggedInNav />
             <div className="artistsBody">
-                <div className="header">My Top Artists</div>
+                <h2 className="header">My Top Artists</h2>
                 {!loader && myArtists ? (
                     myArtists.length < 1 ? (
                         <div className="emptyDiv">
@@ -81,9 +81,10 @@ const Artists = (props) => {
                 )}
 
                 <div className="header secondHeader">Recomended Artists</div>
-                <div className="topArtistsContainer">
+                <div>
                     {recommendedArtists ? (
-                        recommendedArtists.map((artist) => {
+                        <div className="topArtistsContainer">
+                       { recommendedArtists.map((artist) => {
                             return (
                                 <div key={artist.id + nanoid()}>
                                     <div data-aos="fade-up" className="artistImgContainer">
@@ -98,7 +99,7 @@ const Artists = (props) => {
                                 </div>
                             );
                         })
-                    ) : (
+                     } </div>  ) : (
                         <div className="spinnerContainer">
                             {" "}
                             <div className="lds-facebook">
