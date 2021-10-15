@@ -35,9 +35,10 @@ const Genres = (props) => {
             <LoggedInNav />
             <div className="artistsBody">
                 <div className="header">Genres</div>
-                <div className="topArtistsContainer">
+                <div>
                     {genres ? (
-                        genres.map((genre) => {
+                        <div className="topArtistsContainer">
+                       {genres.map((genre) => {
                             return (
                                 <div key={genre.id + nanoid()}>
                                     <div data-aos="fade-up" className="artistImgContainer">
@@ -51,7 +52,7 @@ const Genres = (props) => {
                                 </div>
                             );
                         })
-                    ) : (
+                    }</div> ) : (
                         <div className="spinnerContainer">
                             {" "}
                             <div className="lds-facebook">
@@ -63,9 +64,10 @@ const Genres = (props) => {
                     )}
                 </div>
                 <div className="header secondHeader">Charts</div>
-                <div className="topArtistsContainer">
+                <div>
                     {charts ? (
-                        charts.map((chart) => {
+                        <div className="topArtistsContainer">
+                        {charts.map((chart) => {
                             return (
                                 <div key={chart.id + nanoid()}>
                                     <div data-aos="fade-up" className="artistImgContainer">
@@ -79,7 +81,7 @@ const Genres = (props) => {
                                 </div>
                             );
                         })
-                    ) : (
+                       } </div> ) : (
                         <div className="spinnerContainer">
                             {" "}
                             <div className="lds-facebook">

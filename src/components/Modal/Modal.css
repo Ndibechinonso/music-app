@@ -15,7 +15,8 @@
   z-index: 5;
 }
 .playlistModal-content {
-  width: 1086px;
+  max-width: 1086px;
+  width: 100%;
   background: #000000;
   position: absolute;
   top: 120px;

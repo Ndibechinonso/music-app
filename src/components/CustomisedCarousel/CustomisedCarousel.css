@@ -45,19 +45,19 @@
 .right-arrow {
   position: absolute;
   z-index: 1;
-  transform: translateY(-50%);
+  transform: translateY(200px);
   width: 25px;
   height: 25px;
   border-radius: 24px;
   background-color: white;
   border: 1px solid #ddd;
-  top: 340px;
+  /* top: 220px; */
 }
 .indicator {
   margin-right: 10px;
   color: #ffffff;
   position: absolute;
-  top: 328px;
+  top: 200px;
   right: 12%;
   font-size: 16px;
 }
@@ -65,15 +65,15 @@
   margin-left: 10px;
   color: #ffffff;
   position: absolute;
-  top: 328px;
+  top: 200px;
   left: 12%;
   font-size: 16px;
 }
 .left-arrow {
-  left: 10%;
+  left: 10px;
 }
 .right-arrow {
-  right: 10%;
+  right: 10px;
 }
 .right-arrow i,
 .left-arrow i {

@@ -22,6 +22,7 @@ const DataLoad = (props) => {
     localStorage.removeItem("token")
     const searchParams = new URLSearchParams(location.search);
     const code = searchParams.get("code");
+
     dispatch(fetchToken(code));
   }, []);
 

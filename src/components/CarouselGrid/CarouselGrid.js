@@ -54,7 +54,7 @@ const CarouselGrid = () => {
     const addTrack = (playlistId, trackId) => {
         if (trackId) {
             axios
-                .post("https://deezify-app-feeder.herokuapp.com/addTrack", {
+                .post(`${process.env.REACT_APP_BACKEND_URL}addTrack`, {
                     playlistId,
                     trackId,
                     accessToken,
@@ -88,7 +88,7 @@ const CarouselGrid = () => {
     return (
         <div className="carouselGridContainer">
             <div className="artistsBody">
-                <div className="lastPlayedheader">Last played songs</div>
+                <h2 className="lastPlayedheader">Last played songs</h2>
                 {!loader && lastPlayed ? (
                     lastPlayed.length < 5 ? (
                         <div className="emptyDiv">
@@ -153,7 +153,7 @@ const CarouselGrid = () => {
             </div>
 
             <div className="latestTracksBody">
-                <div className="lastPlayedheader">Latest tracks</div>
+                <h2 className="lastPlayedheader">Latest tracks</h2>
                 <div
                     style={{
                         maxWidth: 1200,

@@ -37,8 +37,6 @@ const requestOptions = {
     },
 };
 
-console.log(savedToken, "savedToken");
-console.log(savedUserId, "savedUserId");
 
 export const fetchGenresData = () => {
     if (savedToken && savedUserId)
@@ -46,7 +44,7 @@ export const fetchGenresData = () => {
             dispatch(fetchGenresRequest());
             axios
                 .post(
-                    "https://deezify-app-feeder.herokuapp.com/genres",
+                    `${process.env.REACT_APP_BACKEND_URL}genres`,
                     requestOptions.body
                 )
 

@@ -31,7 +31,7 @@ export const fetchHomeData = (code, id) => (dispatch) =>{
         dispatch(fetchHomePageRequest());
         try {
       axios
-        .post("https://deezify-app-feeder.herokuapp.com/home", {
+        .post(`${process.env.REACT_APP_BACKEND_URL}home`, {
           accessToken: code,
           userId: id,
         })

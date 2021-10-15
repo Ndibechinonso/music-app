@@ -75,3 +75,41 @@
     display: none;
   }
 }
+
+
+
+@media only screen and (max-width: 1000px) {
+  .secondcarousel-content {
+    height: 200px;
+  }
+}
+
+@media only screen and (max-width: 986px) {
+  .test{
+    height: 200px;
+  }
+   
+  .secondleft-arrow,
+  .secondright-arrow {
+  top: 230px;
+}
+    }
+
+@media only screen and (max-width: 650px) {
+  .secondcarousel-content {
+    height: 150px;
+  }
+  .secondleft-arrow,
+  .secondright-arrow {
+  top: 180px;
+}
+}
+@media only screen and (max-width: 480px) {
+  /* .secondcarousel-content {
+    height: 150px;
+  } */
+  .secondleft-arrow,
+  .secondright-arrow {
+  top: 130px;
+}
+}

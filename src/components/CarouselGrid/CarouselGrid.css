@@ -40,8 +40,8 @@
   margin-top: 10px;
 }
 .lastPlayedheader {
-  font-size: 40px;
-  font-weight: 700;
+  font-size: 32px;
+  font-weight: 500;
   color: white;
   margin-bottom: 30px;
 }
@@ -53,8 +53,8 @@
   text-align: center;
 }
 .latestTracksBody {
-  margin-left: 60px;
-  margin-top: 60px;
+  margin-left: 5%;
+  margin-top: 100px;
 }
 .test {
   height: 450px;
@@ -103,10 +103,38 @@
 .imgContainer:hover .imgContainer{
 background-color: rgba(0,0,0,0.5);}
 
-.imgContainer:hover .trackName{
-font-size: 20px;
-}
-.imgContainer:hover .artistName{
+  .artistsBody{
+    margin-top: 200px;
+  }
 
-  font-size: 18px;
+  @media only screen and (max-width: 986px) {
+.test{
+  height: 200px;
+}
+ 
+  }
+
+  @media only screen and (max-width: 500px) {
+    .secondcarousel-content {
+      height: 100px;
+    }
+    .titleDiv .artistName{
+      font-size: 6px;
+    }
+    .titleDiv .trackName{
+      font-size: 8px;
+  
+    }
+    .titleDiv {
+      top: 10%;
+      width: 80%;
+      font-weight: 400;
+    }
+    .lastPlayedheader{
+      font-size: 16px;
+    }
+ 
+    .latestTracksBody {
+      margin-top: 10px;
+    }
   }
