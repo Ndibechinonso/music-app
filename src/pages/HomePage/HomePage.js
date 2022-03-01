@@ -44,12 +44,13 @@ const HomePage = (props) => {
     const savedToken = localStorage.getItem("token");
     const savedUserId = localStorage.getItem("userId");
 
+    const {recommendedAlbumsData} = useSelector((state) => state.homePageData)
+
     const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch(fetchHomeData(savedToken, savedUserId));
     }, []);
-
-    const {recommendedAlbumsData} = useSelector((state) => state.homePageData)
 
     if (recommendedAlbumsData) {
         var recommendedAlbums = recommendedAlbumsData.data;

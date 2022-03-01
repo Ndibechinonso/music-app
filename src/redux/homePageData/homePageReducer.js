@@ -9,6 +9,7 @@ const initialState = {
     recommendedAlbumsData: {},
     lastPlayedData: {},
     recommendedTracksData: {},
+    playlistsData: {},
     error: "",
 };
 
@@ -25,6 +26,7 @@ const homePageReducer = (state = initialState, action) => {
                 recommendedAlbumsData: action.payload.recommendedAlbums,
                 lastPlayedData: action.payload.lastPlayed,
                 recommendedTracksData: action.payload.recommendedTracks,
+                playlistsData: action.payload.playlistsData,
                 error: "",
             };
         case HOMEPAGE_DATA_FAILURE:
@@ -33,6 +35,7 @@ const homePageReducer = (state = initialState, action) => {
                 recommendedAlbumsData: {},
                 lastPlayedData: {},
                 recommendedTracksData: {},
+                playlistsData: {},
                 error: action.payload,
             };
 

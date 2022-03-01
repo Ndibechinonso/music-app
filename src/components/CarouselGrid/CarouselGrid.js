@@ -22,7 +22,7 @@ const CarouselGrid = () => {
     const userData = JSON.parse(userDataString)
     const [trackId, setTrackId] = useState(null);
 
-    const {loading, lastPlayedData, recommendedTracksData} = useSelector((state) => state.homePageData)
+    const {loading, lastPlayedData, recommendedTracksData, playlistsData} = useSelector((state) => state.homePageData)
 
 
     useEffect(() => {
@@ -31,9 +31,9 @@ const CarouselGrid = () => {
         });
     });
 
-    useEffect(() => {
-        dispatch(fetchPlaylistsPageData());
-      }, [recommendedTracksData]);
+    // useEffect(() => {
+    //     dispatch(fetchPlaylistsPageData());
+    //   }, []);
     
     if (lastPlayedData) {
         var lastPlayed = lastPlayedData.data;
@@ -43,9 +43,9 @@ const CarouselGrid = () => {
         var latestTracks = recommendedTracksData.data;
     }
 
-    const { playlists } = useSelector((state) => state.playlistsPageData)
-    if (playlists) {
-        var myPlaylists = playlists?.data;
+    // const { playlists } = useSelector((state) => state.playlistsPageData)
+    if (playlistsData) {
+        var myPlaylists = playlistsData?.data;
 
        var createdPlaylists = myPlaylists?.filter(
             (playlist) => playlist.creator.name == userData.name
