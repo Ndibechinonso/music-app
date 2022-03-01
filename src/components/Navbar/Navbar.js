@@ -16,7 +16,6 @@ import deezifylogo from "../../Assets/deezifylogo.png";
   const [copied, setCopied] = useState(false);
 
   const currentURL = window.location.href;
-
   const pageClickEvent = () => {
     setNavlink(false);
     setAboutlink(false);
