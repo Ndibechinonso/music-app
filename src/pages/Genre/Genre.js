@@ -41,9 +41,9 @@ const Genres = (props) => {
                             return (
                                 <div key={genre.id + nanoid()}>
                                     <div data-aos="fade-up" className="artistImgContainer">
-                                        <img src={genre.picture_xl} alt="" />
+                                        <img src={genre.picture_small} alt="" />
                                         <div className="albumCover">
-                                            <img src={genre.picture_xl} alt="" />
+                                            <img src={genre.picture_small} alt="" />
                                             <div className="albumName">{genre.name} </div>
                                         </div>
                                     </div>
@@ -72,7 +72,7 @@ const Genres = (props) => {
                                     <div data-aos="fade-up" className="artistImgContainer">
                                         <img src={chart.album.cover_xl} alt="" />
                                         <div className="albumCover">
-                                            <img src={chart.artist.picture_xl} alt="" />
+                                            <img src={chart.artist.picture_small} alt="" />
                                             <div className="albumName">{chart.artist.name} </div>
                                         </div>
                                     </div>

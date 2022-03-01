@@ -283,7 +283,7 @@ const LoggedInNav = (props) => {
         </ul>
         <div className="dropdownDiv">
           {userData ? (
-            <img src={userData.picture_xl} className="user userImg" alt="" onClick={accountDrop}/>
+            <img src={userData.picture_small} className="user userImg" alt="" onClick={accountDrop}/>
           ) : <i className="uil uil-user-circle"></i>}{" "}
           {/* <li onClick={accountDrop}>
             <img src={dropdown} alt="dropdown icon" className="dropdownIcon" />
@@ -298,7 +298,7 @@ const LoggedInNav = (props) => {
             {userData ? (
               <div className="settings">
                 <img
-                  src={userData.picture_xl}
+                  src={userData.picture_small}
                   className="user userImg"
                   alt=""
                 />
