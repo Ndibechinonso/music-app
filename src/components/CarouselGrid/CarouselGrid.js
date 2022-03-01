@@ -22,6 +22,9 @@ const CarouselGrid = () => {
     const userData = JSON.parse(userDataString)
     const [trackId, setTrackId] = useState(null);
 
+    const {loading, lastPlayedData, recommendedTracksData} = useSelector((state) => state.homePageData)
+
+
     useEffect(() => {
         AOS.init({
             duration: 1000,
@@ -30,9 +33,7 @@ const CarouselGrid = () => {
 
     useEffect(() => {
         dispatch(fetchPlaylistsPageData());
-      }, []);
-
-    const {loading, lastPlayedData, recommendedTracksData} = useSelector((state) => state.homePageData)
+      }, [recommendedTracksData]);
     
     if (lastPlayedData) {
         var lastPlayed = lastPlayedData.data;
