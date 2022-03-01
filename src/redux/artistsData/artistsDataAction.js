@@ -44,7 +44,7 @@ export const fetchArtistsData = () => {
             dispatch(fetchArtistsRequest());
             axios
                 .post(
-                    `${process.env.REACT_APP_BACKEND_URL}artists`,
+                    `${process.env.REACT_APP_BACKEND_URL}users/artistsPage`,
                     requestOptions.body
                 )
 

@@ -6,7 +6,8 @@ import {
 
 const initialState = {
     loading: false,
-    data: [],
+    genreData: {},
+    chartsData: {},
     error: "",
 };
 
@@ -20,13 +21,15 @@ const genresReducer = (state = initialState, action) => {
         case GENRES_DATA_SUCCESS:
             return {
                 loading: false,
-                data: action.payload,
+                genreData: action.payload.genre,
+                chartsData: action.payload.charts,
                 error: "",
             };
         case GENRES_DATA_FAILURE:
             return {
                 loading: false,
-                data: [],
+                genreData: {},
+                chartsData: {},
                 error: action.payload,
             };
 

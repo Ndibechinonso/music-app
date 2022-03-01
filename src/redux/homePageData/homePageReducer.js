@@ -6,7 +6,9 @@ import {
 
 const initialState = {
     loading: false,
-    data: [],
+    recommendedAlbumsData: {},
+    lastPlayedData: {},
+    recommendedTracksData: {},
     error: "",
 };
 
@@ -20,13 +22,17 @@ const homePageReducer = (state = initialState, action) => {
         case HOMEPAGE_DATA_SUCCESS:
             return {
                 loading: false,
-                data: action.payload,
+                recommendedAlbumsData: action.payload.recommendedAlbums,
+                lastPlayedData: action.payload.lastPlayed,
+                recommendedTracksData: action.payload.recommendedTracks,
                 error: "",
             };
         case HOMEPAGE_DATA_FAILURE:
             return {
                 loading: false,
-                data: [],
+                recommendedAlbumsData: {},
+                lastPlayedData: {},
+                recommendedTracksData: {},
                 error: action.payload,
             };
 

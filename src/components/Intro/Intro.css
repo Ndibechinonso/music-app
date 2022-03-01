@@ -5,7 +5,7 @@
   font-family: Arial, Helvetica, sans-serif;
   padding-left: 50px;
   padding-bottom: 120px;
-  margin-top: 40px;
+  margin-top: 100px;
 }
 .introContainer h2 {
   font-size: 65px;
@@ -65,7 +65,7 @@ img {
   right: 0;
   top: 600px;
 }
-/* .mobDiv {
+.mobDiv {
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -84,7 +84,7 @@ img {
 .comingSoon {
   width: 330px;
   margin-bottom: 26px;
-} */
+}
 /* .artistFrame {
   width: 382px;
   margin-top: 65px;
@@ -150,6 +150,16 @@ img {
   }
 
 }
+
+@media only screen and (max-width: 680px){
+  .intro-login-btn{
+    display: none;
+  }
+  .mobDiv{
+    display: flex;
+  }
+}
+
 
 @media screen and (max-width: 570px) {
   .picStack {

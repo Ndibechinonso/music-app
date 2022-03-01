@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./Artists.css";
 import { useSelector, useDispatch } from "react-redux";
-import LoggedInNav from "../LoggedInNav";
+import LoggedInNav from "../../components/LoggedInNav";
 import { nanoid } from "nanoid";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -9,6 +9,7 @@ import { fetchArtistsData } from "../../redux";
 import empty from "../../Assets/empty.png";
 
 const Artists = (props) => {
+    
     useEffect(() => {
         AOS.init({
             duration: 1000,
@@ -21,11 +22,8 @@ const Artists = (props) => {
         dispatch(fetchArtistsData());
     }, []);
 
-    const artistsData = useSelector((state) => state.artistsData.data[0]);
-    const recommendedArtistsData = useSelector(
-        (state) => state.artistsData.data[1]
-    );
-    const loader = useSelector((state) => state.artistsData.loading);
+
+    const {loading, artistsData, recommendedArtistsData} = useSelector((state) => state.artistsData)
 
     if (artistsData) {
         var myArtists = artistsData.data;
@@ -39,7 +37,7 @@ const Artists = (props) => {
             <LoggedInNav />
             <div className="artistsBody">
                 <h2 className="header">My Top Artists</h2>
-                {!loader && myArtists ? (
+                {!loading && myArtists ? (
                     myArtists.length < 1 ? (
                         <div className="emptyDiv">
                             <img src={empty} />{" "}

@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
     homePageData: homePageReducer,
     artistsData: artistsReducer,
     playlistsPageData: playlistsPageReducer,
-    genresData: genresReducer,
+    genresPageData: genresReducer,
     playOnHover: playOnHoverReducer,
 });
 

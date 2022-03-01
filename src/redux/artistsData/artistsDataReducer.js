@@ -6,7 +6,8 @@ import {
 
 const initialState = {
     loading: false,
-    data: [],
+    artistsData: {},
+    recommendedArtistsData: {},
     error: "",
 };
 
@@ -20,13 +21,15 @@ const artistsReducer = (state = initialState, action) => {
         case ARTISTS_DATA_SUCCESS:
             return {
                 loading: false,
-                data: action.payload,
+                artistsData: action.payload.artistsData,
+                recommendedArtistsData: action.payload.recommendedArtistsData,
                 error: "",
             };
         case ARTISTS_DATA_FAILURE:
             return {
                 loading: false,
-                data: [],
+                artistsData: {},
+                recommendedArtistsData: {},
                 error: action.payload,
             };
         // case 'FETCH_DATA': return {

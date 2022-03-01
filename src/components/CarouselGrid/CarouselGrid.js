@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import SecondCarousel from "../SecondCarousel";
 import "./CarouselGrid.css";
+import { fetchPlaylistsPageData } from "../../redux";
 import { nanoid } from "nanoid";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
@@ -13,48 +14,48 @@ import axios from "axios";
 import empty from "../../Assets/empty.png";
 
 const CarouselGrid = () => {
+    const dispatch = useDispatch();
+
+    const accessToken = localStorage.getItem("token");
+    const id = localStorage.getItem("userId");
+    let userDataString =localStorage.getItem("userData")
+    const userData = JSON.parse(userDataString)
+    const [trackId, setTrackId] = useState(null);
+
     useEffect(() => {
         AOS.init({
             duration: 1000,
         });
     });
 
-    const [trackId, setTrackId] = useState(null);
+    useEffect(() => {
+        dispatch(fetchPlaylistsPageData());
+      }, []);
 
-    const fetchedLastPlayed = useSelector((state) => state.homePageData.data[1]);
-    const loader = useSelector((state) => state.homePageData.loading);
+    const {loading, lastPlayedData, recommendedTracksData} = useSelector((state) => state.homePageData)
     
-    if (fetchedLastPlayed) {
-        var lastPlayed = fetchedLastPlayed.data;
+    if (lastPlayedData) {
+        var lastPlayed = lastPlayedData.data;
     }
 
-    const fetchedRecommendedReleaseData = useSelector(
-        (state) => state.homePageData.data[2]
-    );
-
-    if (fetchedRecommendedReleaseData) {
-        var latestTracks = fetchedRecommendedReleaseData.data;
+    if (recommendedTracksData) {
+        var latestTracks = recommendedTracksData.data;
     }
 
-    const userData = useSelector((state) => state.userData.data[0]);
-    const playlistsData = useSelector((state) => state.playlistsPageData.data[0]);
-    if (playlistsData) {
-        var myPlaylists = playlistsData.data;
-    }
+    const { playlists } = useSelector((state) => state.playlistsPageData)
+    if (playlists) {
+        var myPlaylists = playlists?.data;
 
-    if (playlistsData) {
-        var createdPlaylists = myPlaylists.filter(
+       var createdPlaylists = myPlaylists?.filter(
             (playlist) => playlist.creator.name == userData.name
         );
+
     }
 
-    const accessToken = localStorage.getItem("token");
-    const id = localStorage.getItem("userId");
-    
     const addTrack = (playlistId, trackId) => {
         if (trackId) {
             axios
-                .post(`${process.env.REACT_APP_BACKEND_URL}addTrack`, {
+                .post(`${process.env.REACT_APP_BACKEND_URL}users/addPlaylistTrack`, {
                     playlistId,
                     trackId,
                     accessToken,
@@ -68,10 +69,10 @@ const CarouselGrid = () => {
         }
     };
 
-    function addFavTrack(trackId) {
+    const addFavTrack = (trackId) => {
         if (trackId) {
             axios
-                .post("http://localhost:5000/addFavTrack", {
+                .post("http://localhost:5000/users/addFavTrack", {
                     trackId,
                     id,
                     accessToken,
@@ -89,7 +90,7 @@ const CarouselGrid = () => {
         <div className="carouselGridContainer">
             <div className="artistsBody">
                 <h2 className="lastPlayedheader">Last played songs</h2>
-                {!loader && lastPlayed ? (
+                {!loading && lastPlayed ? (
                     lastPlayed.length < 5 ? (
                         <div className="emptyDiv">
                             <img src={empty} alt='no file'/>{" "} 
@@ -112,7 +113,7 @@ const CarouselGrid = () => {
                             className="test"
                         >
                             <SecondCarousel show={5}>
-                                {lastPlayed.map((data) => {
+                                {lastPlayed?.map((data) => {
                                     return (
                                         <div
                                             key={data.artist.id + nanoid()}
@@ -212,7 +213,7 @@ const CarouselGrid = () => {
                             <IoHeartOutline className="watchlist" />
                             <span>Add to favourite</span>
                         </MenuItem>
-                        {playlistsData
+                        {createdPlaylists
                             ? createdPlaylists.map((playListMenu) => {
                                 return (
                                     <MenuItem
@@ -228,7 +229,8 @@ const CarouselGrid = () => {
                     </ContextMenu>
                 </div>
             </div>
-        </div>
+       
+        </div> 
     );
 };
 

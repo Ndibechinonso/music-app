@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "./HomePage.css";
-import LoggedInNav from "../LoggedInNav";
+import LoggedInNav from "../../components/LoggedInNav";
 import { useSelector, useDispatch } from "react-redux";
 import { nanoid } from "nanoid";
-import CustomisedCarousel from "../CustomisedCarousel";
-import CarouselGrid from "../CarouselGrid/CarouselGrid";
+import CustomisedCarousel from "../../components/CustomisedCarousel";
+import CarouselGrid from "../../components/CarouselGrid/CarouselGrid";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
-import { fetchHomeData, fetchPlaylistsPageData } from "../../redux";
+import { fetchHomeData } from "../../redux";
 import Iframe from "react-iframe";
 
 const HomePage = (props) => {
@@ -49,17 +49,10 @@ const HomePage = (props) => {
         dispatch(fetchHomeData(savedToken, savedUserId));
     }, []);
 
-    useEffect(() => {
-        dispatch(fetchPlaylistsPageData());
-    }, []);
+    const {recommendedAlbumsData} = useSelector((state) => state.homePageData)
 
-    const homePageData = useSelector((state) => state.homePageData.data);
-    const fetchedRecommendedData = useSelector(
-        (state) => state.homePageData.data[0]
-    );
-
-    if (fetchedRecommendedData) {
-        var recommendedAlbums = fetchedRecommendedData.data;
+    if (recommendedAlbumsData) {
+        var recommendedAlbums = recommendedAlbumsData.data;
     }
 
     return (

@@ -44,13 +44,13 @@ export const fetchGenresData = () => {
             dispatch(fetchGenresRequest());
             axios
                 .post(
-                    `${process.env.REACT_APP_BACKEND_URL}genres`,
+                    `${process.env.REACT_APP_BACKEND_URL}users/genrePage`,
                     requestOptions.body
                 )
 
                 .then((response) => {
-                    const genresData = response.data;
-                    dispatch(fetchGenresSuccess(genresData));
+                    const genrePageData = response.data;
+                    dispatch(fetchGenresSuccess(genrePageData));
                 })
                 .catch((error) => {
                     const errorMsg = error.message;

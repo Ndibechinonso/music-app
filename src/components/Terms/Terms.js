@@ -2,7 +2,7 @@ import React from "react";
 import LoggedInNav from "../LoggedInNav";
 import "./Terms.css";
 
-export default function Terms(props) {
+const Terms = (props) => {
   return (
     <div>
       <LoggedInNav />
@@ -18,3 +18,5 @@ export default function Terms(props) {
     </div>
   );
 }
+
+export default Terms

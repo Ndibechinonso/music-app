@@ -9,7 +9,7 @@ import FadeInAnimation from "../FadeInAnimation";
 import comingSoon from "../../Assets/comingSoon.png";
 import mobFrame from "../../Assets/mobFrame.png";
 
-export default function Intro(props) {
+ const Intro = (props) => {
     return (
         <div>
             <div className="introContainer">
@@ -26,7 +26,7 @@ export default function Intro(props) {
                     </FadeInAnimation>
                     <FadeInAnimation direction="right" delay={2}>
                         {" "}
-                        <div>
+                        <div className="intro-login-btn">
                             <a href="https://connect.deezer.com/oauth/auth.php?app_id=475622&redirect_uri=https://do-re-me.netlify.app/dataload&perms=basic_access,email,manage_library,delete_library,listening_history">
                                 <Button className="introButton" text="Continue with Deezify" />
                             </a>
@@ -46,7 +46,7 @@ export default function Intro(props) {
                 <img className="rightCircle" src={circleG2} alt="" />
             </div>
 
-            {/* <div className="mobDiv">
+            <div className="mobDiv">
                 <div className="comingSoon">
                     <img src={comingSoon} alt="" />
                 </div>
@@ -61,7 +61,9 @@ export default function Intro(props) {
                 <div className="artistFrame">
                     <img src={mobFrame} alt="" />
                 </div>
-            </div> */}
+            </div>
         </div>
     );
 }
+
+export default Intro

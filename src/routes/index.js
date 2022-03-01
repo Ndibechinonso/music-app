@@ -1,12 +1,12 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import LoginPage from "../components/LoginPage/LoginPage";
-import HomePage from "../components/HomePage/HomePage";
+import LoginPage from "../pages/LoginPage/LoginPage";
+import HomePage from "../pages/HomePage/HomePage";
 import Terms from "../components/Terms/Terms";
-import Artists from "../components/Artists/Artists";
+import Artists from "../pages/Artists/Artists";
 import DataLoad from "../components/DataLoad/DataLoad";
-import Genre from "../components/Genre/Genre";
-import Playlists from "../components/Playlists/Playlists";
+import Genre from "../pages/Genre/Genre";
+import Playlists from "../pages/Playlists/Playlists";
 
 const Routes = () => (
   <BrowserRouter>

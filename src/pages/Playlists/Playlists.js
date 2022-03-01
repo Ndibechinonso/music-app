@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./Playlists.css";
+import "./Playlists.scss";
 import { useSelector, useDispatch } from "react-redux";
-import LoggedInNav from "../LoggedInNav";
+import LoggedInNav from "../../components/LoggedInNav";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Modal from "../Modal/Modal";
+import Modal from "../../components/Modal/Modal";
 import axios from "axios";
 import { fetchPlaylist } from "../../redux";
 import play from "../../Assets/play.png";
@@ -12,44 +13,31 @@ import stop from "../../Assets/stop.png";
 import playlistLogo from "../../Assets/playlistLogo.png";
 import cancelButton from "../../Assets/cancelButton.png";
 import deleteButton from "../../Assets/deleteButton.png";
-import PlaylistModalButtons from "../PlaylistModalButtons/PlaylistModalButtons";
-import "./Playlists.scss";
+import PlaylistModalButtons from "../../components/PlaylistModalButtons/PlaylistModalButtons";
 import { fetchPlaylistsPageData } from "../../redux";
-import Button from "../Button/Button";
+import Button from "../../components/Button/Button";
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import "../CarouselGrid/coupon.css";
+import "../../components/CarouselGrid/coupon.css";
 import empty from "../../Assets/empty.png";
 
 const Playlists = (props) => {
+
   const dispatch = useDispatch();
 
   const playOnHover = useSelector((state) => state.playOnHover.play);
-
-  useEffect(() => {
-    dispatch(fetchPlaylistsPageData());
-  }, []);
-
-  const playlistsData = useSelector((state) => state.playlistsPageData.data[0]);
-  const playlistLoader = useSelector(
-    (state) => state.playlistsPageData.loading
-  );
-
-  if (playlistsData) {
-    var myPlaylists = playlistsData.data;
-  }
-
-  const recommendedPlaylistsData = useSelector(
-    (state) => state.playlistsPageData.data[1]
-  );
-  if (recommendedPlaylistsData) {
-    var recommendedPlaylists = recommendedPlaylistsData.data;
-  }
-
+  
+  let userDataString =localStorage.getItem("userData")
+  const userData = JSON.parse(userDataString)
+  const accessToken = localStorage.getItem("token");
+  const id = localStorage.getItem("userId");
+  
+  const {loading, playlists, recommendedPlaylistsData} = useSelector((state) => state.playlistsPageData)
   const playlistData = useSelector((state) => state.playlist.data);
   const loader = useSelector((state) => state.playlist.loading);
+
   const [show, setShow] = useState(false);
   const [select, setSelect] = useState("");
   const [tracklist, settracklist] = useState(null);
@@ -58,7 +46,6 @@ const Playlists = (props) => {
   const [playlistTrackId, setPlaylistTrackId] = useState("");
   const [audioPlaying, setAudioPlaying] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
-  const [playIcon, setPlayIcon] = useState(play);
   const [createPlayListModal, setCreatePlayListModal] = useState(false);
   const [playlistName, setplaylistName] = useState("");
   const [trackTitle, setTrackTitle] = useState(null);
@@ -66,6 +53,18 @@ const Playlists = (props) => {
   const [playlistDelAlert, setPlaylistDelAlert] = useState(false);
   const [playlistCreateAlert, setPlaylistCreateAlert] = useState(false);
   const [textLength, setTextLength] = useState(50);
+
+  useEffect(() => {
+    dispatch(fetchPlaylistsPageData());
+  }, []);
+
+  if (playlists) {
+    var myPlaylists = playlists.data;
+  }
+
+  if (recommendedPlaylistsData) {
+    var recommendedPlaylists = recommendedPlaylistsData.data;
+  }
 
   const playSong = (song) => {
     setAudioPlaying(true);
@@ -88,12 +87,11 @@ const Playlists = (props) => {
     />
   );
 
-  function stopPlay() {
+  const stopPlay = () => {
     setTrackId(null);
     setTrackTitle(null);
     setAudioPlaying(false);
   }
-
 
 useEffect(() => {
   const handleResize = () => {
@@ -113,9 +111,7 @@ return () => {
 []);
 
 const truncate = (str) => {
-    
   return str.length > textLength ? str.substring(0, textLength) + "..." : str;
-
 }
 
   useEffect(() => {
@@ -124,14 +120,11 @@ const truncate = (str) => {
     });
   });
 
-  const accessToken = localStorage.getItem("token");
-  const id = localStorage.getItem("userId");
-
-  function deleteTrack(playlistId, playlistTrackId) {
+  const deleteTrack = (playlistId, playlistTrackId) => {
     if (playlistTrackId) {
       setConfirmDelete(true);
       axios
-        .post(`${process.env.REACT_APP_BACKEND_URL}delete`, {
+        .post(`${process.env.REACT_APP_BACKEND_URL}users/deletePlaylistTrack`, {
           playlistId,
           playlistTrackId,
           accessToken,
@@ -150,16 +143,16 @@ const truncate = (str) => {
     setplaylistName(value);
   };
 
-  function clearPlaylistCreateAlert() {
+  const clearPlaylistCreateAlert = () => {
     setTimeout(() => {
       setPlaylistCreateAlert(false);
     }, 3000);
   }
 
-  function submitPlaylist(e) {
+  const submitPlaylist = (e) => {
     e.preventDefault();
     axios
-      .post(`${process.env.REACT_APP_BACKEND_URL}addPlaylist`, {
+      .post(`${process.env.REACT_APP_BACKEND_URL}users/addPlaylist`, {
         id,
         accessToken,
         playlistName,
@@ -177,12 +170,10 @@ const truncate = (str) => {
       });
   }
 
-  const userData = useSelector((state) => state.userData.data[0]);
-
-  function deletePlaylist() {
-    if (userPlaylist == userData.name) {
+  const deletePlaylist = () => {
+    if (userPlaylist === userData.name) {
       axios
-        .post(`${process.env.REACT_APP_BACKEND_URL}deleteUserPlaylist`, {
+        .post(`${process.env.REACT_APP_BACKEND_URL}users/deletePlaylist`, {
           playlistId,
           accessToken,
         })
@@ -195,7 +186,7 @@ const truncate = (str) => {
         });
     } else {
       axios
-        .post(`${process.env.REACT_APP_BACKEND_URL}deleteOtherPlaylists`, {
+        .post(`${process.env.REACT_APP_BACKEND_URL}users/deleteOtherUsersPlaylist`, {
           playlistId,
           accessToken,
           id,
@@ -209,7 +200,7 @@ const truncate = (str) => {
     }
   }
 
-  function clearPlaylistDelAlert() {
+  const clearPlaylistDelAlert = () => {
     setTimeout(() => {
       setPlaylistDelAlert(false);
     }, 3000);
@@ -230,13 +221,13 @@ const truncate = (str) => {
       <LoggedInNav />
       <div className="artistsBody">
         <div className="header">Playlists</div>
-        {!playlistLoader && myPlaylists ? (
+        {!loading && myPlaylists ? (
           myPlaylists.length < 1 ? (
             <div className="emptyDiv">
-              <img src={empty} />{" "}
+              <img src={empty} alt=''/>{" "}
               <p>
                 oops, seems like you dont have any data available. Click{" "}
-                <a href="https://www.deezer.com/us/" target="_blank">
+                <a href="https://www.deezer.com/us/" target="_blank" rel="noreferrer">
                   here
                 </a>{" "}
                 to go back to deezer and start streaming.
@@ -341,7 +332,7 @@ const truncate = (str) => {
                                 </div>{" "}
                                 <div className="playListModalTittle">
                                   <div className="trackTitle">
-                                    {index + 1 + "." + " "}
+                                    {index + 1 + ". "}
                                     {truncate(track.title)}
                                   </div>{" "}
                                   <div className="modalArtistName">

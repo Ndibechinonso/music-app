@@ -31,7 +31,7 @@ export const fetchHomeData = (code, id) => (dispatch) =>{
         dispatch(fetchHomePageRequest());
         try {
       axios
-        .post(`${process.env.REACT_APP_BACKEND_URL}home`, {
+        .post(`${process.env.REACT_APP_BACKEND_URL}users/homePage`, {
           accessToken: code,
           userId: id,
         })

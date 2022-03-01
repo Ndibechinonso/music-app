@@ -2,7 +2,8 @@ import { TOKEN_REQUEST, TOKEN_SUCCESS, TOKEN_FAILURE } from "./getTokenTypes";
 
 const initialState = {
     loading: false,
-    data: [],
+    tokenData: {},
+    userData: {},
     error: "",
 };
 
@@ -16,13 +17,15 @@ const tokenReducer = (state = initialState, action) => {
         case TOKEN_SUCCESS:
             return {
                 loading: false,
-                data: action.payload,
+                tokenData: action.payload.token,
+                userData: action.payload.userData,
                 error: "",
             };
         case TOKEN_FAILURE:
             return {
                 loading: false,
-                data: [],
+                tokenData: {},
+                userData: {},
                 error: action.payload,
             };
 

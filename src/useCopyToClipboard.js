@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import copy from "copy-to-clipboard";
 
-export default function useCopyToClipboard(resetInterval = null) {
+const useCopyToClipboard = (resetInterval = null) => {
   const [isCopied, setCopied] = useState(false);
 
   const handleCopy = React.useCallback((text) => {
@@ -21,3 +21,5 @@ export default function useCopyToClipboard(resetInterval = null) {
 
   return [isCopied, handleCopy];
 }
+
+export default useCopyToClipboard

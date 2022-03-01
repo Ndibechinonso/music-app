@@ -1,6 +1,6 @@
 import React from "react";
-import Navbar from "../Navbar/Navbar";
-import Intro from "../Intro/Intro";
+import Navbar from "../../components/Navbar/Navbar";
+import Intro from "../../components/Intro/Intro";
 import "./LoginPage.css";
 
 const LoginPage = (props) => {

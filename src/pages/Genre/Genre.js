@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./Genre.css";
 import { useSelector, useDispatch } from "react-redux";
-import LoggedInNav from "../LoggedInNav";
+import LoggedInNav from "../../components/LoggedInNav";
 import { nanoid } from "nanoid";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -20,9 +20,8 @@ const Genres = (props) => {
         });
     });
 
-    const genreData = useSelector((state) => state.genresData.data[0]);
-    const chartsData = useSelector((state) => state.genresData.data[1]);
-
+    const {genreData, chartsData} = useSelector((state)=> state.genresPageData)
+    
     if (genreData) {
         var genres = genreData.data;
     }

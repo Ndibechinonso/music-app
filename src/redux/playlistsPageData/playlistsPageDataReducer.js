@@ -6,7 +6,8 @@ import {
 
 const initialState = {
     loading: false,
-    data: [],
+    playlists: {},
+    recommendedPlaylistsData: {},
     error: "",
 };
 
@@ -20,13 +21,15 @@ const playlistsPageReducer = (state = initialState, action) => {
         case PLAYLISTS_DATA_SUCCESS:
             return {
                 loading: false,
-                data: action.payload,
+                playlists: action.payload.playlistsData,
+                recommendedPlaylistsData: action.payload.recommendedPlaylistsData,
                 error: "",
             };
         case PLAYLISTS_DATA_FAILURE:
             return {
                 loading: false,
-                data: [],
+                playlists: {},
+                recommendedPlaylistsData: {},
                 error: action.payload,
             };
 

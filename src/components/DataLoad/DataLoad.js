@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import "./DataLoad.css";
@@ -8,28 +8,22 @@ import DotRing from "../DotRing/DotRing";
 import { MouseContext } from "../../context/mouse-context";
 
 const DataLoad = (props) => {
-  const { cursorChangeHandler } = useContext(MouseContext);
-  const loader = useSelector((state) => state.userToken.loading);
-  const accessToken = useSelector((state) => state.userToken.data[0]);
-  const userData = useSelector((state) => state.userToken.data[1]);
-  const userDataId = useSelector((state) => state.userToken.data[2]);
-
-
-  
-
   const dispatch = useDispatch();
+  const location = useLocation();
+
+  const { cursorChangeHandler } = useContext(MouseContext);
+
   useEffect(() => {
-    localStorage.removeItem("token")
     const searchParams = new URLSearchParams(location.search);
     const code = searchParams.get("code");
-
     dispatch(fetchToken(code));
   }, []);
 
-  localStorage.setItem("token", accessToken);
-  localStorage.setItem("userId", userDataId);
+   const {loading , tokenData : {access_token}, userData, userData: {id}} = useSelector((state) => state.userToken)
 
-  const location = useLocation();
+  localStorage.setItem("token", access_token);
+  localStorage.setItem("userData", JSON.stringify(userData))
+  localStorage.setItem("userId", id);
 
   return (
     <div>
@@ -40,9 +34,9 @@ const DataLoad = (props) => {
       >
         <div className="playDiv">
           {" "}
-          {loader ? (
+          {loading ? (
             <div className="playCircle">
-              <div class="lds-circle">
+              <div className="lds-circle">
                 <div></div>
               </div>
             </div>

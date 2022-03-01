@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import './LoggedInNav.css'
-import dropdown from "../../Assets/dropdown.png";
 import icon from "../../Assets/icon.png";
 import icon2 from "../../Assets/icon2.png";
 import icon3 from "../../Assets/icon3.png";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import Modal from "../Modal/Modal";
 import { useFormik } from "formik";
 import cancelButton from "../../Assets/cancelButton.png";
@@ -16,11 +15,23 @@ import deezifylogo from "../../Assets/deezifylogo.png";
 import autoplayoff from "../../Assets/autoplayoff.png";
 import autoplayon from "../../Assets/autoplayon.png";
 import feedback from "../../Assets/feedback.png";
-import { NavLink } from "react-router-dom";
-import { fetchUsers, fetchPlayState, fetchStopState } from "../../redux";
+import { NavLink, useHistory } from "react-router-dom";
+
+import { fetchPlayState, fetchStopState } from "../../redux";
 import { debounce } from "../../utilities/helpers";
 
-function LoggedInNav(props) {
+const LoggedInNav = (props) => {
+  let history = useHistory();
+  const dispatch = useDispatch();
+
+  let userDataString =localStorage.getItem("userData")
+  const userData = JSON.parse(userDataString)
+
+  const [show, setShow] = useState(false);
+  const [accountlink, setaccountlink] = useState(false);
+  const [autoPlay, setAutoPlay] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
 
@@ -47,27 +58,30 @@ function LoggedInNav(props) {
     transition: "top 0.6s",
   };
 
-  const savedToken = localStorage.getItem("token");
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchUsers(savedToken));
-  }, []);
-
-  const userData = useSelector((state) => state.userData.data[0]);
-  const [show, setShow] = useState(false);
-  const [accountlink, setaccountlink] = useState(false);
-  const [autoPlay, setAutoPlay] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-
-  function accountDrop() {
+  const accountDrop = () => {
     setaccountlink(true);
   }
 
-  function pageClickEvent() {
+  const pageClickEvent = () => {
     setaccountlink(false);
   }
+
+  const logout = () =>{
+    localStorage.removeItem("token")
+    localStorage.removeItem("userId")
+    localStorage.removeItem("userData")
+    history.push('/')
+  }
+
+  useEffect(() => {
+    const handleResize = () => {
+      if(window.innerWidth < 681){
+        logout()
+      }
+}
+    window.addEventListener('resize', handleResize)
+  })
+
 
   useEffect(() => {
     if (accountlink) {
@@ -331,11 +345,11 @@ function LoggedInNav(props) {
                 )}{" "}
               </div>{" "}
             </div>
-            <Link to="/">
-              <div className="settings">
+            {/* <Link to="/"> */}
+              <div className="settings" onClick={logout}>
                 <img src={icon3} className="user" alt="logout icon" /> Log out
               </div>
-            </Link>
+            {/* </Link> */}
           </div>
         </div>
       ) : null}

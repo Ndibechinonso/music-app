@@ -44,7 +44,7 @@ export const fetchPlaylistsPageData = () => {
             dispatch(fetchPlaylistsRequest());
             axios
                 .post(
-                    `${process.env.REACT_APP_BACKEND_URL}playlists`,
+                    `${process.env.REACT_APP_BACKEND_URL}users/playlistPage`,
                     requestOptions.body
                 )
 
