@@ -24,7 +24,7 @@
     "react-redux": "^7.2.4",
     "react-responsive-carousel": "^3.2.18",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^5.0.0",
+    "react-scripts": "4.0.3",
     "react-share": "^4.4.0",
     "react-share-social": "^0.1.45",
     "react-sound": "^1.2.0",
