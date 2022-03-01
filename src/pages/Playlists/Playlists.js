@@ -222,7 +222,7 @@ const truncate = (str) => {
       <div className="artistsBody">
         <div className="header">Playlists</div>
         {!loading && myPlaylists ? (
-          myPlaylists.length < 1 ? (
+          myPlaylists?.length < 1 ? (
             <div className="emptyDiv">
               <img src={empty} alt=''/>{" "}
               <p>
@@ -294,7 +294,7 @@ const truncate = (str) => {
                           {!loader ? (
                             <PlaylistModalButtons
                               onClick={() => setCreatePlayListModal(true)}
-                              songCount={`${playlistData.length} songs`}
+                              songCount={`${playlistData?.length} songs`}
                             />
                           ) : null}
                         </div>{" "}
@@ -326,7 +326,7 @@ const truncate = (str) => {
                                   />
                                   <img
                                     className="twndimg"
-                                    src={track.artist.picture_xl}
+                                    src={track.artist.picture_small}
                                     alt=""
                                   />
                                 </div>{" "}
@@ -396,9 +396,9 @@ const truncate = (str) => {
                             dispatch(fetchPlaylist(playlist.tracklist));
                           }}
                         >
-                          <img src={playlist.picture_xl} alt="" />
+                          <img src={playlist.picture_small} alt="" />
                           <div className="albumCover">
-                            <img src={playlist.picture_xl} alt="" />
+                            <img src={playlist.picture_small} alt="" />
                             <div className="albumName">{playlist.title} </div>
                           </div>
                         </div>
@@ -494,9 +494,9 @@ const truncate = (str) => {
               return (
                 <div key={recomplaylist.id}>
                   <div data-aos="fade-up" className="artistImgContainer">
-                    <img src={recomplaylist.picture_xl} alt="" />
+                    <img src={recomplaylist.picture_small} alt="" />
                     <div className="albumCover">
-                      <img src={recomplaylist.picture_xl} alt="" />
+                      <img src={recomplaylist.picture_small} alt="" />
                       <div className="albumName">{recomplaylist.title} </div>
                     </div>
                   </div>

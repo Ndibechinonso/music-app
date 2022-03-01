@@ -37,8 +37,8 @@ const Artists = (props) => {
             <LoggedInNav />
             <div className="artistsBody">
                 <h2 className="header">My Top Artists</h2>
-                {!loading && myArtists ? (
-                    myArtists.length < 1 ? (
+                {!loading && artistsData ? (
+                    myArtists?.length < 1 ? (
                         <div className="emptyDiv">
                             <img src={empty} />{" "}
                             <p>
@@ -51,13 +51,13 @@ const Artists = (props) => {
                         </div>
                     ) : (
                         <div className="topArtistsContainer">
-                            {myArtists.map((artist) => {
+                            {myArtists?.map((artist) => {
                                 return (
                                     <div key={artist.id + nanoid()}>
                                         <div data-aos="fade-up" className="artistImgContainer">
-                                            <img src={artist.picture_xl} alt="" />
+                                            <img src={artist.picture_small} alt="" />
                                             <div className="albumCover">
-                                                <img src={artist.picture_xl} alt="" />
+                                                <img src={artist.picture_small} alt="" />
                                                 <div className="albumName">{artist.name} </div>
                                             </div>
                                         </div>
@@ -86,9 +86,9 @@ const Artists = (props) => {
                             return (
                                 <div key={artist.id + nanoid()}>
                                     <div data-aos="fade-up" className="artistImgContainer">
-                                        <img src={artist.picture_xl} alt="" />
+                                        <img src={artist.picture_small} alt="" />
                                         <div className="albumCover">
-                                            <img src={artist.picture_xl} alt="" />
+                                            <img src={artist.picture_small} alt="" />
                                             <div className="albumName">{artist.name} </div>
                                         </div>
                                     </div>

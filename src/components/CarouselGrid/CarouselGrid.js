@@ -24,16 +24,11 @@ const CarouselGrid = () => {
 
     const {loading, lastPlayedData, recommendedTracksData, playlistsData} = useSelector((state) => state.homePageData)
 
-
     useEffect(() => {
         AOS.init({
             duration: 1000,
         });
     });
-
-    // useEffect(() => {
-    //     dispatch(fetchPlaylistsPageData());
-    //   }, []);
     
     if (lastPlayedData) {
         var lastPlayed = lastPlayedData.data;
@@ -43,7 +38,6 @@ const CarouselGrid = () => {
         var latestTracks = recommendedTracksData.data;
     }
 
-    // const { playlists } = useSelector((state) => state.playlistsPageData)
     if (playlistsData) {
         var myPlaylists = playlistsData?.data;
 
@@ -92,7 +86,7 @@ const CarouselGrid = () => {
             <div className="artistsBody">
                 <h2 className="lastPlayedheader">Last played songs</h2>
                 {!loading && lastPlayed ? (
-                    lastPlayed.length < 5 ? (
+                    lastPlayed?.length < 5 ? (
                         <div className="emptyDiv">
                             <img src={empty} alt='no file'/>{" "} 
                             <p>
@@ -126,7 +120,7 @@ const CarouselGrid = () => {
                                                     {" "}
                                                     <img
                                                         className="roundedImg"
-                                                        src={data.album.cover_xl}
+                                                        src={data.album.cover_small}
                                                         alt="placeholder"
                                                         style={{ width: "100%" }}
                                                     />
@@ -183,7 +177,7 @@ const CarouselGrid = () => {
                                                     {" "}
                                                     <img
                                                         className="roundedImg"
-                                                        src={track.cover_xl}
+                                                        src={track.cover_small}
                                                         alt="placeholder"
                                                         style={{ width: "100%" }}
                                                     />

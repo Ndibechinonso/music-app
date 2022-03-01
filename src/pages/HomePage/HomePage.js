@@ -81,7 +81,7 @@ const HomePage = (props) => {
                                             <div className="newAlbumArtist">{data.artist.name}</div>
                                         </div>
                                         <img
-                                            src={data.cover_xl}
+                                            src={data.cover_small}
                                             alt="placeholder"
                                             style={{ width: "100vw", height: "631px" }}
                                             className="bgPic"
@@ -126,7 +126,7 @@ const HomePage = (props) => {
                                             <div style={{ padding: 8 }}>
                                                 <div className="albumGrid">
                                                     <img
-                                                        src={data.cover_xl}
+                                                        src={data.cover_small}
                                                         alt="placeholder"
                                                         style={{ width: "50%" }}
                                                     />
