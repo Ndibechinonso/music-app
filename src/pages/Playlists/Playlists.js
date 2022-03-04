@@ -195,6 +195,7 @@ const Playlists = (props) => {
                             setSelect(playlist.title);
                             setPlaylistId(playlist.id);
                           }}
+                          title="click frame to preview playlist tracks"
                         >
                           <img src={playlist.picture_small} alt="" />
                           <div className="albumCover">
@@ -243,17 +244,6 @@ const Playlists = (props) => {
             <span className="del">Delete</span>
           </MenuItem>
         </ContextMenu>
-
-        {/* <div className="createPlaylist">
-          <Button
-            text="Create a playlist"
-            className="createPlaylistButton"
-            onClick={() => {
-              setCreatePlayListModal(true);
-              setplaylistName("");
-            }}
-          />
-        </div> */}
         <Modal
           show={createPlayListModal}
           onClose={() => setCreatePlayListModal(false)}
