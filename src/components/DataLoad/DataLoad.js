@@ -19,11 +19,13 @@ const DataLoad = (props) => {
     dispatch(fetchToken(code));
   }, []);
 
-   const {loading , tokenData : {access_token}, userData, userData: {id}} = useSelector((state) => state.userToken)
+   const {loading , tokenData : {access_token, expires}, userData, userData: {id}} = useSelector((state) => state.userToken)
 
   localStorage.setItem("token", access_token);
   localStorage.setItem("userData", JSON.stringify(userData))
   localStorage.setItem("userId", id);
+  localStorage.setItem("expires", expires);
+
 
   return (
     <div>

@@ -8,10 +8,14 @@ import "aos/dist/aos.css";
 import { fetchGenresData } from "../../redux";
 
 const Genres = (props) => {
+
+    const accessToken = localStorage.getItem("token");
+    const id = localStorage.getItem("userId");
+
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchGenresData());
+        dispatch(fetchGenresData(accessToken, id));
     }, []);
 
     useEffect(() => {

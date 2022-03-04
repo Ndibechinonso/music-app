@@ -20,20 +20,21 @@ const fetchDataFailure = (error) => {
   };
 };
 
-export const fetchPlaylist = (url) => {
-  return (dispatch) => {
-    dispatch(fetchDataRequest());
+export const fetchPlaylist = (url) => (dispatch) => {
+  dispatch(fetchDataRequest())
+  try {
     axios
       .post(`${process.env.REACT_APP_BACKEND_URL}users/playlist`, {
         tracklist: url,
       })
       .then((response) => {
-        const playlist = response.data;
-        dispatch(fetchDataSuccess(playlist.data));
+        const playlist = response.data
+        dispatch(fetchDataSuccess(playlist.data))
       })
       .catch((error) => {
-        const errorMsg = error.message;
-        dispatch(fetchDataFailure(errorMsg));
-      });
-  };
+        dispatch(fetchDataFailure(error.code))
+      })
+  } catch (error) {
+    dispatch(fetchDataFailure(error))
+  }
 };

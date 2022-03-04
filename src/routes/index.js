@@ -7,6 +7,7 @@ import Artists from "../pages/Artists/Artists";
 import DataLoad from "../components/DataLoad/DataLoad";
 import Genre from "../pages/Genre/Genre";
 import Playlists from "../pages/Playlists/Playlists";
+import Playlist from "../pages/Playlist/Playlist";
 
 const Routes = () => (
   <BrowserRouter>
@@ -18,7 +19,8 @@ const Routes = () => (
       <Route exact path="/artists" component={Artists} />
       <Route exact path="/" component={LoginPage} />
       <Route path="/playlists" component={Playlists} />
-      <Route exact path="*" component={() => <div>Page No Found</div>} />
+      <Route path="/playlist/:id" component={Playlist} />
+      <Route exact path="*" component={() => <div>Page Not Found</div>} />
     </Switch>
   </BrowserRouter>
 );

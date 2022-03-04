@@ -46,16 +46,16 @@
   margin-bottom: 30px;
 }
 .carouselGridContainer {
-  margin-top: 131px;
+  /* margin-top: 131px; */
 }
 .requesFailed {
   color: #fff;
   text-align: center;
 }
-.latestTracksBody {
+/* .latestTracksBody {
   margin-left: 5%;
   margin-top: 100px;
-}
+} */
 .test {
   height: 450px;
   display: flex;
@@ -104,7 +104,7 @@
 background-color: rgba(0,0,0,0.5);}
 
   .artistsBody{
-    margin-top: 200px;
+    margin-top: 100px;
   }
 
   @media only screen and (max-width: 986px) {
@@ -133,8 +133,7 @@ background-color: rgba(0,0,0,0.5);}
     .lastPlayedheader{
       font-size: 16px;
     }
- 
-    .latestTracksBody {
+    /* .latestTracksBody {
       margin-top: 10px;
-    }
+    } */
   }

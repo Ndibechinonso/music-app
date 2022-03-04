@@ -1,87 +1,7 @@
-.fixedModalBar {
-  position: sticky;
-  top: 0;
-  max-width: 1086px;
-  width: 100%;
-  background: #000000;
-  margin-bottom: 50px;
-}
-.playlistModal-body {
-  border: 1px solid transparent;
-  background: #353538;
-  border-radius: 10px;
-  max-width: 872px;
-  width: 100%;
-  align-self: center;
-  margin-bottom: 21px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  font-family: "Open Sans", sans-serif;
-}
-.modalListDiv {
-  display: flex;
-  flex-direction: row;
-  margin-left: 22px;
-  margin-right: 62px;
-}
-.playlistPlayDiv {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  justify-self: flex-end;
-  margin-right: 24px;
 
-  align-self: center;
-}
-.playListModalTittle {
-  align-self: center;
-  margin-right: auto;
-  justify-items: flex-start;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  max-width: 420px;
-}
-img {
-  width: 100%;
-  object-fit: contain;
-}
-.deleteImg {
-  max-width: 20px;
-  margin-right: 49px;
-}
-.twndimg {
-  max-width: 60px;
-}
-.trackTitle {
-  font-size: 20px;
-  font-family: "Open Sans", sans-serif;
-}
-.modalArtistName {
-  font-size: 16px;
-  font-weight: 400;
-  font-family: "Open Sans", sans-serif;
-}
-.playStopDiv {
-  margin-right: 33.67px;
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-}
-.playImg {
-  max-width: 20px;
-}
-.stopImg {
-  max-width: 20px;
-}
-.playlistLogoImg {
-  max-width: 20px;
-  margin-left: 10px;
-}
 .playlistModal-createDiv {
   margin-top: 30px;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
   margin-left: 111px;
 }
 .playlistTrackTittle {
@@ -98,8 +18,6 @@ img {
   display: flex;
   flex-direction: column;
   align-content: center;
-  padding-left: 5%;
-  padding-right: 5%;
 }
 .playlistModal-title {
   color: white;
@@ -109,64 +27,10 @@ img {
   font-size: 20px;
   top: 288px;
 }
-.closeImg {
-  width: 38px;
-}
-.closeBtn {
-  margin-right: 56px;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-}
-.closeContainer {
-  width: 38px;
-}
-.childrenContainer:hover,
-.closeContainer:hover {
+.childrenContainer:hover {
   cursor: pointer;
 }
-/* .spinnerContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-.lds-facebook {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
-}
-.lds-facebook div {
-  display: inline-block;
-  position: absolute;
-  left: 8px;
-  width: 16px;
-  background: #fff;
-  animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
-}
-.lds-facebook div:nth-child(1) {
-  left: 8px;
-  animation-delay: -0.24s;
-}
-.lds-facebook div:nth-child(2) {
-  left: 32px;
-  animation-delay: -0.12s;
-}
-.lds-facebook div:nth-child(3) {
-  left: 56px;
-  animation-delay: 0;
-}
-@keyframes lds-facebook {
-  0% {
-    top: 8px;
-    height: 64px;
-  }
-  50%,
-  100% {
-    top: 24px;
-    height: 32px;
-  }
-} */
+
 .secondHeader {
   margin-top: 110px;
   margin-bottom: 40px;
@@ -241,17 +105,11 @@ img {
   gap: 120px;
   justify-content: center;
 }
-/* .spinnerContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-} */
 .spinnerModal {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
-
 .header{
   font-size: 32px;
 }
@@ -259,7 +117,6 @@ img {
 @media only screen and (max-width: 1100px) {
   .topArtistsContainer {
     grid-template-columns: 300px 150px;
-
   }
 }
 @media only screen and (max-width: 680px) {
@@ -268,45 +125,12 @@ img {
   }
   .topArtistsContainer {
     grid-template-columns: 200px 150px;
-
-
   }
-  .createPlaylistButton {
-    padding: 10px 30px;
-
-  }
-  .deleteImg {
-    margin-right: 20px;
-  }
-  .modalListDiv {
-  
-    margin-left: 10px;
-    margin-right: 20px;
-}
-.closeImg {
-  width: 20px;
-}
-.closeBtn {
-  margin-right: 10px;
-}
 .playlistModal-title {
-
   font-size: 16px;
-
-}
-.trackTitle {
-  font-size: 14px;
-}
-.modalArtistName {
-  font-size: 12px;
 }
 .playlistModal-createDiv {
-
   margin-left: 5%;
-}
-.fixedModalBar {
-
-  margin-bottom: 20px;
 }
 .loading span{
   font-size: 12px;
@@ -318,11 +142,7 @@ img {
 .lds-facebook div {
   width: 8px;
 }
-
 }
-
-
-
 @media only screen and (max-width: 490px) {
   .topArtistsContainer {
     grid-template-columns: 250px;
@@ -331,11 +151,6 @@ img {
   .header{
     font-size: 20px;
   }
-  .twndimg {
-    display: none; 
-   }
-
-  
 }
 @media only screen and (max-width: 350px) {
   .artistsBody {

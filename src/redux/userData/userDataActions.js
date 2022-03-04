@@ -27,20 +27,18 @@ const fetchUserFailure = (error) => {
 };
 
 export const fetchUsers = (code) => (dispatch) => {
-  dispatch(fetchUserRequest());
+  dispatch(fetchUserRequest())
   try {
     axios
       .post(`${process.env.REACT_APP_BACKEND_URL}navbar`, { code: code })
 
       .then((response) => {
-        const users = response.data;
-        dispatch(fetchUserSuccess(users));
+        dispatch(fetchUserSuccess(response.data))
       })
       .catch((error) => {
-        const errorMsg = error.message;
-        dispatch(fetchUserFailure(errorMsg));
-      });
+        dispatch(fetchUserFailure(error.code))
+      })
   } catch (error) {
-    dispatch(fetchUserFailure(error));
+    dispatch(fetchUserFailure(error))
   }
 };

@@ -15,7 +15,6 @@ import Iframe from "react-iframe";
 const HomePage = (props) => {
     const [frameUrl, setFrameUrl] = useState(null);
     const [noOfAlbumDisplay, setNoOfAlbumDisplay] = useState(3)
-
     var framelink = `https://widget.deezer.com/widget/dark/album/${frameUrl}?app_id=457142&autoplay=false&radius=true&tracklist=true`;
 
     useEffect(() => {
@@ -33,9 +32,7 @@ const HomePage = (props) => {
             setNoOfAlbumDisplay((noOfAlbumDisplay) => noOfAlbumDisplay = 3)  
         }
     }
-    
     window.addEventListener('resize', handleResize);
-
     return () => {
         window.removeEventListener('resize', handleResize)
     }},
@@ -43,9 +40,7 @@ const HomePage = (props) => {
 
     const savedToken = localStorage.getItem("token");
     const savedUserId = localStorage.getItem("userId");
-
     const {recommendedAlbumsData} = useSelector((state) => state.homePageData)
-
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -91,7 +86,7 @@ const HomePage = (props) => {
                             );
                         })
                     ) : (
-                        <div className="spinnerContainer">
+                        <div className="spinnerContainer" style={{marginTop: "200px"}}>
                             {" "}
                             <div className="lds-facebook">
                                 <div></div>
@@ -101,8 +96,6 @@ const HomePage = (props) => {
                         </div>
                     )}
                 </Carousel>
-
-                {/* <div className="carouselContainer"> */}
                     <div
                         className="recommendedAlbumsContainer"
                         style={{
@@ -118,7 +111,6 @@ const HomePage = (props) => {
                                     return (
                                         <div
                                             key={data.artist.id + nanoid()}
-                                            // data-aos="fade-left"
                                             className="slideDiv"
                                             onClick={() => setFrameUrl(data.id)}
                                             title="click frame to preview album tracks"
@@ -136,25 +128,12 @@ const HomePage = (props) => {
                                         </div>
                                     );
                                 })
-                            ) : (
-                                <div className="spinnerContainer">
-                                    {" "}
-                                    <div className="lds-facebook">
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
-                                    </div>{" "}
-                                </div>
-                            )}
+                            ) : null}
                         </CustomisedCarousel>
                     </div>
-                {/* </div> */}
             </div>
-
-            {frameUrl ? (
                 <div className="albumFrame">
-                    {" "}
-                    <Iframe
+                {frameUrl ?  <Iframe
                         url={framelink}
                         width="450px"
                         height="300px"
@@ -162,13 +141,12 @@ const HomePage = (props) => {
                         className="myClassname"
                         display="initial"
                         position="relative"
-                    />
+                    /> : null}
                 </div>
-            ) : null}
-
+            ) 
             <CarouselGrid />
         </div>
-    );
+    )
 };
 
 export default HomePage;

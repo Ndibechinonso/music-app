@@ -5,13 +5,13 @@ import "./PlaylistModalButtons.css";
 const PlaylistModalButtons = (props) => {
     return (
         <div className="playlistModalButtonsDiv">
-            <div className="createPlaylistDiv">
+            {/* <div className="createPlaylistDiv">
                 <Button
                     text="Create playlist"
                     className="createPlaylistClass"
                     onClick={props.onClick}
                 />
-            </div>{" "}
+            </div>{" "} */}
             <div>
                 <button className="numberCountClass" disabled>
                     {props.songCount}
