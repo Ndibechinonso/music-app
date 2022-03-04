@@ -7,136 +7,57 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Modal from "../../components/Modal/Modal";
 import axios from "axios";
-import { fetchPlaylist } from "../../redux";
-import play from "../../Assets/play.png";
-import stop from "../../Assets/stop.png";
-import playlistLogo from "../../Assets/playlistLogo.png";
 import cancelButton from "../../Assets/cancelButton.png";
-import deleteButton from "../../Assets/deleteButton.png";
-import PlaylistModalButtons from "../../components/PlaylistModalButtons/PlaylistModalButtons";
 import { fetchPlaylistsPageData } from "../../redux";
 import Button from "../../components/Button/Button";
-import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import "../../components/CarouselGrid/coupon.css";
 import empty from "../../Assets/empty.png";
+import { useHistory } from "react-router-dom";
 
 const Playlists = (props) => {
 
-  const dispatch = useDispatch();
-
-  const playOnHover = useSelector((state) => state.playOnHover.play);
-  
-  let userDataString =localStorage.getItem("userData")
-  const userData = JSON.parse(userDataString)
   const accessToken = localStorage.getItem("token");
   const id = localStorage.getItem("userId");
-  
-  const {loading, playlists, recommendedPlaylistsData} = useSelector((state) => state.playlistsPageData)
-  const playlistData = useSelector((state) => state.playlist.data);
-  const loader = useSelector((state) => state.playlist.loading);
 
-  const [show, setShow] = useState(false);
+  useEffect(() => {
+    dispatch(fetchPlaylistsPageData(accessToken, id));
+  }, []);
+
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  let userDataString = localStorage.getItem("userData");
+  const userData = JSON.parse(userDataString);
+  const { loading, playlists, recommendedPlaylistsData } = useSelector(
+    (state) => state.playlistsPageData
+  );
   const [select, setSelect] = useState("");
-  const [tracklist, settracklist] = useState(null);
-  const [trackId, setTrackId] = useState(null);
   const [playlistId, setPlaylistId] = useState("");
-  const [playlistTrackId, setPlaylistTrackId] = useState("");
-  const [audioPlaying, setAudioPlaying] = useState(false);
-  const [confirmDelete, setConfirmDelete] = useState(false);
   const [createPlayListModal, setCreatePlayListModal] = useState(false);
   const [playlistName, setplaylistName] = useState("");
-  const [trackTitle, setTrackTitle] = useState(null);
   const [userPlaylist, setUserPlaylist] = useState(null);
   const [playlistDelAlert, setPlaylistDelAlert] = useState(false);
   const [playlistCreateAlert, setPlaylistCreateAlert] = useState(false);
-  const [textLength, setTextLength] = useState(50);
+  const [myPlaylists, setMyPlaylists] = useState([]);
 
   useEffect(() => {
-    dispatch(fetchPlaylistsPageData());
-  }, []);
-
-  if (playlists) {
-    var myPlaylists = playlists.data;
-  }
+    if (playlists) {
+      setMyPlaylists(playlists.data);
+    }
+  }, [playlists]);
 
   if (recommendedPlaylistsData) {
     var recommendedPlaylists = recommendedPlaylistsData.data;
   }
 
-  const playSong = (song) => {
-    setAudioPlaying(true);
-    setTrackId(song);
-  };
-
-  const autoPlaySong = (song) => {
-    if (playOnHover) {
-      setAudioPlaying(true);
-      setTrackId(song);
-    } 
-  };
-
-  const player = () => (
-    <AudioPlayer
-      autoPlay
-      src={trackId}
-      // onPlay={(e) => setPlaying(true)}
-      onEnded={(e) => setAudioPlaying(false)}
-    />
-  );
-
-  const stopPlay = () => {
-    setTrackId(null);
-    setTrackTitle(null);
-    setAudioPlaying(false);
-  }
-
-useEffect(() => {
-  const handleResize = () => {
-  if (window.innerWidth < 620){
-    setTextLength(10)  
-  }
-  else{
-    setTextLength(50)  
-  }
-}
-
-window.addEventListener('resize', handleResize);
-
-return () => {
-  window.removeEventListener('resize', handleResize)
-}},
-[]);
-
-const truncate = (str) => {
-  return str.length > textLength ? str.substring(0, textLength) + "..." : str;
-}
-
   useEffect(() => {
     AOS.init({
       duration: 1000,
     });
-  });
-
-  const deleteTrack = (playlistId, playlistTrackId) => {
-    if (playlistTrackId) {
-      setConfirmDelete(true);
-      axios
-        .post(`${process.env.REACT_APP_BACKEND_URL}users/deletePlaylistTrack`, {
-          playlistId,
-          playlistTrackId,
-          accessToken,
-        })
-        .then((response) => {
-          const responseInfo = response;
-        })
-        .catch((error) => {
-          const errorMsg = error.message;
-        });
-    }
-  }
+  }, []);
 
   const handleSubmit = (e) => {
     const value = e.target.value;
@@ -147,28 +68,38 @@ const truncate = (str) => {
     setTimeout(() => {
       setPlaylistCreateAlert(false);
     }, 3000);
-  }
+  };
 
+  const playlistActions = (action) => {
+    dispatch(fetchPlaylistsPageData());
+    if (action === "delete") {
+      setPlaylistDelAlert(true);
+      clearPlaylistDelAlert();
+    } else {
+      setPlaylistCreateAlert(true);
+      clearPlaylistCreateAlert();
+    }
+  };
   const submitPlaylist = (e) => {
     e.preventDefault();
-    axios
-      .post(`${process.env.REACT_APP_BACKEND_URL}users/addPlaylist`, {
-        id,
-        accessToken,
-        playlistName,
-      })
-      .then((response) => {
-        const responseInfo = response;
-        setPlaylistCreateAlert(true);
-        clearPlaylistCreateAlert();
-        setplaylistName("");
-        setCreatePlayListModal(false)
-        dispatch(fetchPlaylistsPageData())
-      })
-      .catch((error) => {
-        const errorMsg = error.message;
-      });
-  }
+    try {
+      axios
+        .post(`${process.env.REACT_APP_BACKEND_URL}users/addPlaylist`, {
+          id,
+          accessToken,
+          playlistName,
+        })
+        .then((response) => {
+          setCreatePlayListModal(false);
+          playlistActions("create");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const deletePlaylist = () => {
     if (userPlaylist === userData.name) {
@@ -178,45 +109,51 @@ const truncate = (str) => {
           accessToken,
         })
         .then((response) => {
-          const responseInfo = response;
-          dispatch(fetchPlaylistsPageData());
+          playlistActions("delete");
         })
         .catch((error) => {
-          const errorMsg = error.message;
+          console.log(error);
         });
     } else {
       axios
-        .post(`${process.env.REACT_APP_BACKEND_URL}users/deleteOtherUsersPlaylist`, {
-          playlistId,
-          accessToken,
-          id,
-        })
+        .post(
+          `${process.env.REACT_APP_BACKEND_URL}users/deleteOtherUsersPlaylist`,
+          {
+            playlistId,
+            accessToken,
+            id,
+          }
+        )
         .then((response) => {
-          const responseInfo = response;
+          playlistActions("delete");
         })
         .catch((error) => {
-          const errorMsg = error.message;
+          console.log(error);
         });
     }
-  }
+  };
 
   const clearPlaylistDelAlert = () => {
     setTimeout(() => {
       setPlaylistDelAlert(false);
     }, 3000);
-  }
+  };
 
   return (
     <div className="artistsContainer">
       {playlistCreateAlert ? (
-        <div className="deleteAlert">
-          You have succesfully added {playlistName} playlist{" "}
-        </div>
+        loading ? null : (
+          <div className="deleteAlert">
+            You have succesfully added {playlistName} playlist{" "}
+          </div>
+        )
       ) : null}
       {playlistDelAlert ? (
-        <div className="deleteAlert">
-          You have succesfully deleted {select} playlist{" "}
-        </div>
+        loading ? null : (
+          <div className="deleteAlert">
+            You have succesfully deleted {select} playlist{" "}
+          </div>
+        )
       ) : null}
       <LoggedInNav />
       <div className="artistsBody">
@@ -224,159 +161,24 @@ const truncate = (str) => {
         {!loading && myPlaylists ? (
           myPlaylists?.length < 1 ? (
             <div className="emptyDiv">
-              <img src={empty} alt=''/>{" "}
+              <img src={empty} alt="" />{" "}
               <p>
                 oops, seems like you dont have any data available. Click{" "}
-                <a href="https://www.deezer.com/us/" target="_blank" rel="noreferrer">
+                <a
+                  href="https://www.deezer.com/us/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   here
                 </a>{" "}
                 to go back to deezer and start streaming.
               </p>
             </div>
-          ) : (
+          ) : (<>
             <div className="topArtistsContainer">
               {myPlaylists.map((playlist) => {
                 return (
                   <div key={playlist.id}>
-                    <Modal
-                      show={show}
-                      onClose={() => {
-                        setShow(false);
-                        stopPlay();
-                      }}
-                    >
-                      <div className="fixedModalBar">
-                        <div className="closeBtn">
-                          <div
-                            onClick={() => {
-                              setShow(false);
-                              stopPlay();
-                            }}
-                            className="closeContainer"
-                          >
-                            <img
-                              className="closeImg"
-                              src={cancelButton}
-                              alt=""
-                            />
-                          </div>
-                        </div>
-                        <div className="playlistModal-title">
-                          {select} playlist
-                        </div>
-                        {confirmDelete ? (
-                          <div className="loading loading08">
-                            <span data-text="D">D</span>
-                            <span data-text="E">E</span>
-                            <span data-text="L">L</span>
-                            <span data-text="E">E</span>
-                            <span data-text="T">T</span>
-                            <span data-text="I">I</span>
-                            <span data-text="N">N</span>
-                            <span data-text="G">G</span>
-                          </div>
-                        ) : null}
-                        {audioPlaying ? (
-                          <div className="loading loading08">
-                            <span data-text="P">P</span>
-                            <span data-text="L">L</span>
-                            <span data-text="A">A</span>
-                            <span data-text="Y">Y</span>
-                            <span data-text="I">I</span>
-                            <span data-text="N">N</span>
-                            <span data-text="G">G</span>{" "}
-                            <span data-text={trackTitle}>{trackTitle}</span>
-                          </div>
-                        ) : null}
-                        
-                        <div className="playlistModal-createDiv">
-                          {" "}
-                          {!loader ? (
-                            <PlaylistModalButtons
-                              onClick={() => setCreatePlayListModal(true)}
-                              songCount={`${playlistData?.length} songs`}
-                            />
-                          ) : null}
-                        </div>{" "}
-                      </div>
-
-                      {!loader ? (
-                        playlistData.map((track, index) => {
-                          return (
-                            <div key={track.id} className="childrenContainer">
-                              <div
-                                className="playlistModal-body"
-                                onMouseEnter={() => autoPlaySong(track.preview)}
-                                onMouseLeave={() => {autoPlaySong(null); playOnHover && setAudioPlaying(false)}}
-                              >
-                                <div className="modalListDiv">
-                                  <img
-                                    className="deleteImg"
-                                    src={deleteButton}
-                                    alt=""
-                                    onClick={() => {
-                                      setPlaylistTrackId(track.id);
-                                      setAudioPlaying(false);
-                                      deleteTrack(playlistId, track.id);
-                                      setTimeout(() => {
-                                        dispatch(fetchPlaylist(tracklist));
-                                        setConfirmDelete(false);
-                                      }, 2000);
-                                    }}
-                                  />
-                                  <img
-                                    className="twndimg"
-                                    src={track.artist.picture_small}
-                                    alt=""
-                                  />
-                                </div>{" "}
-                                <div className="playListModalTittle">
-                                  <div className="trackTitle">
-                                    {index + 1 + ". "}
-                                    {truncate(track.title)}
-                                  </div>{" "}
-                                  <div className="modalArtistName">
-                                    {truncate(track.artist.name)}
-                                  </div>
-                                </div>
-                                <div className="playlistPlayDiv">
-                                  {" "}
-                                  <img
-                                    className="stopImg"
-                                    src={stop}
-                                    onClick={stopPlay}
-                                    alt=""
-                                  />
-                                  <img
-                                    className="playImg"
-                                    src={play}
-                                    onClick={() => {
-                                      playSong(track.preview);
-                                      setTrackTitle(track.title);
-                                    }}
-                                    alt=""
-                                  />
-                                  <img
-                                    className="playlistLogoImg"
-                                    src={playlistLogo}
-                                    alt=""
-                                  />
-                                </div>
-                              </div>
-                            </div>
-                          );
-                        })
-                      ) : (
-                        <div className="spinnerModal">
-                          {" "}
-                          <div className="lds-facebook">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                          </div>{" "}
-                        </div>
-                      )}
-                    </Modal>
                     <ContextMenuTrigger id="contextmenu">
                       <div
                         onContextMenu={() => {
@@ -389,11 +191,9 @@ const truncate = (str) => {
                           data-aos="fade-up"
                           className="artistImgContainer"
                           onClick={() => {
-                            setShow(true);
+                            history.push(`/playlist/${playlist.id}`);
                             setSelect(playlist.title);
                             setPlaylistId(playlist.id);
-                            settracklist(playlist.tracklist);
-                            dispatch(fetchPlaylist(playlist.tracklist));
                           }}
                         >
                           <img src={playlist.picture_small} alt="" />
@@ -410,6 +210,17 @@ const truncate = (str) => {
                 );
               })}
             </div>
+    <div className="createPlaylist">
+    <Button
+      text="Create a playlist"
+      className="createPlaylistButton"
+      onClick={() => {
+        setCreatePlayListModal(true);
+        setplaylistName("");
+      }}
+    />
+  </div>
+  </>
           )
         ) : (
           <div className="spinnerContainer">
@@ -426,8 +237,6 @@ const truncate = (str) => {
           <MenuItem
             onClick={() => {
               deletePlaylist();
-              setPlaylistDelAlert(true);
-              clearPlaylistDelAlert();
             }}
           >
             <RiDeleteBin6Line className="delete" />
@@ -435,13 +244,16 @@ const truncate = (str) => {
           </MenuItem>
         </ContextMenu>
 
-        <div className="createPlaylist">
+        {/* <div className="createPlaylist">
           <Button
             text="Create a playlist"
             className="createPlaylistButton"
-            onClick={() => setCreatePlayListModal(true)}
+            onClick={() => {
+              setCreatePlayListModal(true);
+              setplaylistName("");
+            }}
           />
-        </div>
+        </div> */}
         <Modal
           show={createPlayListModal}
           onClose={() => setCreatePlayListModal(false)}
@@ -484,28 +296,27 @@ const truncate = (str) => {
           </div>{" "}
         </Modal>
 
-        <div className="musicPlayer">{audioPlaying ? player() : null}</div>
-
         <div className="header secondHeader">Recommended Playlists</div>
         <div>
           {recommendedPlaylists ? (
             <div className="topArtistsContainer">
-            {recommendedPlaylists.map((recomplaylist) => {
-              return (
-                <div key={recomplaylist.id}>
-                  <div data-aos="fade-up" className="artistImgContainer">
-                    <img src={recomplaylist.picture_small} alt="" />
-                    <div className="albumCover">
+              {recommendedPlaylists.map((recomplaylist) => {
+                return (
+                  <div key={recomplaylist.id}>
+                    <div data-aos="fade-up" className="artistImgContainer">
                       <img src={recomplaylist.picture_small} alt="" />
-                      <div className="albumName">{recomplaylist.title} </div>
+                      <div className="albumCover">
+                        <img src={recomplaylist.picture_small} alt="" />
+                        <div className="albumName">{recomplaylist.title} </div>
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="artistNameDiv">{recomplaylist.title}</div>
-                </div>
-              );
-            })
-          } </div>  ) : (
+                    <div className="artistNameDiv">{recomplaylist.title}</div>
+                  </div>
+                );
+              })}{" "}
+            </div>
+          ) : (
             <div className="spinnerContainer">
               {" "}
               <div className="lds-facebook">

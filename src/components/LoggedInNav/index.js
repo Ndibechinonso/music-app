@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import './LoggedInNav.css'
+import "./LoggedInNav.css";
 import icon from "../../Assets/icon.png";
 import icon2 from "../../Assets/icon2.png";
 import icon3 from "../../Assets/icon3.png";
@@ -24,8 +24,17 @@ const LoggedInNav = (props) => {
   let history = useHistory();
   const dispatch = useDispatch();
 
-  let userDataString =localStorage.getItem("userData")
-  const userData = JSON.parse(userDataString)
+
+
+  let userDataString = localStorage.getItem("userData");
+  const userData = JSON.parse(userDataString);
+    const expires = localStorage.getItem('expires')   
+
+    useEffect(()=>{
+      setTimeout(() => {
+        logout()
+      }, (expires * 1000));
+    }, [])
 
   const [show, setShow] = useState(false);
   const [accountlink, setaccountlink] = useState(false);
@@ -37,13 +46,11 @@ const LoggedInNav = (props) => {
 
   const handleScroll = debounce(() => {
     const currentScrollPos = window.pageYOffset;
-
     setVisible(
       (prevScrollPos > currentScrollPos &&
         prevScrollPos - currentScrollPos > 70) ||
-      currentScrollPos < 10
+        currentScrollPos < 10
     );
-
     setPrevScrollPos(currentScrollPos);
   }, 100);
 
@@ -60,28 +67,31 @@ const LoggedInNav = (props) => {
 
   const accountDrop = () => {
     setaccountlink(true);
-  }
+  };
 
   const pageClickEvent = () => {
     setaccountlink(false);
-  }
+  };
 
-  const logout = () =>{
-    localStorage.removeItem("token")
-    localStorage.removeItem("userId")
-    localStorage.removeItem("userData")
-    history.push('/')
-  }
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("userData");
+    localStorage.removeItem("expires");
+    history.push("/");
+  };
 
   useEffect(() => {
     const handleResize = () => {
-      if(window.innerWidth < 681){
-        logout()
+      if (window.innerWidth < 681) {
+        logout();
       }
-}
-    window.addEventListener('resize', handleResize)
-  })
-
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  });
 
   useEffect(() => {
     if (accountlink) {
@@ -108,7 +118,7 @@ const LoggedInNav = (props) => {
           feedback: Yup.string().required("Please enter your feedback"),
         }),
         onSubmit: (values) => {
-          setIsSubmitting(true)
+          setIsSubmitting(true);
           axios
             .post(`${process.env.REACT_APP_BACKEND_URL}feedback`, {
               fullName: values.fullName,
@@ -116,12 +126,11 @@ const LoggedInNav = (props) => {
               feedback: values.feedback,
             })
             .then((response) => {
-              const responseInfo = response.message;
               setIsSubmitted(true);
               resetForm({ values: "" });
             })
             .catch((error) => {
-              const errorMsg = error.message;
+              console.log(error);
             });
         },
       });
@@ -174,7 +183,7 @@ const LoggedInNav = (props) => {
                   value={values.email}
                 />
                 <br />
-                {errors.email  && isSubmitting ? (
+                {errors.email && isSubmitting ? (
                   <div className="error">{errors.email}</div>
                 ) : null}
               </div>
@@ -191,7 +200,7 @@ const LoggedInNav = (props) => {
                   value={values.feedback}
                 />
                 <br />
-                {errors.feedback  && isSubmitting ? (
+                {errors.feedback && isSubmitting ? (
                   <div className="error">{errors.feedback}</div>
                 ) : null}
               </div>
@@ -219,7 +228,7 @@ const LoggedInNav = (props) => {
               </div>
             </div>
             <div className="feedbackClass">
-              <div className='feedback-img'>
+              <div className="feedback-img">
                 <img src={feedback} alt="" />
               </div>
               <p>
@@ -252,43 +261,58 @@ const LoggedInNav = (props) => {
         <Link to="/home">
           {" "}
           <h2>
-            <img src={deezifylogo} alt="deezify-logo" className='deezify-logo'/>
+            <img
+              src={deezifylogo}
+              alt="deezify-logo"
+              className="deezify-logo"
+            />
           </h2>
         </Link>
-        <div className='nav-right'>
-        <ul className="loggedNavBar-links">
-          <NavLink className="navLink" activeClassName="is-active" to="/home">
-            Home
-          </NavLink>
+        <div className="nav-right">
+          <ul className="loggedNavBar-links">
+            <NavLink className="navLink" activeClassName="is-active" to="/home">
+              Home
+            </NavLink>
 
-          <NavLink
-            className="navLink"
-            activeClassName="is-active"
-            to="/artists"
-          >
-            Artists
-          </NavLink>
+            <NavLink
+              className="navLink"
+              activeClassName="is-active"
+              to="/artists"
+            >
+              Artists
+            </NavLink>
 
-          <NavLink
-            className="navLink"
-            activeClassName="is-active"
-            to="/playlists"
-          >
-            PlayLists
-          </NavLink>
+            <NavLink
+              className="navLink"
+              activeClassName="is-active"
+              to="/playlists"
+            >
+              PlayLists
+            </NavLink>
 
-          <NavLink className="navLink" activeClassName="is-active" to="/genres">
-            Genres
-          </NavLink>
-        </ul>
-        <div className="dropdownDiv">
-          {userData ? (
-            <img src={userData.picture_small} className="user userImg" alt="" onClick={accountDrop}/>
-          ) : <i className="uil uil-user-circle"></i>}{" "}
-          {/* <li onClick={accountDrop}>
+            <NavLink
+              className="navLink"
+              activeClassName="is-active"
+              to="/genres"
+            >
+              Genres
+            </NavLink>
+          </ul>
+          <div className="dropdownDiv">
+            {userData ? (
+              <img
+                src={userData.picture_small}
+                className="user userImg"
+                alt=""
+                onClick={accountDrop}
+              />
+            ) : (
+              <i className="uil uil-user-circle"></i>
+            )}{" "}
+            {/* <li onClick={accountDrop}>
             <img src={dropdown} alt="dropdown icon" className="dropdownIcon" />
           </li> */}
-        </div>
+          </div>
         </div>
       </div>
 
@@ -346,15 +370,15 @@ const LoggedInNav = (props) => {
               </div>{" "}
             </div>
             {/* <Link to="/"> */}
-              <div className="settings" onClick={logout}>
-                <img src={icon3} className="user" alt="logout icon" /> Log out
-              </div>
+            <div className="settings" onClick={logout}>
+              <img src={icon3} className="user" alt="logout icon" /> Log out
+            </div>
             {/* </Link> */}
           </div>
         </div>
       ) : null}
     </div>
   );
-}
+};
 
 export default LoggedInNav;

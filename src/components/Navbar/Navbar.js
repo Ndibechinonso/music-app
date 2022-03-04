@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Button from "../Button/Button";
 import "./Navbar.css";
 import copylink from "../../Assets/copy-link.png";
-import { Link } from "react-router-dom";
 import FadeInAnimation from "../FadeInAnimation";
 import SubShare from "../SubShare";
 import TwitterShare from "../TwitterShare";
