@@ -118,7 +118,7 @@ const HomePage = (props) => {
                                             <div style={{ padding: 8 }}>
                                                 <div className="albumGrid">
                                                     <img
-                                                        src={data.cover_small}
+                                                        src={data.cover_xl}
                                                         alt="placeholder"
                                                         style={{ width: "50%" }}
                                                     />
