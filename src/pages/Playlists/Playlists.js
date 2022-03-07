@@ -16,6 +16,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import "../../components/CarouselGrid/coupon.css";
 import empty from "../../Assets/empty.png";
 import { useHistory } from "react-router-dom";
+import Loader from "../../components/Loader";
 
 const Playlists = (props) => {
 
@@ -148,14 +149,14 @@ const Playlists = (props) => {
       {playlistCreateAlert ? (
         loading ? null : (
           <div className="deleteAlert">
-            You have succesfully added {playlistName} playlist{" "}
+            You have succesfully added {playlistName} playlist
           </div>
         )
       ) : null}
       {playlistDelAlert ? (
         loading ? null : (
           <div className="deleteAlert">
-            You have succesfully deleted {select} playlist{" "}
+            You have succesfully deleted {select} playlist
           </div>
         )
       ) : null}
@@ -165,16 +166,16 @@ const Playlists = (props) => {
         {!loading && myPlaylists ? (
           myPlaylists?.length < 1 ? (
             <div className="emptyDiv">
-              <img src={empty} alt="" />{" "}
+              <img src={empty} alt="" />
               <p>
-                oops, seems like you dont have any data available. Click{" "}
+                oops, seems like you dont have any data available. Click
                 <a
                   href="https://www.deezer.com/us/"
                   target="_blank"
                   rel="noreferrer"
                 >
                   here
-                </a>{" "}
+                </a>
                 to go back to deezer and start streaming.
               </p>
             </div>
@@ -210,7 +211,7 @@ const Playlists = (props) => {
 
                         <div className="artistNameDiv">{playlist.title}</div>
                       </div>
-                    </ContextMenuTrigger>{" "}
+                    </ContextMenuTrigger>
                   </div>
                 );
               })}
@@ -227,16 +228,7 @@ const Playlists = (props) => {
   </div>
   </>
           )
-        ) : (
-          <div className="spinnerContainer">
-            {" "}
-            <div className="lds-facebook">
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>{" "}
-          </div>
-        )}
+        ) : <Loader />}
 
         <ContextMenu id="contextmenu">
           <MenuItem
@@ -279,15 +271,15 @@ const Playlists = (props) => {
               />
 
               <div className="addPlaylistButton">
-                {" "}
+                
                 <Button
                   className="feedbackButton"
                   text="Create"
                   type="submit"
                 />
               </div>
-            </form>{" "}
-          </div>{" "}
+            </form>
+          </div>
         </Modal>
 
         <div className="header secondHeader">Recommended Playlists</div>
@@ -308,18 +300,9 @@ const Playlists = (props) => {
                     <div className="artistNameDiv">{recomplaylist.title}</div>
                   </div>
                 );
-              })}{" "}
+              })}
             </div>
-          ) : (
-            <div className="spinnerContainer">
-              {" "}
-              <div className="lds-facebook">
-                <div></div>
-                <div></div>
-                <div></div>
-              </div>{" "}
-            </div>
-          )}
+          ) : <Loader /> }
         </div>
       </div>
     </div>

@@ -35,7 +35,7 @@ const DataLoad = (props) => {
         onMouseLeave={() => cursorChangeHandler("")}
       >
         <div className="playDiv">
-          {" "}
+          
           {loading ? (
             <div className="playCircle">
               <div className="lds-circle">
@@ -48,7 +48,7 @@ const DataLoad = (props) => {
                 <i className="fas play fa-play"></i>
               </Link>
             </div>
-          )}{" "}
+          )}
         </div>
       </div>
     </div>

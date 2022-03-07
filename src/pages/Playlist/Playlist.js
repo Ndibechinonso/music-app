@@ -172,18 +172,18 @@ const Playlist = (props) => {
                     src={track.artist.picture_small}
                     alt=""
                   />
-                </div>{" "}
+                </div>
                 <div className="playListModalTittle">
                   <div className="trackTitle">
                     {index + 1 + ". "}
                     {truncate(track.title)}
-                  </div>{" "}
+                  </div>
                   <div className="modalArtistName">
                     {truncate(track.artist.name)}
                   </div>
                 </div>
                 <div className="playlistPlayDiv">
-                  {" "}
+                  
                   <img
                     className="stopImg"
                     src={stop}

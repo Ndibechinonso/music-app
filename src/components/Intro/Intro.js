@@ -15,17 +15,17 @@ import mobFrame from "../../Assets/mobFrame.png";
             <div className="introContainer">
                 <div className="introText">
                     <FadeInAnimation direction="up">
-                        <h2>Discover your moods</h2>{" "}
+                        <h2>Discover your moods</h2>
                     </FadeInAnimation>
                     <FadeInAnimation direction="up" delay={1}>
-                        {" "}
+                        
                         <p>
                             Explore your music activities and generate new and exciting
                             playlists without having to open your Deezer app at all
             </p>
                     </FadeInAnimation>
                     <FadeInAnimation direction="right" delay={2}>
-                        {" "}
+                        
                         <div className="intro-login-btn">
                             <a href="https://connect.deezer.com/oauth/auth.php?app_id=475622&redirect_uri=https://do-re-me.netlify.app/dataload&perms=basic_access,email,manage_library,delete_library,listening_history">
                                 <Button className="introButton" text="Continue with Deezify" />
@@ -36,13 +36,13 @@ import mobFrame from "../../Assets/mobFrame.png";
                 <div className="picStack">
                     <FadeInAnimation direction="left">
                         <img className="drizzy" src={drizzy} alt="drake" />
-                    </FadeInAnimation>{" "}
+                    </FadeInAnimation>
                     <FadeInAnimation direction="up" delay={1}>
-                        {" "}
+                        
                         <img className="jb" src={weekend} alt="justin bieber" />
-                    </FadeInAnimation>{" "}
+                    </FadeInAnimation>
                 </div>
-                <img className="leftCircle" src={circleG1} alt="" />{" "}
+                <img className="leftCircle" src={circleG1} alt="" />
                 <img className="rightCircle" src={circleG2} alt="" />
             </div>
 

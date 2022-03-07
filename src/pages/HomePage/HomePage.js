@@ -11,7 +11,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { fetchHomeData } from "../../redux";
 import Iframe from "react-iframe";
-
+import Loader from "../../components/Loader";
 
 const HomePage = (props) => {
     const [frameUrl, setFrameUrl] = useState(null);
@@ -86,16 +86,7 @@ const HomePage = (props) => {
                                 </div>
                             );
                         })
-                    ) : (
-                        <div className="spinnerContainer" style={{marginTop: "200px"}}>
-                            {" "}
-                            <div className="lds-facebook">
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                            </div>{" "}
-                        </div>
-                    )}
+                    ) : <Loader />}
                 </Carousel>
                     <div
                         className="recommendedAlbumsContainer"
@@ -146,9 +137,7 @@ const HomePage = (props) => {
                 </div>
             ) 
            
-            <CarouselGrid />
-
-        
+            <CarouselGrid />       
         </div>
     )
 };

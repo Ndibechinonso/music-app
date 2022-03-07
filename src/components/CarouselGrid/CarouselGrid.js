@@ -11,7 +11,7 @@ import { IoHeartOutline } from "react-icons/io5";
 import "./coupon.css";
 import axios from "axios";
 import empty from "../../Assets/empty.png";
-import TestContext from "../../components/TestContext";
+import Loader from "../../components/Loader";
 
 
 const CarouselGrid = () => {
@@ -22,7 +22,6 @@ const CarouselGrid = () => {
   let userDataString = localStorage.getItem("userData");
   const userData = JSON.parse(userDataString);
   const [trackId, setTrackId] = useState(null);
-  console.log(trackId, 'id');
   const { loading, lastPlayedData, recommendedTracksData, playlistsData } = useSelector((state) => state.homePageData);
 
   useEffect(() => {
@@ -47,7 +46,6 @@ const CarouselGrid = () => {
   }
 
   const addTrack = (playlistId) => {
-    alert(trackId + 'track')
     if (trackId) {
       axios
         .post(`${process.env.REACT_APP_BACKEND_URL}users/addPlaylistTrack`, {
@@ -83,24 +81,22 @@ const CarouselGrid = () => {
 
   return (
     <div className="carouselGridContainer">
-      {/* <div style={{backgroundColor: 'white', minHeight: '300px'}}>
-                  <TestContext />
-                  </div> */}
+   
       <div className="artistsBody">
         <h2 className="lastPlayedheader">Last played songs</h2>
         {!loading && lastPlayed ? (
           lastPlayed?.length < 5 ? (
             <div className="emptyDiv">
-              <img src={empty} alt="no file" />{" "}
+              <img src={empty} alt="no file" />
               <p>
-                oops, seems like you dont have any data available. Click{" "}
+                oops, seems like you dont have any data available. Click
                 <a
                   href="https://www.deezer.com/us/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   here
-                </a>{" "}
+                </a>
                 to go back to deezer and start streaming.
               </p>
             </div>
@@ -124,7 +120,7 @@ const CarouselGrid = () => {
                     >
                       <div className="testKid" style={{ padding: 8 }}>
                         <div className="imgContainer">
-                          {" "}
+                          
                           <img
                             className="roundedImg"
                             src={data.album.cover_small}
@@ -143,16 +139,7 @@ const CarouselGrid = () => {
               </SecondCarousel>
             </div>
           )
-        ) : (
-          <div className="spinnerContainer">
-            {" "}
-            <div className="lds-facebook">
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>{" "}
-          </div>
-        )}
+        ) : <Loader />}
       </div>
 
       <div className="artistsBody">
@@ -214,7 +201,7 @@ const CarouselGrid = () => {
                     </MenuItem>
                   );
                 })
-              : null}{" "}
+              : null}
           </ContextMenu>  */}
 
                     </div>
@@ -222,16 +209,7 @@ const CarouselGrid = () => {
        
                     );
               })
-            ) : (
-              <div className="spinnerContainer">
-                {" "}
-                <div className="lds-facebook">
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                </div>{" "}
-              </div>
-            )}
+            ) :<Loader />}
           </SecondCarousel>
 
           <ContextMenu id="contextmenu">
@@ -251,7 +229,7 @@ const CarouselGrid = () => {
                     </MenuItem>
                   );
                 })
-              : null}{" "}
+              : null}
           </ContextMenu>
         </div>
       </div>
