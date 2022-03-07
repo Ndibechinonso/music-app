@@ -9,8 +9,8 @@ const PlaylistActionsAlert = (props) =>{
                             <span data-text="Y">Y</span>
                             <span data-text="I">I</span>
                             <span data-text="N">N</span>
-                            <span data-text="G">G  </span>{" "}
-                            <span data-text={props.track}>{props.track}</span>{" "}
+                            <span data-text="G">G  </span>
+                            <span data-text={props.track}>{props.track}</span>
                             <span data-text='-'>-  </span>
                             <span data-text={props.artist}>{props.artist}</span>
                           </div>): null}

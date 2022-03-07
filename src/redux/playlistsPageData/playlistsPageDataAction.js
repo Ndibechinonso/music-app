@@ -1,4 +1,5 @@
 import axios from "axios";
+import errorHandler from "../../components/errorHandler";
 
 import {
   PLAYLISTS_DATA_REQUEST,
@@ -38,9 +39,10 @@ export const fetchPlaylistsPageData = (savedToken, savedUserId) => (dispatch) =>
 
       .then((response) => {
         dispatch(fetchPlaylistsSuccess(response.data))
+        errorHandler(response.data.code)
       })
       .catch((error) => {
-        dispatch(fetchPlaylistsFailure(error.code))
+        dispatch(fetchPlaylistsFailure(error))
       })
   } catch (error) {
     dispatch(fetchPlaylistsFailure(error))

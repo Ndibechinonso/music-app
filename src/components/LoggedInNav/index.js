@@ -16,16 +16,12 @@ import autoplayoff from "../../Assets/autoplayoff.png";
 import autoplayon from "../../Assets/autoplayon.png";
 import feedback from "../../Assets/feedback.png";
 import { NavLink, useHistory } from "react-router-dom";
-
 import { fetchPlayState, fetchStopState } from "../../redux";
 import { debounce } from "../../utilities/helpers";
 
 const LoggedInNav = (props) => {
   let history = useHistory();
   const dispatch = useDispatch();
-
-
-
   let userDataString = localStorage.getItem("userData");
   const userData = JSON.parse(userDataString);
     const expires = localStorage.getItem('expires')   
@@ -145,7 +141,7 @@ const LoggedInNav = (props) => {
               </div>
             </div>
             {/* <div className="feedbackModal-title">
-              {" "}
+              
               We appreciate your feedback
             </div> */}
             <p className="feedBackText">
@@ -205,7 +201,7 @@ const LoggedInNav = (props) => {
                 ) : null}
               </div>
               <div className="buttonDiv">
-                {" "}
+                
                 <Button
                   className="feedbackButton"
                   text="Submit"
@@ -259,7 +255,7 @@ const LoggedInNav = (props) => {
         style={{ ...navbarStyles, top: visible ? "0" : "-120px" }}
       >
         <Link to="/home">
-          {" "}
+          
           <h2>
             <img
               src={deezifylogo}
@@ -308,10 +304,7 @@ const LoggedInNav = (props) => {
               />
             ) : (
               <i className="uil uil-user-circle"></i>
-            )}{" "}
-            {/* <li onClick={accountDrop}>
-            <img src={dropdown} alt="dropdown icon" className="dropdownIcon" />
-          </li> */}
+            )}
           </div>
         </div>
       </div>
@@ -330,7 +323,7 @@ const LoggedInNav = (props) => {
               </div>
             ) : (
               <div className="settings">
-                {" "}
+                
                 <i className="uil uil-user-circle"></i> User
               </div>
             )}
@@ -346,7 +339,7 @@ const LoggedInNav = (props) => {
             </div>
             <div className="settings">
               <img src={icon2} className="user" alt="autoplay icon" /> Auto play
-              on hover{" "}
+              on hover
               <div className="autoplayDiv">
                 {autoPlay ? (
                   <img
@@ -366,14 +359,12 @@ const LoggedInNav = (props) => {
                     }}
                     alt=""
                   />
-                )}{" "}
-              </div>{" "}
+                )}
+              </div>
             </div>
-            {/* <Link to="/"> */}
             <div className="settings" onClick={logout}>
               <img src={icon3} className="user" alt="logout icon" /> Log out
             </div>
-            {/* </Link> */}
           </div>
         </div>
       ) : null}

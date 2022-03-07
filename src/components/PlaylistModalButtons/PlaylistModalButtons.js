@@ -11,7 +11,7 @@ const PlaylistModalButtons = (props) => {
                     className="createPlaylistClass"
                     onClick={props.onClick}
                 />
-            </div>{" "} */}
+            </div> */}
             <div>
                 <button className="numberCountClass" disabled>
                     {props.songCount}

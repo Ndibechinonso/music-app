@@ -3,7 +3,7 @@ import {
   FETCH_PAYLIST_SUCCESS,
   FETCH_PAYLIST_FAILURE,
 } from "./playListDataTypes";
-
+import errorHandler from "../../components/errorHandler";
 import axios from "axios";
 
 const fetchDataRequest = () => {
@@ -28,13 +28,14 @@ export const fetchPlaylist = (url) => (dispatch) => {
         tracklist: url,
       })
       .then((response) => {
-        const playlist = response.data
-        dispatch(fetchDataSuccess(playlist.data))
+        dispatch(fetchDataSuccess(response.data.data))
+        errorHandler(response.data.code)
       })
       .catch((error) => {
-        dispatch(fetchDataFailure(error.code))
+        dispatch(fetchDataFailure(error))
       })
   } catch (error) {
     dispatch(fetchDataFailure(error))
   }
 };
+

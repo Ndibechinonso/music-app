@@ -9,6 +9,7 @@ import copy from "copy-to-clipboard";
 import deezifylogo from "../../Assets/deezifylogo.png";
 
  const Navbar = (props) => {
+
   const [navlink, setNavlink] = useState(false);
   const [aboutlink, setAboutlink] = useState(false);
   const [sharelink, setSharelink] = useState(false);
@@ -20,7 +21,6 @@ import deezifylogo from "../../Assets/deezifylogo.png";
     setAboutlink(false);
     setSharelink(false);
   }
-
   useEffect(() => {
     if (navlink) {
       window.addEventListener("click", pageClickEvent);
@@ -51,14 +51,14 @@ import deezifylogo from "../../Assets/deezifylogo.png";
   return (
     <div>
       <div className="navBar">
-        {" "}
+        
         <h2>
           <img src={deezifylogo} alt="" className="deezify-logo" />
         </h2>
         <ul className="navBar-links">
           <li className="aboutlink" onClick={dislayAboutLink}>
             <i className="uil uil-link-h share"></i>About
-          </li>{" "}
+          </li>
           <li onClick={dislayShareLink}>
             <i className="uil uil-share-alt share"></i>Share
           </li>
@@ -88,26 +88,26 @@ import deezifylogo from "../../Assets/deezifylogo.png";
                   your streaming activities. However, we will never store your
                   Deezer data on any server
                 </p>
-              </FadeInAnimation>{" "}
+              </FadeInAnimation>
             </div>
           ) : null}
 
           {sharelink ? (
             <div className="share-modal" onClick={(e) => e.stopPropagation()}>
               <FadeInAnimation direction="up">
-                {" "}
+                
                 <h2>Share Deezify</h2>
-                <p>Choose your preferred social platform</p>{" "}
+                <p>Choose your preferred social platform</p>
               </FadeInAnimation>
               <div className="socialRow">
-                <TwitterShare /> <SubShare />{" "}
+                <TwitterShare /> <SubShare />
                 <div>
                   <img
                     src={copylink}
                     onClick={() => hideCopiedLink()}
                     className="socialRowImg"
                     alt="copy icon"
-                  />{" "}
+                  />
                   {copied ? <p className="copied">Copied</p> : null}
                 </div>
               </div>

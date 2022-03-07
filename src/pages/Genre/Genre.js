@@ -6,6 +6,7 @@ import { nanoid } from "nanoid";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { fetchGenresData } from "../../redux";
+import Loader from "../../components/Loader";
 
 const Genres = (props) => {
 
@@ -13,7 +14,6 @@ const Genres = (props) => {
     const id = localStorage.getItem("userId");
 
     const dispatch = useDispatch();
-
     useEffect(() => {
         dispatch(fetchGenresData(accessToken, id));
     }, []);
@@ -55,16 +55,7 @@ const Genres = (props) => {
                                 </div>
                             );
                         })
-                    }</div> ) : (
-                        <div className="spinnerContainer">
-                            {" "}
-                            <div className="lds-facebook">
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                            </div>{" "}
-                        </div>
-                    )}
+                    }</div> ) : <Loader /> }
                 </div>
                 <div className="header secondHeader">Charts</div>
                 <div>
@@ -84,16 +75,7 @@ const Genres = (props) => {
                                 </div>
                             );
                         })
-                       } </div> ) : (
-                        <div className="spinnerContainer">
-                            {" "}
-                            <div className="lds-facebook">
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                            </div>{" "}
-                        </div>
-                    )}
+                       } </div> ) : <Loader /> }
                 </div>
             </div>
         </div>

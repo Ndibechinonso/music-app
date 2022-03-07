@@ -45,30 +45,21 @@
   color: white;
   margin-bottom: 30px;
 }
-.carouselGridContainer {
-  /* margin-top: 131px; */
-}
 .requesFailed {
   color: #fff;
   text-align: center;
 }
-/* .latestTracksBody {
-  margin-left: 5%;
-  margin-top: 100px;
-} */
-.test {
+.carousel-container {
   height: 450px;
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
-.testKid:hover {
-  cursor: pointer;
-}
-.test .testKid:nth-child(odd) {
+
+.carousel-container .carousel-child:nth-child(odd) {
   align-self: flex-start;
 }
-.test .testKid:nth-child(even) {
+.carousel-container .carousel-child:nth-child(even) {
   align-self: flex-end;
 }
 .titleDiv .trackName {
@@ -108,10 +99,9 @@ background-color: rgba(0,0,0,0.5);}
   }
 
   @media only screen and (max-width: 986px) {
-.test{
+.carousel-container{
   height: 200px;
 }
- 
   }
 
   @media only screen and (max-width: 500px) {
@@ -133,7 +123,4 @@ background-color: rgba(0,0,0,0.5);}
     .lastPlayedheader{
       font-size: 16px;
     }
-    /* .latestTracksBody {
-      margin-top: 10px;
-    } */
   }

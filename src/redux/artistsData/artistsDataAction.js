@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import errorHandler from "../../components/errorHandler";
 import {
   ARTISTS_DATA_REQUEST,
   ARTISTS_DATA_SUCCESS,
@@ -38,9 +38,10 @@ export const fetchArtistsData = (savedToken, savedUserId) => (dispatch) => {
 
       .then((response) => {
         dispatch(fetchArtistsSuccess(response.data));
+        errorHandler(response.data.code)
       })
       .catch((error) => {
-        dispatch(fetchArtistsFailure(error.code));
+        dispatch(fetchArtistsFailure(error));
       });
   } catch (error) {
     dispatch(fetchArtistsFailure(error));

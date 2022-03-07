@@ -143,7 +143,10 @@ const Playlist = (props) => {
             <div key={track.id} className="childrenContainer">
               <div
                 className="playlistModal-body"
-                onMouseEnter={() => autoPlaySong(track.preview)}
+                onMouseEnter={() => {autoPlaySong(track.preview)
+                  setTrackTitle(track.title)
+                  setArtistName(track.artist.name)}
+                }
                 onMouseLeave={() => {
                   autoPlaySong(null);
                   playOnHover && setAudioPlaying(false);
@@ -172,18 +175,18 @@ const Playlist = (props) => {
                     src={track.artist.picture_small}
                     alt=""
                   />
-                </div>{" "}
+                </div>
                 <div className="playListModalTittle">
                   <div className="trackTitle">
                     {index + 1 + ". "}
                     {truncate(track.title)}
-                  </div>{" "}
+                  </div>
                   <div className="modalArtistName">
                     {truncate(track.artist.name)}
                   </div>
                 </div>
                 <div className="playlistPlayDiv">
-                  {" "}
+                  
                   <img
                     className="stopImg"
                     src={stop}

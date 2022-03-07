@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import errorHandler from "../../components/errorHandler";
 import {
   GENRES_DATA_REQUEST,
   GENRES_DATA_SUCCESS,
@@ -39,9 +39,10 @@ export const fetchGenresData = (savedToken, savedUserId) => (dispatch) => {
 
       .then((response) => {
         dispatch(fetchGenresSuccess(response.data))
+        errorHandler(response.data.code)
       })
       .catch((error) => {
-        dispatch(fetchGenresFailure(error.code))
+        dispatch(fetchGenresFailure(error))
       })
   } catch (error) {
     dispatch(fetchGenresFailure(error))

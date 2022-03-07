@@ -60,7 +60,7 @@ const CustomisedCarousel = (props) => {
                 {currentIndex > 0 && (
                     <div>
                         {/* <div className="nextIndicator">Previous</div> */}
-                        {" "}
+                        
                         <button onClick={prev} className="left-arrow">
                             <i class="fas slideArrow fa-arrow-left"></i>
                         </button>
@@ -83,7 +83,7 @@ const CustomisedCarousel = (props) => {
                 {/* You can alwas change the content of the button to other things */}
                 {currentIndex < length - show && (
                     <div>
-                        {" "}
+                        
                         <button onClick={next} className="right-arrow">
                             <i className="fas slideArrow fa-arrow-right"></i>
                         </button>

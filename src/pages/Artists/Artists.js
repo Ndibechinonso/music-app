@@ -7,6 +7,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { fetchArtistsData } from "../../redux";
 import empty from "../../Assets/empty.png";
+import Loader from "../../components/Loader";
 
 const Artists = (props) => {
   const savedToken = localStorage.getItem("token");
@@ -43,16 +44,16 @@ const Artists = (props) => {
         {!loading && artistsData ? (
           myArtists?.length < 1 ? (
             <div className="emptyDiv">
-              <img src={empty} alt="" />{" "}
+              <img src={empty} alt="" />
               <p>
-                oops, seems like you dont have any data available. Click{" "}
+                oops, seems like you dont have any data available. Click
                 <a
                   href="https://www.deezer.com/us/"
                   target="_blank"
                   rel="noreferrer"
                 >
                   here
-                </a>{" "}
+                </a>
                 to go back to deezer and start streaming.
               </p>
             </div>
@@ -74,16 +75,7 @@ const Artists = (props) => {
               })}
             </div>
           )
-        ) : (
-          <div className="spinnerContainer">
-            {" "}
-            <div className="lds-facebook">
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>{" "}
-          </div>
-        )}
+        ) : <Loader /> }
 
         <div className="header secondHeader">Recomended Artists</div>
         <div>
@@ -103,18 +95,9 @@ const Artists = (props) => {
                     <div className="artistNameDiv">{artist.name}</div>
                   </div>
                 );
-              })}{" "}
+              })}
             </div>
-          ) : (
-            <div className="spinnerContainer">
-              {" "}
-              <div className="lds-facebook">
-                <div></div>
-                <div></div>
-                <div></div>
-              </div>{" "}
-            </div>
-          )}
+          ) : <Loader /> }
         </div>
       </div>
     </div>
