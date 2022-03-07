@@ -56,7 +56,9 @@ const HomePage = (props) => {
         <div>
             <LoggedInNav />
             <div className="parentSlide">
+            {recommendedAlbums ? 
                 <Carousel
+                    interval={3000}	
                     autoPlay={true}
                     infiniteLoop={true}
                     showIndicators={false}
@@ -64,8 +66,7 @@ const HomePage = (props) => {
                     showThumbs={false}
                     showStatus={false}
                 >
-                    {recommendedAlbums ? (
-                        recommendedAlbums.map((data) => {
+                        {recommendedAlbums.map((data) => {
                             return (
                                 <div key={data.artist.id + nanoid()} data-aos="fade-left">
                                     <div
@@ -86,8 +87,8 @@ const HomePage = (props) => {
                                 </div>
                             );
                         })
-                    ) : <Loader />}
-                </Carousel>
+                    }
+                </Carousel> : <Loader />}
                     <div
                         className="recommendedAlbumsContainer"
                         style={{
