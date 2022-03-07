@@ -22,9 +22,7 @@ const Playlists = (props) => {
   const accessToken = localStorage.getItem("token");
   const id = localStorage.getItem("userId");
 
-  useEffect(() => {
-    dispatch(fetchPlaylistsPageData(accessToken, id));
-  }, []);
+
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -42,6 +40,10 @@ const Playlists = (props) => {
   const [playlistDelAlert, setPlaylistDelAlert] = useState(false);
   const [playlistCreateAlert, setPlaylistCreateAlert] = useState(false);
   const [myPlaylists, setMyPlaylists] = useState([]);
+
+  useEffect(() => {
+    dispatch(fetchPlaylistsPageData(accessToken, id));
+  }, []);
 
   useEffect(() => {
     if (playlists) {
@@ -109,6 +111,7 @@ const Playlists = (props) => {
           accessToken,
         })
         .then((response) => {
+          dispatch(fetchPlaylistsPageData(accessToken, id))
           playlistActions("delete");
         })
         .catch((error) => {
@@ -125,6 +128,7 @@ const Playlists = (props) => {
           }
         )
         .then((response) => {
+          dispatch(fetchPlaylistsPageData(accessToken, id))
           playlistActions("delete");
         })
         .catch((error) => {

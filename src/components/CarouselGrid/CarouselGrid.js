@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import SecondCarousel from "../SecondCarousel";
 import "./CarouselGrid.css";
 import { nanoid } from "nanoid";
@@ -11,14 +11,18 @@ import { IoHeartOutline } from "react-icons/io5";
 import "./coupon.css";
 import axios from "axios";
 import empty from "../../Assets/empty.png";
+import TestContext from "../../components/TestContext";
+
 
 const CarouselGrid = () => {
+  const itemEls = useRef(new Array())
 
   const accessToken = localStorage.getItem("token");
   const id = localStorage.getItem("userId");
   let userDataString = localStorage.getItem("userData");
   const userData = JSON.parse(userDataString);
   const [trackId, setTrackId] = useState(null);
+  console.log(trackId, 'id');
   const { loading, lastPlayedData, recommendedTracksData, playlistsData } = useSelector((state) => state.homePageData);
 
   useEffect(() => {
@@ -42,7 +46,8 @@ const CarouselGrid = () => {
     );
   }
 
-  const addTrack = (playlistId, trackId) => {
+  const addTrack = (playlistId) => {
+    alert(trackId + 'track')
     if (trackId) {
       axios
         .post(`${process.env.REACT_APP_BACKEND_URL}users/addPlaylistTrack`, {
@@ -78,6 +83,9 @@ const CarouselGrid = () => {
 
   return (
     <div className="carouselGridContainer">
+      {/* <div style={{backgroundColor: 'white', minHeight: '300px'}}>
+                  <TestContext />
+                  </div> */}
       <div className="artistsBody">
         <h2 className="lastPlayedheader">Last played songs</h2>
         {!loading && lastPlayed ? (
@@ -160,20 +168,22 @@ const CarouselGrid = () => {
         >
           <SecondCarousel show={5}>
             {latestTracks ? (
-              latestTracks.map((track) => {
+              latestTracks.map((track, index) => {
                 return (
+              
                   <ContextMenuTrigger
-                    id="contextmenu"
-                    key={track.id + nanoid()}
-                  >
+                  id='contextmenu'
+                   key={track.id + nanoid()}
+                 >      
                     <div
                       data-aos="fade-left"
                       className="testKid"
                       onContextMenu={() => setTrackId(track.id)}
+                      // key={track.id}
                     >
+               
                       <div className="testKid" style={{ padding: 8 }}>
                         <div className="imgContainer">
-                          {" "}
                           <img
                             className="roundedImg"
                             src={track.cover_small}
@@ -186,9 +196,31 @@ const CarouselGrid = () => {
                           </div>
                         </div>
                       </div>
+
+          {/* <ContextMenu  id={track.title}>
+            <MenuItem onClick={addFavTrack(trackId)}>
+              <IoHeartOutline className="watchlist" />
+              <span>Add to favourite</span>
+            </MenuItem>
+            {createdPlaylists
+              ? createdPlaylists.map((playListMenu) => {
+                  return (
+                    <MenuItem
+                      key={playListMenu.id}
+                      onClick={addTrack(playListMenu.id, trackId)}
+                    >
+                      <FaList className="watchlist" />
+                      <span>Add to {playListMenu.title}</span>
+                    </MenuItem>
+                  );
+                })
+              : null}{" "}
+          </ContextMenu>  */}
+
                     </div>
-                  </ContextMenuTrigger>
-                );
+                    </ContextMenuTrigger>
+       
+                    );
               })
             ) : (
               <div className="spinnerContainer">
@@ -203,7 +235,7 @@ const CarouselGrid = () => {
           </SecondCarousel>
 
           <ContextMenu id="contextmenu">
-            <MenuItem onClick={addFavTrack(trackId)}>
+            <MenuItem onClick={() => addFavTrack(trackId)}>
               <IoHeartOutline className="watchlist" />
               <span>Add to favourite</span>
             </MenuItem>
@@ -212,7 +244,7 @@ const CarouselGrid = () => {
                   return (
                     <MenuItem
                       key={playListMenu.id}
-                      onClick={addTrack(playListMenu.id, trackId)}
+                      onClick={() =>addTrack(playListMenu.id)}
                     >
                       <FaList className="watchlist" />
                       <span>Add to {playListMenu.title}</span>

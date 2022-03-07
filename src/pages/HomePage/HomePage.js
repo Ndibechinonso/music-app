@@ -12,6 +12,7 @@ import { Carousel } from "react-responsive-carousel";
 import { fetchHomeData } from "../../redux";
 import Iframe from "react-iframe";
 
+
 const HomePage = (props) => {
     const [frameUrl, setFrameUrl] = useState(null);
     const [noOfAlbumDisplay, setNoOfAlbumDisplay] = useState(3)
@@ -76,7 +77,7 @@ const HomePage = (props) => {
                                             <div className="newAlbumArtist">{data.artist.name}</div>
                                         </div>
                                         <img
-                                            src={data.cover_xl}
+                                            src={data.cover_small}
                                             alt="placeholder"
                                             style={{ width: "100vw", height: "631px" }}
                                             className="bgPic"
@@ -144,7 +145,10 @@ const HomePage = (props) => {
                     /> : null}
                 </div>
             ) 
+           
             <CarouselGrid />
+
+        
         </div>
     )
 };
