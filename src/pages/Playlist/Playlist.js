@@ -143,7 +143,10 @@ const Playlist = (props) => {
             <div key={track.id} className="childrenContainer">
               <div
                 className="playlistModal-body"
-                onMouseEnter={() => autoPlaySong(track.preview)}
+                onMouseEnter={() => {autoPlaySong(track.preview)
+                  setTrackTitle(track.title)
+                  setArtistName(track.artist.name)}
+                }
                 onMouseLeave={() => {
                   autoPlaySong(null);
                   playOnHover && setAudioPlaying(false);

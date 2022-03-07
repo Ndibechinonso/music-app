@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import errorHandler from "../../components/errorHandler";
 import {
   HOMEPAGE_DATA_REQUEST,
   HOMEPAGE_DATA_SUCCESS,
@@ -37,11 +37,14 @@ export const fetchHomeData = (code, id) => (dispatch) => {
 
       .then((response) => {
         dispatch(fetchHomePageSuccess(response.data))
+        errorHandler(response.data.code)
       })
       .catch((error) => {
-        dispatch(fetchHomePageFailure(error.code))
+        console.log(error, 'error');
+        dispatch(fetchHomePageFailure(error))
       })
   } catch (error) {
     dispatch(fetchHomePageFailure(error))
+
   }
 };

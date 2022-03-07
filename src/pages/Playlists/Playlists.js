@@ -22,17 +22,16 @@ const Playlists = (props) => {
 
   const accessToken = localStorage.getItem("token");
   const id = localStorage.getItem("userId");
-
-
-
   const dispatch = useDispatch();
   const history = useHistory();
 
   let userDataString = localStorage.getItem("userData");
   const userData = JSON.parse(userDataString);
+  
   const { loading, playlists, recommendedPlaylistsData } = useSelector(
     (state) => state.playlistsPageData
   );
+
   const [select, setSelect] = useState("");
   const [playlistId, setPlaylistId] = useState("");
   const [createPlayListModal, setCreatePlayListModal] = useState(false);
@@ -194,7 +193,7 @@ const Playlists = (props) => {
                       >
                         <div
                           data-aos="fade-up"
-                          className="artistImgContainer"
+                          className="artistImgContainer cursor"
                           onClick={() => {
                             history.push(`/playlist/${playlist.id}`);
                             setSelect(playlist.title);

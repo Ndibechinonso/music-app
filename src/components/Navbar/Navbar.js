@@ -9,6 +9,7 @@ import copy from "copy-to-clipboard";
 import deezifylogo from "../../Assets/deezifylogo.png";
 
  const Navbar = (props) => {
+
   const [navlink, setNavlink] = useState(false);
   const [aboutlink, setAboutlink] = useState(false);
   const [sharelink, setSharelink] = useState(false);
@@ -20,7 +21,6 @@ import deezifylogo from "../../Assets/deezifylogo.png";
     setAboutlink(false);
     setSharelink(false);
   }
-
   useEffect(() => {
     if (navlink) {
       window.addEventListener("click", pageClickEvent);

@@ -3,8 +3,6 @@ body {
   max-width: 100%;
   overflow-x: hidden;
 }
-
-
 .spinnerContainer {
   display: flex;
   flex-direction: row;
@@ -68,10 +66,10 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #555; 
 }
-
+.cursor:hover{
+  cursor: pointer;
+}
 @media only screen and (max-width: 680px) {
-
-
    .lds-facebook {
     width: 80px;
     height: 60px;
@@ -80,20 +78,6 @@ body {
     width: 8px;
   }
 }
-
-/* body {
-  background-color: #282828;
-  padding: 0;
-  margin: 0;
-  min-height: 100vh;
-  width: 100%;
-}
-
-.app {
-  min-height: 100vh;
-  width: 100%;
-  background-color: #282828;
-} */
 
 .menu {
   background-color: #fff;

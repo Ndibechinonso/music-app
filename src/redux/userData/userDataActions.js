@@ -36,7 +36,7 @@ export const fetchUsers = (code) => (dispatch) => {
         dispatch(fetchUserSuccess(response.data))
       })
       .catch((error) => {
-        dispatch(fetchUserFailure(error.code))
+        dispatch(fetchUserFailure(error))
       })
   } catch (error) {
     dispatch(fetchUserFailure(error))

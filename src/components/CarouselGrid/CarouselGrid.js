@@ -108,17 +108,17 @@ const CarouselGrid = () => {
                 marginRight: "auto",
                 marginTop: 20,
               }}
-              className="test"
+              className="carousel-container"
             >
               <SecondCarousel show={5}>
                 {lastPlayed?.map((data) => {
                   return (
                     <div
                       key={data.artist.id + nanoid()}
-                      className="testKid"
+                      className="carousel-child"
                       data-aos="fade-left"
                     >
-                      <div className="testKid" style={{ padding: 8 }}>
+                      <div className="carousel-child" style={{ padding: 8 }}>
                         <div className="imgContainer">
                           
                           <img
@@ -151,7 +151,7 @@ const CarouselGrid = () => {
             marginRight: "auto",
             marginTop: 20,
           }}
-          className="test"
+          className="carousel-container"
         >
           <SecondCarousel show={5}>
             {latestTracks ? (
@@ -164,12 +164,12 @@ const CarouselGrid = () => {
                  >      
                     <div
                       data-aos="fade-left"
-                      className="testKid"
+                      className="carousel-child"
                       onContextMenu={() => setTrackId(track.id)}
                       // key={track.id}
                     >
                
-                      <div className="testKid" style={{ padding: 8 }}>
+                      <div className="carousel-child" style={{ padding: 8 }}>
                         <div className="imgContainer">
                           <img
                             className="roundedImg"
@@ -183,27 +183,6 @@ const CarouselGrid = () => {
                           </div>
                         </div>
                       </div>
-
-          {/* <ContextMenu  id={track.title}>
-            <MenuItem onClick={addFavTrack(trackId)}>
-              <IoHeartOutline className="watchlist" />
-              <span>Add to favourite</span>
-            </MenuItem>
-            {createdPlaylists
-              ? createdPlaylists.map((playListMenu) => {
-                  return (
-                    <MenuItem
-                      key={playListMenu.id}
-                      onClick={addTrack(playListMenu.id, trackId)}
-                    >
-                      <FaList className="watchlist" />
-                      <span>Add to {playListMenu.title}</span>
-                    </MenuItem>
-                  );
-                })
-              : null}
-          </ContextMenu>  */}
-
                     </div>
                     </ContextMenuTrigger>
        
